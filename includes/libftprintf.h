@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   libftprintf.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/07 21:50:16 by Brian             #+#    #+#             */
-/*   Updated: 2019/11/20 08:00:38 by bvalette         ###   ########.fr       */
+/*   Created: 2019/12/13 09:44:34 by bvalette          #+#    #+#             */
+/*   Updated: 2019/12/13 13:13:57 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef LIBFTPRINTF_H
+# define LIBFTPRINTF_H
 
-/*
-**	retry = cast void * du malloc
-**  RETRY 2 = utilisation de calloc_size pour gerer le count == 0
-**  et eviter de bzero un null.
-*/
+#include <libft.h>
+#include <stdarg.h> 
+#include <stdio.h> 
 
-void	*ft_calloc(size_t count, size_t size)
-{
-	void	*new_ptr;
-	size_t	alloc_size;
+int		ft_printf(const char *, ...);
 
-	alloc_size = count * size;
-	new_ptr = malloc(alloc_size);
-	if (new_ptr != NULL)
-		ft_bzero(new_ptr, alloc_size);
-	return (new_ptr);
-}
+#endif

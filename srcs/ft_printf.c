@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/14 16:31:42 by Brian             #+#    #+#             */
-/*   Updated: 2019/11/15 07:44:06 by bvalette         ###   ########.fr       */
+/*   Created: 2019/12/13 09:48:03 by bvalette          #+#    #+#             */
+/*   Updated: 2019/12/13 14:42:55 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "libftprintf.h"
+#include <stdarg.h>
 
-void		ft_lstiter(t_list *lst, void (*f)(void *))
+int	ft_printf(const char *first_arg, ...)
 {
-	if (!lst || !f)
-		return ;
-	while (lst)
-	{
-		(*f)(lst->content);
-		lst = lst->next;
-	}
+	int 	ret;
+	va_list ap;
+	char 	*next_arg;
+
+	ret = 0;
+	va_start(ap, first_arg);
+	printf("%s\n", first_arg);
+	next_arg = va_arg(ap, char *);
+	printf("%s\n", next_arg);
+
+//	ft_putstr_fd(first_arg, 1);
+	va_end(ap);
+	return (0);
 }
+

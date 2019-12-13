@@ -1,18 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   main_ft_printf.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/13 15:13:15 by Brian             #+#    #+#             */
-/*   Updated: 2019/11/15 07:45:34 by bvalette         ###   ########.fr       */
+/*   Created: 2019/12/13 09:36:25 by bvalette          #+#    #+#             */
+/*   Updated: 2019/12/13 14:43:02 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "libft.h"
+#include "libftprintf.h"
 
-void	ft_putchar_fd(char c, int fd)
+int	main(void)
 {
-	write(fd, &c, 1);
+	printf("\n===============\n");
+	printf("= PRINTF LIBC =\n");
+	printf("===============\n\n");
+
+	printf("test");
+
+	
+
+	printf("\n\n===============\n");
+	printf("=  ft_printf  =\n");
+	printf("===============\n\n");
+
+	ft_printf("coucou ft_printf", "second_arg");
+	
+	printf("\n\n=============  FIN  =================\n");
+	return (0);
 }
