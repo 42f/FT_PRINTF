@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:48:03 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/16 11:21:46 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/17 13:29:43 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,44 +17,91 @@
 // -0.*
 // malloc, free, write, va_start, va_arg, va_copy, va_end
 
-static char		ft_find_id(const char *first_arg)
-{
-	int i;
-	int y;
-	char *set;
 
-	i = 0;
-	y = 0;
+static t_format	*ft_format_init(void)
+{
+	t_format	*new_format;
+
+	new_format= (t_format*)malloc(sizeof(t_format) * 1);
+	if (new_format== NULL)
+		return (NULL);
+	new_format->flag = 0;
+	new_format->min_width = -1;
+	new_format->precision = -1;
+	new_format->converter = 0;
+	return (new_format);
+}
+
+static char		ft_is_converter(char first_arg)
+{
+	char		*set;
+	int			i;
+
 	set = "cspdiuxX%";
-	while (first_arg[y] != '\0')
+	i = 0;
+	while (set[i] != '\0')
 	{
-		while (set[i] != '\0')
-		{
-			if (first_arg[y] == set[i])
-				return (first_arg[y]);
-			i++;
-		}
-		i = 0;
-		y++;
+		if (first_arg == set[i])
+			return (first_arg);
+		i++;
 	}
 	return (0);
 }
 
-void			ft_fetch_next_arg(va_list ap, char id)
+static char		ft_format_parser(const char *first_arg)
 {
+	int			y;
+	t_format	*format;
+	char		converter;
+
+	y = 0;
+	format = ft_format_init();
+	if (format == NULL)
+		return (0);
+	while (first_arg[y] != '\0')
+	{
+		if ((first_arg[y] == '-'  || first_arg[y] == '0') && y == 0)
+			format->flag = first_arg[y];
+		if (ft_isdigit(first_arg[y]) == 1 && format->min_width == -1)
+			format->min_width = ft_atoi(first_arg + y);
+		if (first_arg[y] == '.')
+		{
+			y++;
+			format->precision = ft_atoi(first_arg + y);
+		}
+		converter = ft_is_converter(first_arg[y]);
+		if (converter != 0)
+		{
+			format->converter = converter;
+			break;
+		}
+		y++;
+	}
+	//remove
+	printf("\n[converter = |%c|\nflag = |%c|\nmin_width = |%d|\nprecision = |%d|]\n", format->converter, format->flag, format->min_width, format->precision);
+//	system ("leaks a.out");
+
+	return (first_arg[y]);
+}
+
+static void			ft_fetch_next_arg(va_list ap, char id)
+{
+//	int		ret;
+//	char	*buffer;
+	return ;
 	if (id == '%')
 		ft_putchar('%');
-	if (id == 'c')
+	else if (id == 'c')
 		ft_putchar(va_arg(ap, int));
-	if (id == 's')
+	else if (id == 's')
 		ft_putstr(va_arg(ap, char*));
-//	if (id == 'p')
+//	else if (id == 'p')
 //		next_arg = va_arg(ap, void*);
-	if (id == 'd' || id == 'i' || id == 'u')
+	else if (id == 'd' || id == 'i' || id == 'u')
 		ft_putnbr(va_arg(ap, int));
-//	if (id == 'u')
+//	else if (id == 'u')
 //		next_arg = va_arg(ap, unsigned int);
-//	if (id == 'x' || id == 'X')
+//	else if (id == 'x' || id == 'X')
 //		next_arg = va_arg(ap, char);
 }
 
@@ -62,8 +109,7 @@ static int		ft_str_manager(va_list ap, const char *first_arg)
 {
 	int		ret;
 	int		i;
-	char	id;
-
+	char	converter;
 	i = 0;
 	ret = 0;
 	while (first_arg[i] != '\0')
@@ -76,10 +122,12 @@ static int		ft_str_manager(va_list ap, const char *first_arg)
 		else 
 		{
 			i++;
-			id = ft_find_id(first_arg + i);
-			ft_fetch_next_arg(ap, id);
+			converter = ft_format_parser(first_arg + i);
+			ft_fetch_next_arg(ap, converter);
+			while (first_arg[i] != '\0' && ft_is_converter(first_arg[i]) == 0)
+				i++;
 		}
-	i++;
+		i++;
 	}
 	return (ret);
 }

@@ -6,9 +6,12 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:36:25 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/16 11:29:19 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/17 13:21:58 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include<time.h>
+
 
 #include <stdio.h>
 #include "libft.h"
@@ -70,7 +73,7 @@ void		basic_test_02(void)
 	printf("test %d\n", 42);	
 	printf("test %d\n", -42);	
 	printf("test %%\n");	
-	printf("test %c | %s\n", 'Y', "coucou");	
+	printf("test %c | %s\n", 'Y', "coucou libc");	
 	
 	printf("\n\n===============\n");
 	printf("=  ft_printf  =\n");
@@ -82,7 +85,7 @@ void		basic_test_02(void)
 	ft_printf("test %d\n", 42);	
 	ft_printf("test %d\n", -42);	
 	ft_printf("test %%\n");	
-	ft_printf("test %c | %s\n", 'Y', "coucou");	
+	ft_printf("test %c | %s\n", 'Y', "coucou FT");	
 
 	printf("\n\n=============  FIN  =================\n");
 }
@@ -90,22 +93,23 @@ void		basic_test_02(void)
 
 int	main(void)
 {
+	time_t t;
+    time(&t);
+
+	printf("\n\n================ [START] =================\n");
+	printf("\t%s", ctime(&t));
 
 //	basic_test_01();
-	basic_test_02();
+//	basic_test_02();
 	
-	printf("\n===============\n");
-	printf("= PRINTF LIBC =\n");
-	printf("===============\n\n");
-
-
 	printf("\n\n===============\n");
 	printf("=  ft_printf  =\n");
 	printf("===============\n\n");
 
+	ft_printf("{test 01}%44i \n{test 02 }%42X\n\t\t ===========FIN\n");	
+	ft_printf("{test 01}%44.10i \n{test 02 }%42.10X\n\t\t ===========FIN\n");	
+	ft_printf("{test 01}%-44i \n{test 02 }%-42X\n\t\t ===========FIN\n");	
 
-
-	printf("\n\n=============  FIN  =================\n");
 	return(0);	
 
 }
