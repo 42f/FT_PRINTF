@@ -32,7 +32,7 @@ $(OBJS_BONUS): %.o: %.c $(HEAD)
 	$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 f:	$(NAME)
-	$(CC) -I$(INC) main_ft_printf.c $(NAME) $(LIBFT)/libft.a
+	$(CC) -I$(INC) -g main_ft_printf.c $(NAME) $(LIBFT)/libft.a
 	./a.out
 
 fs:	$(NAME)

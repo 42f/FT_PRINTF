@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/13 09:36:25 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/19 12:59:26 by bvalette         ###   ########.fr       */
+/*   Created: 2019/12/19 13:51:42 by bvalette          #+#    #+#             */
+/*   Updated: 2019/12/21 17:02:00 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include<time.h>
 #include <stdlib.h>
 
@@ -23,199 +24,153 @@ void	basic_test_01_char(void)
 	printf("===============\n\n");
 	
 	int	ret_0 = 0;
+//	freopen("log_libC.txt","w",stdout);
 
 	printf("%1c", 'H');
-	printf("*************************\n");
+	printf("***.***.***\n");
 	printf("%10c", 'H');
-	printf("*************************\n");
+	printf("***.***.***\n");
 	printf("%15c", 'H');
-	printf("*************************\n");
+	printf("***.***.***\n");
 	printf("%50c", 'H');
-	printf("*************************\n");
+	printf("***.***.***\n");
 
 	printf("%-1c", 'H');
-	printf("*************************\n");
+	printf("***.***.***\n");
 	printf("%-10c", 'H');
-	printf("*************************\n");
+	printf("***.***.***\n");
 	printf("%-15c", 'H');
-	printf("*************************\n");
+	printf("***.***.***\n");
 	printf("%-50c", 'H');
-	printf("*************************\n");
+	printf("***.***.***\n");
+	
+//	fclose(stdout);	
 				
 	printf("\n\n===============\n");
 	printf("=  ft_printf  =\n");
 	printf("===============\n\n");
 	
+//	freopen("log_libFT.txt","w",stdout);
 
 	ft_printf("%1c", 'H');
-	ft_printf("*************************\n");
+	ft_printf("***.***.***\n");
 	ft_printf("%10c", 'H');
-	ft_printf("*************************\n");
+	ft_printf("***.***.***\n");
 	ft_printf("%15c", 'H');
-	ft_printf("*************************\n");
+	ft_printf("***.***.***\n");
 	ft_printf("%50c", 'H');
-	ft_printf("*************************\n");
+	ft_printf("***.***.***\n");
 
 	ft_printf("%-1c", 'H');
-	ft_printf("*************************\n");
+	ft_printf("***.***.***\n");
 	ft_printf("%-10c", 'H');
-	ft_printf("*************************\n");
+	ft_printf("***.***.***\n");
 	ft_printf("%-15c", 'H');
-	ft_printf("*************************\n");
+	ft_printf("***.***.***\n");
 	ft_printf("%-50c", 'H');
-	ft_printf("*************************\n");
+	ft_printf("***.***.***\n");
+	
+//	fclose(stdout);	
 				
-	ft_printf("\n\n=============  FIN  =================\n");
-}
-
-void	basic_test_01_string(void)
-{
-	printf("\n===============\n");
-	printf("= PRINTF LIBC =\n");
-	printf("===============\n\n");
-	
-	int		ret_0 = 0;
-	char 	*test_str = "coucou";
-	char	*output_libc[1024];
-	
-	freopen("log_libC.txt","w",stdout);
-
-	printf("%s", test_str);
-	printf("*************************[0.0]\n");
-	printf("%10s", test_str);
-	printf("*************************[0.1]\n");
-	printf("%.0s", test_str);
-	printf("*************************[0.2]\n");
-	printf("%.1s", test_str);
-	printf("*************************[0.3]\n");
-	printf("%10.0s", test_str);
-	printf("*************************[1]\n");
-	printf("%10.1s", test_str);
-	printf("*************************[2]\n");
-	printf("%10.3s", test_str);
-	printf("*************************[3]\n");
-	printf("%10.4s", test_str);
-	printf("*************************[4]\n");
-
-	printf("%-10.0s", test_str);
-	printf("*************************[5]\n");
-	printf("%-10.1s", test_str);
-	printf("*************************[6]\n");
-	printf("%-10.3s", test_str);
-	printf("*************************[7]\n");
-	printf("%-10.4s", test_str);
-	printf("*************************[8]\n");
-
-	fclose(stdout);	
-
-	printf("\n\n===============\n");
-	printf("=  ft_printf  =\n");
-	printf("===============\n\n");
-	
-int ret_1 = 0;
-
-	freopen("log_libFT.txt","w",stdout);
-
-	ft_printf("%s", test_str);
-	ft_printf("*************************[0.0]\n");
-	ft_printf("%10s", test_str);
-	ft_printf("*************************[0.1]\n");
-	ft_printf("%.0s", test_str);
-	ft_printf("*************************[0.2]\n");
-	ft_printf("%.1s", test_str);
-	ft_printf("*************************[0.3]\n");
-	ft_printf("%10s", test_str);
-	ft_printf("*************************[0]\n");
-	ft_printf("%10.0s", test_str);
-	ft_printf("*************************[1]\n");
-	ft_printf("%10.1s", test_str);
-	ft_printf("*************************[2]\n");
-	ft_printf("%10.3s", test_str);
-	ft_printf("*************************[3]\n");
-	ft_printf("%10.4s", test_str);
-	ft_printf("*************************[4]\n");
-
-	ft_printf("%-10.0s", test_str);
-	ft_printf("*************************[5]\n");
-	ft_printf("%-10.1s", test_str);
-	ft_printf("*************************[6]\n");
-	ft_printf("%-10.3s", test_str);
-	ft_printf("*************************[7]\n");
-	ft_printf("%-10.4s", test_str);
-	ft_printf("*************************[8]\n");
-
-	fclose(stdout);
-	
 	ft_printf("\n\n=============  FIN  =================\n");
 }
 
 void	basic_test_01_int(void)
 {
 
-	int	ret_0 = 0;
-	int n = 1;
-	int i = 0;
+/*
+** ============================ MULTI FLAGS TEST UNIT - for str only
+*/
+	int		multi_arg[6] =
+	{	42,
+		9,
+		0,
+		-42,
+		12312142,
+		-89898989,
+	};
+	char 	multi_test[14][50] =
+	{	"[%d] \n",
+		"[%15d] \n",
+		"[%0-15d] \n",
+		"[%.0d] \n",
+		"[%15d] \n",
+		"[%15.0d] \n",
+		"[%15.1d] \n",
+		"[%15.10d] \n",
+		"[%-15.0d] \n",
+		"[%-15.1d] \n",
+		"[%-15.10d] \n",
+		"[%.0d] \n",
+		"[%-5.30d] \n",
+		"[%5.30d] \n",
+	};
+	int 	i = 0;
+	int		y = 0;
 
-while (i <= 4)
+	while (y < 6)
+	{
+			printf("\n\n-------------------------------------->>[%d]\n", multi_arg[y]);	
+		while (i < 14)
+		{
+			printf("STRING >>>>>>>>>>>>>>>>>>>>>>>> %s", multi_test[i]);
+			printf(multi_test[i], multi_arg[y]);
+			ft_printf(multi_test[i], multi_arg[y]);
+			printf("\n");
+			i++;
+		}
+	i = 0;
+	y++;
+	}
+	ft_printf("\n\n=============  FIN  =================\n");
+}
+
+void	basic_test_01_string(void)
 {
-	printf("\n===============\n");
-	printf("= PRINTF LIBC =\n");
-	printf("===============\n\n");
 
-	printf("%10.0d", n);
-	printf("*************************\n");
-	printf("%10.1d", n);
-	printf("*************************\n");
-	printf("%10.3d", n);
-	printf("*************************\n");
-	printf("%10.4d", n);
-	printf("*************************\n");
+/*
+** ============================ MULTI FLAGS TEST UNIT - for str only
+*/
+	char	multi_arg_str[5][50] =
+	{	"coucou",
+		"abcdefghijklmnopqrstuvwxyz",
+		"a",
+		"",
+		" ",
+	};
+	char 	multi_test_string[14][50] =
+	{	"[%s] \n",
+		"[%10s] \n",
+		"[%-10s] \n",
+		"[%.0s] \n",
+		"[%10s] \n",
+		"[%10.0s] \n",
+		"[%10.1s] \n",
+		"[%10.2s] \n",
+		"[%-10.0s] \n",
+		"[%-10.1s] \n",
+		"[%-10.2s] \n",
+		"[%.0s] \n",
+		"[%-5.30s] \n",
+		"[%5.30s] \n",
+	};
+	int 	i = 0;
+	int		y = 0;
 
-	printf("%-10.0d", n);
-	printf("*************************\n");
-	printf("%-10.1d", n);
-	printf("*************************\n");
-	printf("%-10.3d", n);
-	printf("*************************\n");
-	printf("%-10.4d", n);
-	printf("*************************\n");
-				
-
-	printf("\n\n===============\n");
-	printf("=  ft_printf  =\n");
-	printf("===============\n\n");
-	
-	int ret_1 = 0;
-
-	ft_printf("%10.0d", n);
-	ft_printf("*************************\n");
-	ft_printf("%10.1d", n);
-	ft_printf("*************************\n");
-	ft_printf("%10.3d", n);
-	ft_printf("*************************\n");
-	ft_printf("%10.4d", n);
-	ft_printf("*************************\n");
-
-	ft_printf("%-10.0d", n);
-	ft_printf("*************************\n");
-	ft_printf("%-10.1d", n);
-	ft_printf("*************************\n");
-	ft_printf("%-10.3d", n);
-	ft_printf("*************************\n");
-	ft_printf("%-10.4d", n);
-	ft_printf("*************************\n");
-
-	i++;
-	n += 42;
-}				
-
-	printf("\n\nCAS PARTICULIER => int = 0 & precision .0\n"); 
-	printf("test libc = [%.0d]\n", 0);
-	printf("test libc = [%.0d]\n", 1);
-	ft_printf("test ft   = [%.0d]\n", 0);
-	ft_printf("test ft   = [%.0d]\n", 1);
-
-
+	while (y < 5)
+	{
+			printf("------------------------------>>[%s]\n", multi_arg_str[y]);	
+		while (i < 14)
+		{
+			printf("STRING >>>>>>>>>>>>>>>>>>>>>>>> %s", multi_test_string[i]);	
+			printf(multi_test_string[i], multi_arg_str[y]);
+			ft_printf(multi_test_string[i], multi_arg_str[y]);
+			printf("\n");
+			i++;
+		}
+	i = 0;
+	y++;
+	}
 	ft_printf("\n\n=============  FIN  =================\n");
 }
 
@@ -441,13 +396,12 @@ int	main(void)
 	printf("\t%s", ctime(&t));
 
 //	basic_test_01_char();
-	basic_test_01_string();
-//	basic_test_01_int();
+//	basic_test_01_string();
+	basic_test_01_int();
 //	basic_test_02();
 //	basic_test_flags_03();
 //	basic_test_wildcard();
 	
-	system ("colordiff log_libC.txt log_libFT.txt");	
 
 	return(0);	
 
