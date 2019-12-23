@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 13:51:42 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/23 16:26:35 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/23 17:32:21 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,19 @@
 #include <stdio.h>
 #include "libft.h"
 #include "libftprintf.h"
+
+void delay(int number_of_seconds) 
+{ 
+    // Converting time into milli_seconds 
+    int milli_seconds = 1000 * number_of_seconds; 
+  
+    // Storing start time 
+    clock_t start_time = clock(); 
+  
+    // looping till required time is not achieved 
+    while (clock() < start_time + milli_seconds) 
+        ; 
+} 
 
 void	basic_test_01_char(void)
 {
@@ -128,13 +141,21 @@ void	basic_test_01_int(void)
 				printf("\033[0;31m");
 				printf(" [ko] return ! libc = %d, ft = %d\n\n\n", ret_c, ret_ft);
 				printf("\033[0m");
+				delay(1500);
 			}
+			else
+			{
+				printf("\033[0;32m");
+				printf(" return ok \n");
+				printf("\033[0m");
+			}
+
 			i++;
 		}
 	i = 0;
 	y++;
 	}
-	printf("\n\n=============  FIN  =================\n");
+	printf("\n\n=============  FIN MAIN  =================\n\n\n");
 }
 
 void	basic_test_01_string(void)
@@ -408,7 +429,7 @@ int	main(void)
 //	basic_test_02();
 //	basic_test_flags_03();
 //	basic_test_wildcard();
-	
+	system("leaks a.out");	
 
 	return(0);	
 
