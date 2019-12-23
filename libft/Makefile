@@ -54,6 +54,8 @@ CC		 =	clang
 CFLAGS 	+= -Wall
 CFLAGS	+= -Wextra
 CFLAGS	+= -Werror
+CFLAGS	+= -g
+
 
 NAME	 =	libft.a
 

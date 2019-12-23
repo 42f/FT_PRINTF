@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:48:03 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/21 17:45:04 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/23 16:27:08 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static void	print_format(t_format *format)
 	printf("flag 3 =    |%c|\n", format->flag[3]);
 	printf("flag 4 =    |%c|\n", format->flag[4]);
 	printf("flag 5 =    |%c|\n", format->flag[5]);
-	printf("min_width = |%d|\n", format->min_width);
-	printf("precision = |%d|\n", format->precision);
-	printf("converter = |%c|\n", format->converter);
+	printf("min_w = |%d|\n", format->min_w);
+	printf("pre = |%d|\n", format->pre);
+	printf("conv = |%c|\n", format->conv);
 	//	system ("leaks a.out");
 	printf("\n===== [END FORMAT] ======\n");
 
@@ -52,9 +52,9 @@ static t_format	*ft_format_init(void)
 	new_format->flag[3] = '\0';
 	new_format->flag[4] = '\0';
 	new_format->flag[5] = '\0';
-	new_format->min_width = -1;
-	new_format->precision = -1;
-	new_format->converter = '\0';
+	new_format->min_w = -1;
+	new_format->pre = -1;
+	new_format->conv = '\0';
 	return (new_format);
 }
 
@@ -89,58 +89,75 @@ static char		ft_isset(char c, char *set)
 
 static char			*ft_zero_padding(t_format *format, char *str_buffer)
 {
-	char		*padded_buffer;	
+	char		*padded_ret;	
 	size_t		len;
 	int			nb;
 
 	nb = ft_atoi(str_buffer);
-	len = ft_strlen(str_buffer);
-	if (format->precision != -1 && format->precision > (int)len)
+	len = ft_strlen(str_buffer)	;
+	if (format->pre > (int)len)
 	{
-		padded_buffer = (char *)ft_calloc(len + 1, sizeof(char));	
-		ft_memset(padded_buffer, '0', format->precision - len);
-		ft_strlcpy(padded_buffer + (format->precision - len), str_buffer, len + 1);
-		return (padded_buffer);
+		if (nb < 0)
+		{
+			str_buffer[0] = '0';
+			len += 1;
+			format->pre += 2;
+		}
+		padded_ret = (char *)ft_calloc(len + format->pre + 1, sizeof(char));
+		if (nb < 0)
+		{		
+			ft_memset(padded_ret, '-', 1);
+			ft_memset(padded_ret + 1, '0', format->pre - len);
+			ft_strlcpy(padded_ret + (format->pre - len), str_buffer, len + 1);
+		}
+		else
+		{
+			ft_memset(padded_ret, '0', format->pre - len);
+			ft_strlcpy(padded_ret + (format->pre - len), str_buffer, len + 1);
+		}
+		return (padded_ret);
 	}
 	return (str_buffer);
 }
 
 static int			ft_printer_nbr(t_format *format, char *str_buffer)
 {
-	int			len;
-	int			output_len;
-	char		*padded_buffer;
+	size_t		len;
+	size_t		output_len;
+	char		*padded_buff;
 	char		*output_str;
 
 	if (str_buffer == NULL)
 		return (0);
-	padded_buffer = ft_zero_padding(format, str_buffer); 
-	len = ft_strlen(padded_buffer);
+	padded_buff = ft_zero_padding(format, str_buffer);
+	len = ft_strlen(padded_buff);
 	output_len = len;
-	if (format->min_width > output_len)
-		output_len = format->min_width;
+	if (format->min_w > (int)len)
+		output_len = format->min_w;
 	output_str = (char *)ft_calloc(output_len + 1, sizeof(char));
 	if (ft_strnstr(format->flag, "-", 5) != 0)
 	{
-		ft_strlcpy(output_str, padded_buffer, output_len + 1);
-		if (output_len > len)
-			ft_memset(output_str + len, ' ', output_len - len);
+		ft_strlcpy(output_str, padded_buff, len + 1);
+		ft_memset(output_str + len, ' ', output_len - len);
 	}	
 	else
 	{
-		if (output_len > len)
-			ft_memset(output_str, ' ', output_len - len);
-		ft_strlcpy(output_str + (output_len - len), padded_buffer, output_len + 1);
+		ft_memset(output_str, ' ', output_len - len);
+		ft_strlcpy(output_str + (output_len - len), padded_buff, output_len + 1);
 	}
-	if (ft_atoi(str_buffer) == 0 && format->min_width == -1 && format->precision == 0)
+	if (ft_atoi(padded_buff) == 0 && format->min_w == -1 && format->pre == 0)
 	{	
 		free(output_str);
-		return (output_len);
+		free(padded_buff);
+		return (0);
 	}
-	else if (ft_atoi(str_buffer) == 0 && format->precision == 0 && output_len > len)
+	else if (ft_atoi(padded_buff) == 0 && format->pre == 0 && output_len > len)
 		ft_memset(output_str, ' ', output_len);
 	ft_putstr(output_str);
-	free(output_str);
+	if (output_str != NULL)
+		free(output_str);
+	if (padded_buff != NULL)
+		free(padded_buff);
 	return (output_len);
 }
 
@@ -153,16 +170,16 @@ static int			ft_printer_str(t_format *format, char *str_buffer)
 
 	len = ft_strlen(str_buffer);
 	output_str = NULL;
-	if (format->precision != -1 && format->precision < len) 
+	if (format->pre != -1 && format->pre < len) 
 	{
-		str_buffer[format->precision] = '\0';
-		len = format->precision;
+		str_buffer[format->pre] = '\0';
+		len = format->pre;
 	}
 	output_len = len;
-	if (format->min_width > len)
+	if (format->min_w > len)
 	{
-		output_str = (char *)ft_calloc(format->min_width + 1, sizeof(char));
-		output_len = format->min_width;
+		output_str = (char *)ft_calloc(format->min_w + 1, sizeof(char));
+		output_len = format->min_w;
 	}
 	else 
 		output_str = (char *)ft_calloc(len + 1, sizeof(char));
@@ -178,13 +195,13 @@ static int			ft_printer_str(t_format *format, char *str_buffer)
 		ft_memset(output_str, ' ', output_len - len);
 		ft_strlcpy(output_str + (output_len - len), str_buffer, len + 1);
 	}
-	if (format->min_width == -1 || format->min_width < len)
+	if (format->min_w == -1 || format->min_w < len)
 	{
 		ft_strlcpy(output_str, str_buffer, len + 1);
 	}
 	ft_putstr(output_str);
 	free(output_str);
-	return (0);
+return (output_len);
 }
 
 
@@ -194,30 +211,30 @@ static int			ft_fetch_next_arg(va_list ap, t_format *format)
 	char	*str_buffer;
 	
 	ret = 0;
-	if (format->converter == '%')
+	if (format->conv == '%')
 		ft_putchar('%');
-	else if (format->converter == 'c')
+	else if (format->conv == 'c')
 	{
 		str_buffer = (char *)ft_calloc(2, sizeof(char));
 		str_buffer[0] = (char)va_arg(ap, int);
-		ft_printer_str(format, str_buffer);
+		ret = ft_printer_str(format, str_buffer);
 	}
-	else if (format->converter == 's')
+	else if (format->conv == 's')
 	{
 		str_buffer = ft_strdup(va_arg(ap, char*));
-		ft_printer_str(format, str_buffer);
+		ret = ft_printer_str(format, str_buffer);
 	}
-	else if (format->converter == 'p')
+	else if (format->conv == 'p')
 	{
 		ft_putstr("0x");
 		ft_putnbr_base(va_arg(ap, unsigned long long int), "0123456789abcdef");
 	}
-	else if (ft_isset(format->converter, "diu"))
+	else if (ft_isset(format->conv, "diu"))
 	{
 		str_buffer = ft_itoa(va_arg(ap, int));
-		ft_printer_nbr(format, str_buffer);
+		ret = ft_printer_nbr(format, str_buffer);
 	}
-/*	else if (format->converter == 'u')
+/*	else if (format->conv == 'u')
 	{		
 		int_buffer = va_arg(ap, int);
 		if (int_buffer < 0)
@@ -225,48 +242,48 @@ static int			ft_fetch_next_arg(va_list ap, t_format *format)
 		ft_putnbr(int_buffer);
 	}
 */
-	else if (format->converter == 'x')
+	else if (format->conv == 'x')
 		ft_putnbr_base(va_arg(ap, int), "0123456789abcdef");
-	else if (format->converter == 'X')
+	else if (format->conv == 'X')
 		ft_putnbr_base(va_arg(ap, int), "0123456789ABCDEF");
 	return(ret);
-	free(str_buffer);
-	free(format->flag);
-	free(format);
+	//free(str_buffer);
+	//free(format->flag);
+//	free(format);
 }
 
 static t_format		*ft_format_parser(va_list ap, const char *first_arg)
 {
 	int			y;
 	t_format	*format;
-	char		converter;
+	char		conv;
 
 	y = 0;
 	format = ft_format_init();
 	if (format == NULL)
 		return (NULL);
-	while (first_arg[y] != '\0' && format->converter == 0)
+	while (first_arg[y] != '\0' && format->conv == 0)
 	{
 		if (y <= 5 && ft_isset(first_arg[y], "-+'#0 ") != 0 &&
-format->min_width == -1 && format->precision == -1)
+format->min_w == -1 && format->pre == -1)
 			ft_fill_flag(format, first_arg[y]);
-		else if (ft_isset(first_arg[y], "0123456789*") != 0 && format->min_width == -1 && format->precision == -1)
+		else if (ft_isset(first_arg[y], "0123456789*") != 0 && format->min_w == -1 && format->pre == -1)
 		{
 			if (first_arg[y] != '*')
-				format->min_width = ft_atoi(first_arg + y);
+				format->min_w = ft_atoi(first_arg + y);
 			else
-				format->min_width = va_arg(ap, int);
+				format->min_w = va_arg(ap, int);
 		}
 		else if (first_arg[y] == '.')
 		{
 			y++;
 			if (first_arg[y] != '*')
-				format->precision = ft_atoi(first_arg + y);
+				format->pre = ft_atoi(first_arg + y);
 			else
-				format->precision = va_arg(ap, int);
+				format->pre = va_arg(ap, int);
 		}
-		else if ((converter = ft_isset(first_arg[y], "cspdiuxX%")) != 0)
-			format->converter = converter;
+		else if ((conv = ft_isset(first_arg[y], "cspdiuxX%")) != 0)
+			format->conv = conv;
 		y++;
 	}
 	return (format);

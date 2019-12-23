@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:44:34 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/18 16:11:23 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/23 16:13:37 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ flags
 typedef	struct	s_format
 {
 	char	*flag;
-	int 	min_width;
-	int		precision;
-	char	converter;
+	int 	min_w;
+	int		pre;
+	char	conv;
 	
 }				t_format;
 

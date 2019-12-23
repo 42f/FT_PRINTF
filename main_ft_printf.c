@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 13:51:42 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/21 17:02:00 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/23 16:26:35 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	basic_test_01_int(void)
 {
 
 /*
-** ============================ MULTI FLAGS TEST UNIT - for str only
+** ============================ MULTI FLAGS TEST UNIT - for int only
 */
 	int		multi_arg[6] =
 	{	42,
@@ -89,8 +89,10 @@ void	basic_test_01_int(void)
 		12312142,
 		-89898989,
 	};
-	char 	multi_test[14][50] =
+	char 	multi_test[14][100] =
 	{	"[%d] \n",
+		"[%5.30d] \n",
+		"[%-5.30d] \n",
 		"[%15d] \n",
 		"[%0-15d] \n",
 		"[%.0d] \n",
@@ -100,29 +102,39 @@ void	basic_test_01_int(void)
 		"[%15.10d] \n",
 		"[%-15.0d] \n",
 		"[%-15.1d] \n",
-		"[%-15.10d] \n",
+		"[%18.10d] \n",
 		"[%.0d] \n",
-		"[%-5.30d] \n",
-		"[%5.30d] \n",
 	};
 	int 	i = 0;
 	int		y = 0;
-
+	int		ret_c = 0;
+	int		ret_ft = 0;
+	int		diff_ret = 0;
 	while (y < 6)
 	{
-			printf("\n\n-------------------------------------->>[%d]\n", multi_arg[y]);	
+		printf("\n\n-------------------------------------->>[%d]\n", multi_arg[y]);	
 		while (i < 14)
 		{
+		ret_c = 0;
+		ret_ft = 0;
+
 			printf("STRING >>>>>>>>>>>>>>>>>>>>>>>> %s", multi_test[i]);
-			printf(multi_test[i], multi_arg[y]);
-			ft_printf(multi_test[i], multi_arg[y]);
+			ret_c = printf(multi_test[i], multi_arg[y]);
+			ret_ft = ft_printf(multi_test[i], multi_arg[y]);
 			printf("\n");
+			diff_ret = ret_c - ret_ft;
+			if (diff_ret != 0)
+			{
+				printf("\033[0;31m");
+				printf(" [ko] return ! libc = %d, ft = %d\n\n\n", ret_c, ret_ft);
+				printf("\033[0m");
+			}
 			i++;
 		}
 	i = 0;
 	y++;
 	}
-	ft_printf("\n\n=============  FIN  =================\n");
+	printf("\n\n=============  FIN  =================\n");
 }
 
 void	basic_test_01_string(void)
@@ -387,11 +399,6 @@ int	main(void)
 	time_t t;
     time(&t);
 	
-	int *p;
-	int n = 6;
-
-	p = &n;
-
 	printf("\n================ [START] =================\n");
 	printf("\t%s", ctime(&t));
 
