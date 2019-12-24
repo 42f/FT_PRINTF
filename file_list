@@ -1,0 +1,15 @@
+touch ft_zero_padding.c
+touch ft_char_set.c
+touch ft_str_set.c
+touch ft_alpha_conv.c
+touch ft_hex_conv.c
+touch ft_next_arg.c
+touch ft_num_conv.c
+touch ft_printer_char.c
+touch ft_printer_nbr.c
+touch ft_printer_str.c
+touch ft_putnum.c
+touch ft_str_manager.c
+touch ft_format_init.c
+touch ft_format_parser.c
+touch ft_fill_flag.c

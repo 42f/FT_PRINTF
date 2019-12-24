@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 18:27:47 by bvalette          #+#    #+#             */
-/*   Updated: 2019/11/20 08:19:54 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/23 19:18:19 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static const char		*get_skipped_input(const char *str)
 	return (str);
 }
 
-int						ft_atoi(const char *str)
+long long int						ft_atoi(const char *str)
 {
 	int			output;
 	size_t		i;

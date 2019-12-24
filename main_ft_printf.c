@@ -6,14 +6,31 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 13:51:42 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/23 17:32:21 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/24 16:34:11 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<time.h>
 #include <stdlib.h>
-
 #include <stdio.h>
+/*
+void *xmalloc(size_t size)
+ {
+	static int fail_after = 12;
+	static int alloc_number = 0;
+
+	if (fail_after > 0 && alloc_number >= fail_after)
+ 	{
+ 		alloc_number++;
+ 		printf("MALLOC FAIL @ the malloc number = [%d]\n", alloc_number);
+ 		return NULL;
+ 	}
+ 	alloc_number++;
+
+ 	return malloc(size);
+ }
+ #define malloc(y) xmalloc(y)
+*/
 #include "libft.h"
 #include "libftprintf.h"
 
@@ -32,68 +49,81 @@ void delay(int number_of_seconds)
 
 void	basic_test_01_char(void)
 {
-	printf("\n===============\n");
-	printf("= PRINTF LIBC =\n");
-	printf("===============\n\n");
-	
-	int	ret_0 = 0;
-//	freopen("log_libC.txt","w",stdout);
+	int		multi_arg[4] =
+	{
+		'a',
+		'A',
+		' ',
+		2,
+	};
+	char 	multi_test[23][100] =
+	{	"[%c] \n",
+		"[%5.30c] \n",
+		"[%-5.30c] \n",
+		"[%15c] \n",
+		"[%0-15c] \n",
+		"[%.0c] \n",
+		"[%15c] \n",
+		"[%15.0c] \n",
+		"[%15.1c] \n",
+		"[%15.10c] \n",
+		"[%-15.0c] \n",
+		"[%-15.1c] \n",
+		"[%-+18.10c] \n",
+		"[%- 18.10c] \n",
+		"[%+-18.10c] \n",
+		"[% +18.10c] \n",
+		"[% -18.10c] \n",
+		"[%+.0c] \n",
+		"[%-.0c] \n",
+		"[% .0c] \n",
+		"[%+ .0c] \n",
+		"[%- .0c] \n",
+		"[% 15.0c] \n",
+	};
+	int 	i = 0;
+	int		y = 0;
+	int		ret_c = 0;
+	int		ret_ft = 0;
+	int		diff_ret = 0;
+	while (y < 4)
+	{
+		printf("\n\n-------------------------------------->>[%c]\n", multi_arg[y]);	
+		while (i < 23)
+		{
+		ret_c = 0;
+		ret_ft = 0;
 
-	printf("%1c", 'H');
-	printf("***.***.***\n");
-	printf("%10c", 'H');
-	printf("***.***.***\n");
-	printf("%15c", 'H');
-	printf("***.***.***\n");
-	printf("%50c", 'H');
-	printf("***.***.***\n");
+			printf("STRING >>>>>>>>>>>>>>>>>>>>{test %d}{%c}>>>> %s", i, multi_arg[y], multi_test[i]);
+			ret_c = printf(multi_test[i], multi_arg[y]);
+			ret_ft = ft_printf(multi_test[i], multi_arg[y]);
+			printf("\n");
+			diff_ret = ret_c - ret_ft;
+			if (diff_ret != 0)
+			{
+				printf("\033[0;31m");
+				printf(" [ko] return ! libc = %d, ft = %d\n\n\n", ret_c, ret_ft);
+				printf("\033[0m");
+					delay(400);
+			}
+			else
+			{
+				printf("\033[0;32m");
+				printf(" [OK] return ! libc = %d, ft = %d\n\n\n", ret_c, ret_ft);
+				printf("\033[0m");
+			}
 
-	printf("%-1c", 'H');
-	printf("***.***.***\n");
-	printf("%-10c", 'H');
-	printf("***.***.***\n");
-	printf("%-15c", 'H');
-	printf("***.***.***\n");
-	printf("%-50c", 'H');
-	printf("***.***.***\n");
-	
-//	fclose(stdout);	
-				
-	printf("\n\n===============\n");
-	printf("=  ft_printf  =\n");
-	printf("===============\n\n");
-	
-//	freopen("log_libFT.txt","w",stdout);
-
-	ft_printf("%1c", 'H');
-	ft_printf("***.***.***\n");
-	ft_printf("%10c", 'H');
-	ft_printf("***.***.***\n");
-	ft_printf("%15c", 'H');
-	ft_printf("***.***.***\n");
-	ft_printf("%50c", 'H');
-	ft_printf("***.***.***\n");
-
-	ft_printf("%-1c", 'H');
-	ft_printf("***.***.***\n");
-	ft_printf("%-10c", 'H');
-	ft_printf("***.***.***\n");
-	ft_printf("%-15c", 'H');
-	ft_printf("***.***.***\n");
-	ft_printf("%-50c", 'H');
-	ft_printf("***.***.***\n");
-	
-//	fclose(stdout);	
-				
-	ft_printf("\n\n=============  FIN  =================\n");
+			i++;
+		}
+	i = 0;
+	y++;
+	}
+	printf("\n\n=============  FIN MAIN  =================\n\n\n");
+			
 }
 
 void	basic_test_01_int(void)
 {
-
-/*
-** ============================ MULTI FLAGS TEST UNIT - for int only
-*/
 	int		multi_arg[6] =
 	{	42,
 		9,
@@ -102,8 +132,8 @@ void	basic_test_01_int(void)
 		12312142,
 		-89898989,
 	};
-	char 	multi_test[14][100] =
-	{	"[%d] \n",
+	char 	multi_test[23][100] =
+	{	"[%.d] \n",
 		"[%5.30d] \n",
 		"[%-5.30d] \n",
 		"[%15d] \n",
@@ -115,8 +145,17 @@ void	basic_test_01_int(void)
 		"[%15.10d] \n",
 		"[%-15.0d] \n",
 		"[%-15.1d] \n",
-		"[%18.10d] \n",
-		"[%.0d] \n",
+		"[%-+18.10d] \n",
+		"[%- 18.10d] \n",
+		"[%+-18.10d] \n",
+		"[% +18.10d] \n",
+		"[% -18.10d] \n",
+		"[%+.0d] \n",
+		"[%-.0d] \n",
+		"[% .0d] \n",
+		"[%+ .0d] \n",
+		"[%- .0d] \n",
+		"[% 15.0d] \n",
 	};
 	int 	i = 0;
 	int		y = 0;
@@ -126,12 +165,12 @@ void	basic_test_01_int(void)
 	while (y < 6)
 	{
 		printf("\n\n-------------------------------------->>[%d]\n", multi_arg[y]);	
-		while (i < 14)
+		while (i < 23)
 		{
 		ret_c = 0;
 		ret_ft = 0;
 
-			printf("STRING >>>>>>>>>>>>>>>>>>>>>>>> %s", multi_test[i]);
+			printf("STRING >>>>>>>>>>>>>>>>>>>>{test %d}{%d}>>>> %s", i, multi_arg[y], multi_test[i]);
 			ret_c = printf(multi_test[i], multi_arg[y]);
 			ret_ft = ft_printf(multi_test[i], multi_arg[y]);
 			printf("\n");
@@ -141,12 +180,12 @@ void	basic_test_01_int(void)
 				printf("\033[0;31m");
 				printf(" [ko] return ! libc = %d, ft = %d\n\n\n", ret_c, ret_ft);
 				printf("\033[0m");
-				delay(1500);
+				delay(400);
 			}
 			else
 			{
 				printf("\033[0;32m");
-				printf(" return ok \n");
+				printf(" [OK] return ! libc = %d, ft = %d\n\n\n", ret_c, ret_ft);
 				printf("\033[0m");
 			}
 
@@ -164,47 +203,78 @@ void	basic_test_01_string(void)
 /*
 ** ============================ MULTI FLAGS TEST UNIT - for str only
 */
-	char	multi_arg_str[5][50] =
+	char	multi_arg[5][50] =
 	{	"coucou",
 		"abcdefghijklmnopqrstuvwxyz",
 		"a",
 		"",
 		" ",
 	};
-	char 	multi_test_string[14][50] =
+	char 	multi_test[23][100] =
 	{	"[%s] \n",
-		"[%10s] \n",
-		"[%-10s] \n",
-		"[%.0s] \n",
-		"[%10s] \n",
-		"[%10.0s] \n",
-		"[%10.1s] \n",
-		"[%10.2s] \n",
-		"[%-10.0s] \n",
-		"[%-10.1s] \n",
-		"[%-10.2s] \n",
-		"[%.0s] \n",
-		"[%-5.30s] \n",
 		"[%5.30s] \n",
+		"[%-5.30s] \n",
+		"[%15s] \n",
+		"[%0-15s] \n",
+		"[%.0s] \n",
+		"[%15s] \n",
+		"[%15.0s] \n",
+		"[%15.1s] \n",
+		"[%15.10s] \n",
+		"[%-15.0s] \n",
+		"[%-15.1s] \n",
+		"[%-+18.10s] \n",
+		"[%- 18.10s] \n",
+		"[%+-18.10s] \n",
+		"[% +18.10s] \n",
+		"[% -18.10s] \n",
+		"[%+.0s] \n",
+		"[%-.0s] \n",
+		"[% .0s] \n",
+		"[%+ .0s] \n",
+		"[%- .0s] \n",
+		"[% 15.0s] \n",
 	};
 	int 	i = 0;
 	int		y = 0;
-
+	int		ret_c = 0;
+	int		ret_ft = 0;
+	int		diff_ret = 0;
 	while (y < 5)
 	{
-			printf("------------------------------>>[%s]\n", multi_arg_str[y]);	
-		while (i < 14)
+		printf("\n\n-------------------------------------->>[%s]\n", multi_arg[y]);	
+		while (i < 23)
 		{
-			printf("STRING >>>>>>>>>>>>>>>>>>>>>>>> %s", multi_test_string[i]);	
-			printf(multi_test_string[i], multi_arg_str[y]);
-			ft_printf(multi_test_string[i], multi_arg_str[y]);
+		ret_c = 0;
+		ret_ft = 0;
+
+			printf("STRING >>>>>>>>>>>>>>>>>>>>{test %d}{%s}>>>> %s", i, multi_arg[y], multi_test[i]);
+			ret_c = printf(multi_test[i], multi_arg[y]);
+			ret_ft = ft_printf(multi_test[i], multi_arg[y]);
 			printf("\n");
+			diff_ret = ret_c - ret_ft;
+			if (diff_ret != 0)
+			{
+				printf("\033[0;31m");
+				printf(" [ko] return ! libc = %d, ft = %d\n\n\n", ret_c, ret_ft);
+				printf("\033[0m");
+				delay(400);
+			}
+			else
+			{
+				printf("\033[0;32m");
+				printf(" [OK] return ! libc = %d, ft = %d\n\n\n", ret_c, ret_ft);
+				printf("\033[0m");
+			}
+
 			i++;
 		}
 	i = 0;
 	y++;
 	}
-	ft_printf("\n\n=============  FIN  =================\n");
+	printf("\n\n=============  FIN MAIN  =================\n\n\n");
+
+
 }
 
 
@@ -422,14 +492,17 @@ int	main(void)
 	
 	printf("\n================ [START] =================\n");
 	printf("\t%s", ctime(&t));
-
-//	basic_test_01_char();
+	
 //	basic_test_01_string();
+//	basic_test_01_char();
 	basic_test_01_int();
 //	basic_test_02();
 //	basic_test_flags_03();
 //	basic_test_wildcard();
-	system("leaks a.out");	
+
+
+//	system("leaks a.out");	
+
 
 	return(0);	
 
