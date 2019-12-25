@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:48:03 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/25 15:39:25 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/25 23:46:21 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -286,6 +286,11 @@ format->min_w == -1 && format->pre == -1)
 		}
 		else if ((conv = ft_char_set(arg[y], "cspdiuxX%")) != 0)
 			format->conv = conv;
+		if (ft_isdigit(arg[y]) == 0 && ft_char_set(arg[y], "cspdiuxX%. +-0") == 0 )
+		{
+			printf("exit at |%c|\n", arg[y]);
+			break;
+		}
 		y++;
 	}
 	return (format);

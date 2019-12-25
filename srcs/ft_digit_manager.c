@@ -6,38 +6,55 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 15:35:18 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/25 16:35:00 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/25 23:52:47 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 #include <stdlib.h>
 
-
-char		*ft_zero_padding(t_format *format, char *str_buffer, int nb)
+char	*ft_pre_padding(t_format *format, char *buffer, int nb)
 {
-	char		*padded_ret;	
+	int			pre;
+
+	pre = 0;
+	if (ft_str_set(format->flag, "0") != 0 &&
+format->pre == -1 && ft_str_set(format->flag, "-") == 0)
+		pre = format->min_w - 1;
+	else if (format->pre != -1)
+		pre = format->pre;
+	return (ft_zero_padding(format, buffer, nb, pre));
+}
+
+void	ft_padder(int pre, int len, int offset, char *padded_ret, char *buffer)
+{ 
+	if (pre > len)
+	{
+		ft_memset(padded_ret + offset, '0', pre - len + offset);
+		ft_strlcpy(padded_ret + (pre - len), buffer, len + 1);
+	}
+	else
+		ft_strlcpy(padded_ret + offset, buffer, len + 1);
+}
+
+char	*ft_zero_padding(t_format *format, char *buffer, int nb, int pre)
+{
+	char		*padded_ret;
 	int			len;
 	int			offset;
-	int			precision;
 
-	len = ft_strlen(str_buffer);
-	precision = format->pre;
+	len = ft_strlen(buffer);
 	offset = 0;
 	if (nb < 0 || ft_str_set(format->flag, "+ 0") != 0) 
 	{
-	printf("PADDED RETURN = |%s|", str_buffer);
-		if (nb < 0 && (precision > len || ft_str_set(format->flag, "0") != 0))
-			str_buffer[0] = '0';
+		if (nb < 0 && pre > len)
+			buffer[0] = '0';
 		len += 1;
-		precision += 2;
+		pre += 2;
 		offset = 1;
 	}
-	printf("PADDED RETURN = |%s|", str_buffer);
-	if (ft_str_set(format->flag, "0") != 0)
-		precision = format->min_w;	
-	padded_ret = (char *)ft_calloc(len + precision + offset, sizeof(char));
-	if (nb < 0 && precision > len)
+	padded_ret = (char *)ft_calloc(len + pre + offset + 1, sizeof(char));
+	if (nb < 0 && pre > len)
 		ft_memset(padded_ret, '-', 1);
 	else if (nb >= 0 && ft_str_set(format->flag, "+") != 0)
 		ft_memset(padded_ret, '+', 1);
@@ -45,15 +62,8 @@ char		*ft_zero_padding(t_format *format, char *str_buffer, int nb)
 		ft_memset(padded_ret, ' ', 1);
 	else
 		offset = 0;	
-	if (precision > len)
-	{
-		ft_memset(padded_ret + offset, '0', precision - len + offset);
-		ft_strlcpy(padded_ret + (precision - len), str_buffer, len + 1);
-	}
-	else
-		ft_strlcpy(padded_ret + offset, str_buffer, len + 1);
-	printf("PADDED RETURN = |%s|", padded_ret);
-	free(str_buffer);
+	ft_padder(pre, len, offset, padded_ret, buffer);
+	free(buffer);
 	return (padded_ret);
 }
 
@@ -72,39 +82,26 @@ int		ft_putnum(t_format *format, char *padded_buff, char *output_str)
 	offset = 0;
 	if (ft_str_set(format->flag, "+ ") != 0)
 		offset = 1;
-	if (nb == 0 && format->pre == 0 && output_len > len)
-		ft_memset(output_str, ' ', output_len);
-	else if (nb == 0 && format->min_w == -1 && format->pre == 0)
-	{	
-		ft_memset(output_str + offset, '\0', 1);
-		output_len = offset;
-	}
 	ft_putstr(output_str);
 	free(output_str);
 	free(padded_buff);
 	return (output_len);
 }
 
-int		ft_printer_nbr(t_format *format, char *str_buffer)
+int		ft_printer_nbr(t_format *format, char *padded_buff, int nb)
 {
 	size_t		len;
 	size_t		output_len;
-	char		*padded_buff;
 	char		*output_str;
 
-	if (str_buffer == NULL)
-		return (0);
-	padded_buff = ft_zero_padding(format, str_buffer, ft_atoi(str_buffer));
-	if (padded_buff == NULL)
-		return (0);	
 	len = ft_strlen(padded_buff);
 	output_len = len;
 	if (format->min_w > (int)len)
 		output_len = format->min_w;
 	output_str = (char *)ft_calloc(output_len + 1, sizeof(char));
 	ft_memset(output_str, ' ', output_len);
-	if (ft_str_set(format->flag, "0") != 0)
-		ft_memset(output_str, '0', output_len);
+	if (ft_str_set(format->flag, "0") != 0 && nb < 0)
+		ft_memset(output_str , '0', output_len);
 	if (ft_str_set(format->flag, "-") != 0 && output_str != NULL)
 	{
 		ft_strlcpy(output_str, padded_buff, len + 1);
@@ -118,15 +115,25 @@ int		ft_printer_nbr(t_format *format, char *str_buffer)
 int		ft_num_conv(va_list ap, t_format *format)
 {
 	int			ret;
-	char		*str_buffer;
-	int			int_buffer;
+	char		*buffer;
+	int			nb;
 
 	ret = 0;
-	int_buffer = va_arg(ap, int);
-	if (format->conv == 'u' && int_buffer < 0)
-		int_buffer = int_buffer * -1;
-	str_buffer = ft_itoa(int_buffer);
-	ret = ft_printer_nbr(format, str_buffer);
+	nb = va_arg(ap, int);
+//	if (ft_char_set(format->conv,"uxX") != 0 && nb < 0)
+//		nb = nb * -1;
+	buffer = ft_itoa(nb);
+	if (buffer != NULL && nb == 0 && (format->pre == 0 || format->min_w == -1))
+	{
+		buffer[0] = '\0';
+		if (format->pre == -1 && format->min_w == -1)
+			buffer[0] = '0';
+		format->pre = 0;
+	}
+	if (buffer != NULL)
+		buffer = ft_pre_padding(format, buffer, nb);
+	if (buffer != NULL)
+		ret = ft_printer_nbr(format, buffer, nb);
 	return (ret);
 }
 

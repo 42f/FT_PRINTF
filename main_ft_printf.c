@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 13:51:42 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/25 15:21:38 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/25 23:54:10 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,15 +124,16 @@ void	basic_test_01_char(void)
 void	basic_test_01_int(void)
 {
 	int		multi_arg[6] =
-	{	42,
+	{
 		12312142,
 		-89898989,
+		42,
 		9,
 		0,
 		-42,
 
 	};
-	char 	multi_test[25][100] =
+	char 	multi_test[24][100] =
 	{	"[%d] \n",
 		"[%.d] \n",
 		"[%5.30d] \n",
@@ -154,8 +155,8 @@ void	basic_test_01_int(void)
 		"[%-.0d] \n",
 		"[%-0 .0d] \n",
 		"[%+- .0d] \n",
-		"[%8.8d] \n",
-		"[%8d] \n",
+		"[%8.8u] \n"
+		"[%08i] \n",
 		"[%0-15d] \n",
 		"[%08d] \n",
 	};
@@ -167,7 +168,7 @@ void	basic_test_01_int(void)
 	while (y < 6)
 	{
 		printf("\n\n-------------------------------------------------------------->>[%d]\n", multi_arg[y]);	
-		while (i < 25)
+		while (i < 24)
 		{
 		ret_c = 0;
 		ret_ft = 0;
@@ -501,7 +502,6 @@ int	main(void)
 //	basic_test_02();
 //	basic_test_flags_03();
 //	basic_test_wildcard();
-
 
 //	system("leaks a.out");	
 

@@ -43,15 +43,6 @@ SRCS += $(LIBFT_FOLDER)/ft_strtrim.c
 SRCS += $(LIBFT_FOLDER)/ft_substr.c
 SRCS += $(LIBFT_FOLDER)/ft_tolower.c
 SRCS += $(LIBFT_FOLDER)/ft_toupper.c
-SRCS += $(LIBFT_FOLDER)/ft_lstadd_back.c
-SRCS += $(LIBFT_FOLDER)/ft_lstadd_front.c
-SRCS += $(LIBFT_FOLDER)/ft_lstclear.c
-SRCS += $(LIBFT_FOLDER)/ft_lstdelone.c
-SRCS += $(LIBFT_FOLDER)/ft_lstiter.c
-SRCS += $(LIBFT_FOLDER)/ft_lstlast.c
-SRCS += $(LIBFT_FOLDER)/ft_lstmap.c
-SRCS += $(LIBFT_FOLDER)/ft_lstnew.c
-SRCS += $(LIBFT_FOLDER)/ft_lstsize.c
 SRCS += $(LIBFT_FOLDER)/ft_putnbr_base.c
 
 OBJS	 =	$(SRCS:.c=.o)
