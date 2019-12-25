@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 15:35:18 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/25 16:25:16 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/25 16:35:00 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char		*ft_zero_padding(t_format *format, char *str_buffer, int nb)
 	if (nb < 0 || ft_str_set(format->flag, "+ 0") != 0) 
 	{
 	printf("PADDED RETURN = |%s|", str_buffer);
-		if (nb < 0 && precision > len)
+		if (nb < 0 && (precision > len || ft_str_set(format->flag, "0") != 0))
 			str_buffer[0] = '0';
 		len += 1;
 		precision += 2;
