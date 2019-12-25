@@ -1,7 +1,55 @@
 
 SRCS_FOLDER = ./srcs
+LIBFT_FOLDER = ./libft
 
 SRCS += $(SRCS_FOLDER)/ft_printf.c
+SRCS += $(LIBFT_FOLDER)/ft_atoi.c
+SRCS += $(LIBFT_FOLDER)/ft_bzero.c
+SRCS += $(LIBFT_FOLDER)/ft_calloc.c
+SRCS += $(LIBFT_FOLDER)/ft_isalnum.c
+SRCS += $(LIBFT_FOLDER)/ft_isalpha.c
+SRCS += $(LIBFT_FOLDER)/ft_isascii.c
+SRCS += $(LIBFT_FOLDER)/ft_isdigit.c
+SRCS += $(LIBFT_FOLDER)/ft_isprint.c
+SRCS += $(LIBFT_FOLDER)/ft_itoa.c
+SRCS += $(LIBFT_FOLDER)/ft_memccpy.c
+SRCS += $(LIBFT_FOLDER)/ft_memchr.c
+SRCS += $(LIBFT_FOLDER)/ft_memcmp.c
+SRCS += $(LIBFT_FOLDER)/ft_memcpy.c
+SRCS += $(LIBFT_FOLDER)/ft_memmove.c
+SRCS += $(LIBFT_FOLDER)/ft_memset.c
+SRCS += $(LIBFT_FOLDER)/ft_putendl_fd.c
+SRCS += $(LIBFT_FOLDER)/ft_putchar.c
+SRCS += $(LIBFT_FOLDER)/ft_putnbr.c
+SRCS += $(LIBFT_FOLDER)/ft_putstr.c
+SRCS += $(LIBFT_FOLDER)/ft_putchar_fd.c
+SRCS += $(LIBFT_FOLDER)/ft_putnbr_fd.c
+SRCS += $(LIBFT_FOLDER)/ft_putstr_fd.c
+SRCS += $(LIBFT_FOLDER)/ft_split.c
+SRCS += $(LIBFT_FOLDER)/ft_strchr.c
+SRCS += $(LIBFT_FOLDER)/ft_strdup.c
+SRCS += $(LIBFT_FOLDER)/ft_strjoin.c
+SRCS += $(LIBFT_FOLDER)/ft_strlcat.c
+SRCS += $(LIBFT_FOLDER)/ft_strlcpy.c
+SRCS += $(LIBFT_FOLDER)/ft_strlen.c
+SRCS += $(LIBFT_FOLDER)/ft_strmapi.c
+SRCS += $(LIBFT_FOLDER)/ft_strncmp.c
+SRCS += $(LIBFT_FOLDER)/ft_strnstr.c
+SRCS += $(LIBFT_FOLDER)/ft_strrchr.c
+SRCS += $(LIBFT_FOLDER)/ft_strtrim.c
+SRCS += $(LIBFT_FOLDER)/ft_substr.c
+SRCS += $(LIBFT_FOLDER)/ft_tolower.c
+SRCS += $(LIBFT_FOLDER)/ft_toupper.c
+SRCS += $(LIBFT_FOLDER)/ft_lstadd_back.c
+SRCS += $(LIBFT_FOLDER)/ft_lstadd_front.c
+SRCS += $(LIBFT_FOLDER)/ft_lstclear.c
+SRCS += $(LIBFT_FOLDER)/ft_lstdelone.c
+SRCS += $(LIBFT_FOLDER)/ft_lstiter.c
+SRCS += $(LIBFT_FOLDER)/ft_lstlast.c
+SRCS += $(LIBFT_FOLDER)/ft_lstmap.c
+SRCS += $(LIBFT_FOLDER)/ft_lstnew.c
+SRCS += $(LIBFT_FOLDER)/ft_lstsize.c
+SRCS += $(LIBFT_FOLDER)/ft_putnbr_base.c
 
 OBJS	 =	$(SRCS:.c=.o)
 
@@ -23,7 +71,6 @@ HEAD = $(INC)libftprintf.h
 all:	$(NAME)
 
 $(NAME): $(OBJS)
-	make -C $(LIBFT)
 	ar rcs $@ $^
 
 $(OBJS): %.o: %.c $(HEAD)
@@ -33,11 +80,11 @@ $(OBJS_BONUS): %.o: %.c $(HEAD)
 	$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 f:	$(NAME)
-	$(CC) -I$(INC) -g main_ft_printf.c $(NAME) $(LIBFT)/libft.a
+	$(CC) -I$(INC) $(CFLAGS)  -g main_ft_printf.c $(NAME) 
 	./a.out
 
 fs:	$(NAME)
-	$(CC) -I$(INC) -fsanitize=address main_ft_printf.c $(NAME) $(LIBFT)/libft.a
+	$(CC) -I$(INC) -fsanitize=address main_ft_printf.c $(NAME)
 	./a.out
 
 norme:

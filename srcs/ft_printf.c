@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "libftprintf.h"
+#include <stdlib.h>
 #include <stdarg.h>
 
 int		ft_printer_str(t_format *format, char *str_buffer);
@@ -145,11 +145,13 @@ char		*ft_zero_padding(t_format *format, char *str_buffer, int nb)
 	len = ft_strlen(str_buffer);
 	precision = format->pre;
 	i = 0;
-	if (nb < 0 || ft_str_set(format->flag, "+ ") != 0) 
+	if (nb < 0 || ft_str_set(format->flag, "+ 0") != 0) 
 	{
 		if (nb < 0 && precision > (int)len)
 			str_buffer[0] = '0';
 		len += 1;
+//		if (ft_str_set(format->flag, "0") != 0 && len < (size_t)format->min_w) 
+//			len = format->min_w;
 		precision += 2;
 		i = 1;
 	}
@@ -164,7 +166,7 @@ char		*ft_zero_padding(t_format *format, char *str_buffer, int nb)
 		ft_memset(padded_ret, ' ', 1);
 	else
 		i = 0;	
-	if (precision > (int)len || ft_str_set(format->flag, "0") != 0)
+	if (precision > (int)len)
 	{
 		ft_memset(padded_ret + i, '0', precision - len);
 		ft_strlcpy(padded_ret + (precision - len), str_buffer, len + 1);
@@ -220,16 +222,16 @@ int		ft_printer_nbr(t_format *format, char *str_buffer)
 	if (format->min_w > (int)len)
 		output_len = format->min_w;
 	output_str = (char *)ft_calloc(output_len + 1, sizeof(char));
-	if (ft_strnstr(format->flag, "-", 5) != NULL && output_str != NULL)
+	ft_memset(output_str, ' ', output_len);
+	if (ft_str_set(format->flag, "0") != 0)
+		ft_memset(output_str, '0', output_len);
+	if (ft_str_set(format->flag, "-") != 0 && output_str != NULL)
 	{
 		ft_strlcpy(output_str, padded_buff, len + 1);
 		ft_memset(output_str + len, ' ', output_len - len);
 	}	
 	else if (output_str != NULL)
-	{
-		ft_memset(output_str, ' ', output_len - len);
 		ft_strlcpy(output_str + output_len - len, padded_buff, output_len + 1);
-	}
 	return (ft_putnum(format, padded_buff, output_str));	
 }
 
@@ -359,7 +361,7 @@ int		ft_next_arg(va_list ap, t_format *format)
 	else if (ft_char_set(format->conv, "pxX") != 0)
 		ret = ft_hex_conv(ap, format);
 	free(format->flag);
-	//print_format(format);
+//print_format(format);
 	free(format);
 	return(ret);
 }

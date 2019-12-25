@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 13:51:42 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/25 11:54:56 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/25 15:21:38 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void *xmalloc(size_t size)
  }
  #define malloc(y) xmalloc(y)
 */
-#include "libft.h"
 #include "libftprintf.h"
 
 void delay(int number_of_seconds) 
@@ -126,11 +125,12 @@ void	basic_test_01_int(void)
 {
 	int		multi_arg[6] =
 	{	42,
+		12312142,
+		-89898989,
 		9,
 		0,
 		-42,
-		12312142,
-		-89898989,
+
 	};
 	char 	multi_test[25][100] =
 	{	"[%d] \n",
@@ -138,7 +138,6 @@ void	basic_test_01_int(void)
 		"[%5.30d] \n",
 		"[%-5.30d] \n",
 		"[%15d] \n",
-		"[%0-15d] \n",
 		"[%.0d] \n",
 		"[%15d] \n",
 		"[%15.0d] \n",
@@ -153,10 +152,11 @@ void	basic_test_01_int(void)
 		"[% -18.10d] \n",
 		"[%+.0d] \n",
 		"[%-.0d] \n",
-		"[% .0d] \n",
-		"[%+ .0d] \n",
+		"[%-0 .0d] \n",
+		"[%+- .0d] \n",
 		"[%8.8d] \n",
 		"[%8d] \n",
+		"[%0-15d] \n",
 		"[%08d] \n",
 	};
 	int 	i = 0;
@@ -164,9 +164,9 @@ void	basic_test_01_int(void)
 	int		ret_c = 0;
 	int		ret_ft = 0;
 	int		diff_ret = 0;
-	while (y < 4)
+	while (y < 6)
 	{
-		printf("\n\n-------------------------------------->>[%d]\n", multi_arg[y]);	
+		printf("\n\n-------------------------------------------------------------->>[%d]\n", multi_arg[y]);	
 		while (i < 25)
 		{
 		ret_c = 0;
