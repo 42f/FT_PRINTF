@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:48:03 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/24 17:49:33 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/25 12:26:11 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ char		*ft_zero_padding(t_format *format, char *str_buffer, int nb)
 	len = ft_strlen(str_buffer);
 	precision = format->pre;
 	i = 0;
-	if (nb < 0 || ft_strnstr(format->flag, "+", 5) != NULL || ft_strnstr(format->flag, " ", 5) != NULL)
+	if (nb < 0 || ft_str_set(format->flag, "+ ") != 0) 
 	{
 		if (nb < 0 && precision > (int)len)
 			str_buffer[0] = '0';
@@ -153,16 +153,18 @@ char		*ft_zero_padding(t_format *format, char *str_buffer, int nb)
 		precision += 2;
 		i = 1;
 	}
+	if (ft_str_set(format->flag, "0") != 0)
+		precision = format->min_w;	
 	padded_ret = (char *)ft_calloc(len + precision + i, sizeof(char));
 	if (nb < 0 && precision > (int)len)
 		ft_memset(padded_ret, '-', 1);
-	else if (nb >= 0 && ft_strnstr(format->flag, "+", 5) != NULL)
+	else if (nb >= 0 && ft_str_set(format->flag, "+") != 0)
 		ft_memset(padded_ret, '+', 1);
-	else if (nb >= 0 && ft_strnstr(format->flag, " ", 5) != NULL)
+	else if (nb >= 0 && ft_str_set(format->flag, " ") != 0)
 		ft_memset(padded_ret, ' ', 1);
 	else
 		i = 0;	
-	if (precision > (int)len)
+	if (precision > (int)len || ft_str_set(format->flag, "0") != 0)
 	{
 		ft_memset(padded_ret + i, '0', precision - len);
 		ft_strlcpy(padded_ret + (precision - len), str_buffer, len + 1);
@@ -186,15 +188,15 @@ int		ft_putnum(t_format *format, char *padded_buff, char *output_str)
 	output_len = ft_strlen(output_str);
 	len = ft_strlen(padded_buff);
 	offset = 0;
-	if (ft_strnstr(format->flag, "+", 5) != NULL || ft_strnstr(format->flag, " ", 5) != NULL)
+	if (ft_str_set(format->flag, "+ ") != 0)
 		offset = 1;
-	if (nb == 0 && format->min_w == -1 && format->pre == 0)
+	if (nb == 0 && format->pre == 0 && output_len > len)
+		ft_memset(output_str, ' ', output_len);
+	else if (nb == 0 && format->min_w == -1 && format->pre == 0)
 	{	
 		ft_memset(output_str + offset, '\0', 1);
 		output_len = offset;
 	}
-	else if (nb == 0 && format->pre == 0 && output_len > len)
-		ft_memset(output_str, ' ', output_len);
 	ft_putstr(output_str);
 	free(output_str);
 	free(padded_buff);
@@ -357,6 +359,7 @@ int		ft_next_arg(va_list ap, t_format *format)
 	else if (ft_char_set(format->conv, "pxX") != 0)
 		ret = ft_hex_conv(ap, format);
 	free(format->flag);
+	//print_format(format);
 	free(format);
 	return(ret);
 }
@@ -390,12 +393,13 @@ format->min_w == -1 && format->pre == -1)
 				format->pre = va_arg(ap, int);
 			else if (ft_isdigit(arg[y + 1]) == 1)
 				format->pre = ft_atoi(arg + y + 1);
+			else if (ft_isalpha(arg[y + 1]) == 1)
+				format->pre = 0;
 		}
 		else if ((conv = ft_char_set(arg[y], "cspdiuxX%")) != 0)
 			format->conv = conv;
 		y++;
 	}
-	//print_format(format);
 	return (format);
 }
 

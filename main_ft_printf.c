@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 13:51:42 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/24 16:34:11 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/25 11:54:56 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,8 +132,9 @@ void	basic_test_01_int(void)
 		12312142,
 		-89898989,
 	};
-	char 	multi_test[23][100] =
-	{	"[%.d] \n",
+	char 	multi_test[25][100] =
+	{	"[%d] \n",
+		"[%.d] \n",
 		"[%5.30d] \n",
 		"[%-5.30d] \n",
 		"[%15d] \n",
@@ -154,18 +155,19 @@ void	basic_test_01_int(void)
 		"[%-.0d] \n",
 		"[% .0d] \n",
 		"[%+ .0d] \n",
-		"[%- .0d] \n",
-		"[% 15.0d] \n",
+		"[%8.8d] \n",
+		"[%8d] \n",
+		"[%08d] \n",
 	};
 	int 	i = 0;
 	int		y = 0;
 	int		ret_c = 0;
 	int		ret_ft = 0;
 	int		diff_ret = 0;
-	while (y < 6)
+	while (y < 4)
 	{
 		printf("\n\n-------------------------------------->>[%d]\n", multi_arg[y]);	
-		while (i < 23)
+		while (i < 25)
 		{
 		ret_c = 0;
 		ret_ft = 0;
