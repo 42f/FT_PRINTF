@@ -3,6 +3,9 @@ SRCS_FOLDER = ./srcs
 LIBFT_FOLDER = ./libft
 
 SRCS += $(SRCS_FOLDER)/ft_printf.c
+SRCS += $(SRCS_FOLDER)/ft_alpha_manager.c
+SRCS += $(SRCS_FOLDER)/ft_digit_manager.c
+SRCS += $(SRCS_FOLDER)/ft_hex_manager.c
 SRCS += $(LIBFT_FOLDER)/ft_atoi.c
 SRCS += $(LIBFT_FOLDER)/ft_bzero.c
 SRCS += $(LIBFT_FOLDER)/ft_calloc.c
