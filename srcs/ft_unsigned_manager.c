@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 15:35:18 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/27 20:28:17 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/27 21:12:59 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ static char	*ft_zero_padding(t_format *format, char *buffer, int nb, int pre);
 
 static char	*ft_pre_padding(t_format *format, char *buffer, int nb)
 {
-	int			pre;
+	int			precision;
 
-	pre = 0;
+	precision = 0;
 	if (ft_str_set(format->flag, "0") != 0 &&
 format->pre == -1 && ft_str_set(format->flag, "-") == 0)
-		pre = format->min_w - 1;
+		precision = format->min_w - 1;
 	else if (format->pre != -1)
-		pre = format->pre;
-	return (ft_zero_padding(format, buffer, nb, pre));
+		precision = format->pre;
+	return (ft_zero_padding(format, buffer, nb, precision));
 }
 
 static void	ft_padder(int pre, int len, int offset, char *padded_ret, char *buffer)
@@ -49,15 +49,17 @@ static char	*ft_zero_padding(t_format *format, char *buffer, int nb, int pre)
 	offset = 0;
 (void)format;
 (void)nb;
-	if (nb < 0 || ft_str_set(format->flag, "+ 0") != 0) 
-	{
-		if (nb < 0 && pre >= len)
+		if (pre >= len)
 			buffer[0] = '0';
+/*	if (nb < 0 || ft_str_set(format->flag, "+ 0") != 0) 
+	{
+//		if (nb < 0 && pre >= len)
+//			buffer[0] = '0';
 		len += 1;
 		pre += 2;
 		offset = 1;
 	}
-	padded_ret = (char *)ft_calloc(len + pre + offset + 1, sizeof(char));
+*/	padded_ret = (char *)ft_calloc(len + pre + offset + 1, sizeof(char));
 /*	if (nb < 0 && pre > len)
 		ft_memset(padded_ret, '-', 1);
 	else if (nb >= 0 && ft_str_set(format->flag, "+") != 0)
@@ -133,7 +135,8 @@ static char	*ft_conv(long int nb)
 	nb = ret + nb;
 	ret_str = (char *)ft_calloc(11, sizeof(char));
 	ft_strlcpy(ret_str, ft_itoa(nb/10), 11);
-	ret_str[9] = nb % 10 + 48;
+	i = ft_strlen(ret_str);
+	ret_str[i] = nb % 10 + 48;
 	return (ret_str);
 }
 
@@ -151,9 +154,11 @@ int		ft_unsigned_conv(va_list ap, t_format *format)
 	if (nb < 0)
 	{
 		buffer = ft_conv(nb);
-		if (format->pre < 10)
-			format->pre = -1;
+//		if (format->pre < 10)
+//			format->pre = -1;
+//		printf("\n{%s}\n", buffer);
 		buffer = ft_pre_padding(format, buffer, nb);
+		format->pre = -1;
 		if (buffer != NULL)
 			ret = ft_printer_str(format, buffer);
 	}
