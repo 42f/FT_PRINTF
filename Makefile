@@ -4,6 +4,7 @@ LIBFT_FOLDER = ./libft
 
 SRCS += $(SRCS_FOLDER)/ft_printf.c
 SRCS += $(SRCS_FOLDER)/ft_digit_manager_utils.c
+SRCS += $(SRCS_FOLDER)/ft_unsigned_manager.c
 SRCS += $(SRCS_FOLDER)/ft_alpha_manager.c
 SRCS += $(SRCS_FOLDER)/ft_digit_manager.c
 SRCS += $(SRCS_FOLDER)/ft_hex_manager.c
@@ -16,6 +17,7 @@ SRCS += $(LIBFT_FOLDER)/ft_isascii.c
 SRCS += $(LIBFT_FOLDER)/ft_isdigit.c
 SRCS += $(LIBFT_FOLDER)/ft_isprint.c
 SRCS += $(LIBFT_FOLDER)/ft_itoa.c
+SRCS += $(LIBFT_FOLDER)/ft_itoa_base.c
 SRCS += $(LIBFT_FOLDER)/ft_memccpy.c
 SRCS += $(LIBFT_FOLDER)/ft_memchr.c
 SRCS += $(LIBFT_FOLDER)/ft_memcmp.c

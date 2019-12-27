@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:48:03 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/27 11:09:22 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/27 17:56:47 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,10 +238,13 @@ int		ft_next_arg(va_list ap, t_format *format)
 	ret = 0;
 	if (ft_char_set(format->conv, "sc%") != 0)
 		ret = ft_alpha_conv(ap, format);
-	else if (ft_char_set(format->conv, "diu") != 0)
+	else if (ft_char_set(format->conv, "di") != 0)
 		ret = ft_num_conv(ap, format);
+	else if (ft_char_set(format->conv, "u") != 0)
+		ret = ft_unsigned_conv(ap, format);
 	else if (ft_char_set(format->conv, "pxX") != 0)
 		ret = ft_hex_conv(ap, format);
+
 //	free(format->flag);
 //	free(format);
 	return(ret);
@@ -280,10 +283,6 @@ format->min_w == -1 && format->pre == -1)
 			format->conv = conv;
 		y++;
 	}
-	if (format->conv == '\0')
-	{
-		format->conv = 'z';
-	}
 	return (format);
 }
 
@@ -303,8 +302,6 @@ int		ft_str_manager(va_list ap, const char *arg)
 			format = ft_format_parser(ap, arg + i);
 			if (format == NULL)
 				return (0);
-			if (format->conv == 'z')
-				continue ;
 			ret += ft_next_arg(ap, format);
 			while (arg[i] != '\0' && ft_char_set(arg[i], "cspdiuxX%") == 0)
 				i++;
@@ -316,6 +313,7 @@ int		ft_str_manager(va_list ap, const char *arg)
 		}
 		i++;
 	}
+	//print_format(format);
 	return (ret);
 }
 

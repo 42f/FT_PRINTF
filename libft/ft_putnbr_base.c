@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 09:27:27 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/17 16:00:18 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/27 16:57:47 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ static int		ft_is_valid(char *base)
 		while (base[j])
 		{
 			if (base[i] == base[j] && i != j)
-			{
 				return (0);
-			}
 			if (base[i] == '+' || base[i] == '-')
 				return (0);
 			j++;

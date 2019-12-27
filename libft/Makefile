@@ -8,6 +8,7 @@ SRCS += ft_isascii.c
 SRCS += ft_isdigit.c
 SRCS += ft_isprint.c
 SRCS += ft_itoa.c
+SRCS += ft_itoa_base.c
 SRCS += ft_memccpy.c
 SRCS += ft_memchr.c
 SRCS += ft_memcmp.c

@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 09:32:31 by Brian             #+#    #+#             */
-/*   Updated: 2019/12/26 11:43:11 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/27 14:17:30 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char		*ft_itoa(int nb)
 	}
 	if (negsign == -1 || nb_val == 0)
 		len++;
-	if (!(ret = (char *)ft_calloc(sizeof(char), len + 1)))
+	if (!(ret = (char *)ft_calloc(len + 1, sizeof(char))))
 		return (NULL);
 	if (nb_val == 0)
 	{
