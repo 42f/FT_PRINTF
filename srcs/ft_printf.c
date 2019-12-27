@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:48:03 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/27 10:25:03 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/27 11:09:22 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,14 @@ void	print_format(t_format *format)
 	if (format == NULL)
 		return ;
 	printf("\n\n========= FORMAT =========\n");
+	printf("flag string  =    |%s|\n", format->flag);
 	printf("flag 0 =    |%c|\n", format->flag[0]);
 	printf("flag 1 =    |%c|\n", format->flag[1]);
 	printf("flag 2 =    |%c|\n", format->flag[2]);
 	printf("flag 3 =    |%c|\n", format->flag[3]);
 	printf("flag 4 =    |%c|\n", format->flag[4]);
 	printf("flag 5 =    |%c|\n", format->flag[5]);
+	printf("flag 6 =    |%c|\n", format->flag[6]);
 	printf("min_w = |%d|\n", format->min_w);
 	printf("pre = |%d|\n", format->pre);
 	printf("conv = |%c|\n", format->conv);
@@ -67,13 +69,7 @@ t_format	*ft_format_init(void)
 	new_format = (t_format*)malloc(sizeof(t_format) * 1);
 	if (new_format== NULL)
 		return (NULL);
-	new_format->flag = (char *)malloc(sizeof(char *) * 5);
-	new_format->flag[0] = '\0';
-	new_format->flag[1] = '\0';
-	new_format->flag[2] = '\0';
-	new_format->flag[3] = '\0';
-	new_format->flag[4] = '\0';
-	new_format->flag[5] = '\0';
+	new_format->flag = (char *)ft_calloc(6, sizeof(char));
 	new_format->min_w = -1;
 	new_format->pre = -1;
 	new_format->conv = '\0';
@@ -246,9 +242,8 @@ int		ft_next_arg(va_list ap, t_format *format)
 		ret = ft_num_conv(ap, format);
 	else if (ft_char_set(format->conv, "pxX") != 0)
 		ret = ft_hex_conv(ap, format);
-	free(format->flag);
-//print_format(format);
-	free(format);
+//	free(format->flag);
+//	free(format);
 	return(ret);
 }
 
@@ -262,7 +257,7 @@ t_format	*ft_format_parser(va_list ap, const char *arg)
 	format = ft_format_init();
 	if (format == NULL)
 		return (NULL);
-	while (arg[y] != '\0' && format->conv == 0)
+	while (arg[y] != '\0' && format->conv == '\0')
 	{
 		if (ft_char_set(arg[y], "-+'#0 ") != 0 &&
 format->min_w == -1 && format->pre == -1)
@@ -283,12 +278,11 @@ format->min_w == -1 && format->pre == -1)
 		}
 		else if ((conv = ft_char_set(arg[y], "cspdiuxX%")) != 0)
 			format->conv = conv;
-		if (ft_isdigit(arg[y]) == 0 && ft_char_set(arg[y], "cspdiuxX%. +-0#\'") == 0 )
-		{
-//			printf("exit at |%c|\n", arg[y]);
-			break;
-		}
 		y++;
+	}
+	if (format->conv == '\0')
+	{
+		format->conv = 'z';
 	}
 	return (format);
 }
@@ -309,6 +303,8 @@ int		ft_str_manager(va_list ap, const char *arg)
 			format = ft_format_parser(ap, arg + i);
 			if (format == NULL)
 				return (0);
+			if (format->conv == 'z')
+				continue ;
 			ret += ft_next_arg(ap, format);
 			while (arg[i] != '\0' && ft_char_set(arg[i], "cspdiuxX%") == 0)
 				i++;

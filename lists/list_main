@@ -1,0 +1,7 @@
+touch basic_test_01_char
+touch basic_test_01_hex
+touch basic_test_01_HEX
+touch basic_test_01_pointer
+touch basic_test_01_int
+touch basic_test_01_mixed_int
+touch basic_test_01_string
