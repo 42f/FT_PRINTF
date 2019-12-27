@@ -962,7 +962,7 @@ ret = 25
 [KO]
 -------------------------------------
 TEST : %6C et coco %C titi %C tyty, 3250, 0xd800, 'u'
-ft_printf  -->      ²oco  55296ti yo%-12lc et  117ti  470699960', 254, 256, 'a'
+ft_printf  -->      ²oco  55296ti yo%-12lc et  117ti  413409208', 254, 256, 'a'
 ret = 64
 printf     -->    à²²
 ret = -1
@@ -1173,44 +1173,44 @@ ret = 3
 [KO]
 -------------------------------------
 TEST : %p, &data
-ft_printf  --> 0x7ffee3f1b718
+ft_printf  --> 0x7ffee75be718
 ret = 0
-printf     --> 0x7ffee3f1b718
+printf     --> 0x7ffee75be718
 ret = 14
 [KO]
 -------------------------------------
 TEST : %p, &p_basic_02
-ft_printf  --> 0x10bce90b0
+ft_printf  --> 0x1086460b0
 ret = 0
-printf     --> 0x10bce90b0
+printf     --> 0x1086460b0
 ret = 11
 [KO]
 -------------------------------------
 TEST : %20p, &data
-ft_printf  --> 0x7ffee3f1b718
+ft_printf  --> 0x7ffee75be718
 ret = 0
-printf     -->       0x7ffee3f1b718
+printf     -->       0x7ffee75be718
 ret = 20
 [KO]
 -------------------------------------
 TEST : %-25p, &data
-ft_printf  --> 0x7ffee3f1b718
+ft_printf  --> 0x7ffee75be718
 ret = 0
-printf     --> 0x7ffee3f1b718           
+printf     --> 0x7ffee75be718           
 ret = 25
 [KO]
 -------------------------------------
 TEST : %2p, &data
-ft_printf  --> 0x7ffee3f1b718
+ft_printf  --> 0x7ffee75be718
 ret = 0
-printf     --> 0x7ffee3f1b718
+printf     --> 0x7ffee75be718
 ret = 14
 [KO]
 -------------------------------------
 TEST : %----24p et hello %2p %12p, &ret, &p_all_01, NULL
-ft_printf  --> 0x7ffee3f1b714 et hello 0x10bce96f0 0x0
+ft_printf  --> 0x7ffee75be714 et hello 0x1086466f0 0x0
 ret = 11
-printf     --> 0x7ffee3f1b714           et hello 0x10bce96f0          0x0
+printf     --> 0x7ffee75be714           et hello 0x1086466f0          0x0
 ret = 58
 [KO]
 -------------------------------------
@@ -1286,9 +1286,9 @@ ret = -1
 [KO]
 -------------------------------------
 TEST : test%-8p %---32p %#5.3x%#024X, &ret, &tret, 0x25, 0
-ft_printf  --> test0x7ffee3f1b714 0x7ffee3f1b714 250
+ft_printf  --> test0x7ffee75be714 0x7ffee75be714 250
 ret = 6
-printf     --> test0x7ffee3f1b714 0x7ffee3f1b714                   0x025000000000000000000000000
+printf     --> test0x7ffee75be714 0x7ffee75be714                   0x025000000000000000000000000
 ret = 81
 [KO]
 -------------------------------------

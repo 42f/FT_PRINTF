@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 13:51:42 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/25 23:54:10 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/27 10:22:25 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ void	basic_test_01_char(void)
 		"[%-.0c] \n",
 		"[% .0c] \n",
 		"[%+ .0c] \n",
-		"[%- .0c] \n",
-		"[% 15.0c] \n",
+		"[% -0+15.0c] \n",
+		"[%+-0 15.0c] \n",
 	};
 	int 	i = 0;
 	int		y = 0;
@@ -133,13 +133,13 @@ void	basic_test_01_int(void)
 		-42,
 
 	};
-	char 	multi_test[24][100] =
+	char 	multi_test[25][100] =
 	{	"[%d] \n",
 		"[%.d] \n",
 		"[%5.30d] \n",
 		"[%-5.30d] \n",
 		"[%15d] \n",
-		"[%.0d] \n",
+		"[%.d] \n",
 		"[%15d] \n",
 		"[%15.0d] \n",
 		"[%15.1d] \n",
@@ -155,7 +155,7 @@ void	basic_test_01_int(void)
 		"[%-.0d] \n",
 		"[%-0 .0d] \n",
 		"[%+- .0d] \n",
-		"[%8.8u] \n"
+		"[%8.8i] \n",
 		"[%08i] \n",
 		"[%0-15d] \n",
 		"[%08d] \n",
@@ -168,7 +168,7 @@ void	basic_test_01_int(void)
 	while (y < 6)
 	{
 		printf("\n\n-------------------------------------------------------------->>[%d]\n", multi_arg[y]);	
-		while (i < 24)
+		while (i < 25)
 		{
 		ret_c = 0;
 		ret_ft = 0;
@@ -281,202 +281,6 @@ void	basic_test_01_string(void)
 }
 
 
-void		basic_test_02(void)
-{
-
-	int *p;
-	int n = 6;
-
-	p = &n;
-	
-	printf("\n===============\n");
-	printf("= PRINTF LIBC =\n");
-	printf("===============\n\n");
-
-	printf("test %c\n", 'Y');	
-	printf("test %s\n", "hello");	
-	printf("test %d\n", 42);	
-	printf("test %d\n", -42);	
-	printf("test %%\n");	
-	printf("test %c | %s\n", 'Y', "coucou libc");	
-
-	printf("POINTER p = {%p}\n", p);
-	printf("POINTER p = {%p}\n", &n);
-
-	
-	printf("\n\n===============\n");
-	printf("=  ft_printf  =\n");
-	printf("===============\n\n");
-
-
-	ft_printf("test %c\n", 'Y');	
-	ft_printf("test %s\n", "hello");	
-	ft_printf("test %d\n", 42);	
-	ft_printf("test %d\n", -42);	
-	ft_printf("test %%\n");	
-	ft_printf("test %c | %s\n", 'Y', "coucou FT");	
-
-	ft_printf("POINTER p = {%p}\n", p);
-	ft_printf("POINTER p = {%p}\n", &n);
-
-	printf("\n\n=============  FIN  =================\n");
-}
-
-void		basic_test_flags_03(void)
-{
-
-	
-	printf("\n\t===============\n");
-	printf("\t=  TEST FLAG  =\n");
-	printf("\t===============\n");
-	printf(" printf_lic  \n ft_printf\n\n");	
-
-/* --------- vars for tester
-*/
-
-
-	int		i = 0;
-	int		arg_int = 42424242;
-	char	arg_char = 'K';
-	int		arg_hexa = -42;
-	char 	*arg_string = "Hello World!";
-	
-
-/*
-** ============================ MULTI FLAGS TEST UNIT - for hexadecinals only
-*/
-	char multi_test_hexa[10][50] =
-	{	"[%x] \n",
-		"[%-x] \n",
-		"[%+x] \n",
-		"[%#x] \n",
-		"[%0x] \n",
-		"[%10.5x] \n",
-		"[%-10.5x] \n",
-		"[%'10.5x] \n",
-		"[%#10.5x] \n",
-		"[%010.5x] \n",
-	};
-	i = 0;
-	while (i < 10)
-	{
-		printf("hexa>>>>>>>>>>>>>>>>>>>>>>>>>>>> %s", multi_test_hexa[i]);	
-		printf(multi_test_hexa[i], arg_hexa);
-		ft_printf(multi_test_hexa[i], arg_hexa);
-		printf("\n");
-		i++;
-	}
-
-
-/*
-** ============================ MULTI FLAGS TEST UNIT - for int only
-*/
-	char multi_test_int[10][50] =
-	{	"[%d] \n",
-		"[%-d] \n",
-		"[%'d] \n",
-		"[%#d] \n",
-		"[%0d] \n",
-		"[%10.5d] \n",
-		"[%-10.5d] \n",
-		"[%'10.5d] \n",
-		"[%#10.5d] \n",
-		"[%010.5d] \n",
-	};
-	i = 0;
-	while (i < 10)
-	{
-		printf("INT>>>>>>>>>>>>>>>>>>>>>>>>>>>> %s", multi_test_int[i]);	
-		printf(multi_test_int[i], arg_int);
-		ft_printf(multi_test_int[i], arg_int);
-		printf("\n");
-		i++;
-	}
-
-
-/*
-** ============================ MULTI FLAGS TEST UNIT - for pointer only
-*/
-	
-	char multi_test_pointer[10][50] =
-	{	"[%p] \n",
-		"[%-p] \n",
-		"[%'p] \n",
-		"[%#p] \n",
-		"[%0p] \n",
-		"[%60.50p] \n",
-		"[%-60.50p] \n",
-		"[%'60.50p] \n",
-		"[%#60.50p] \n",
-		"[%060.50p] \n",
-	};
-	i = 0;
-	while (i < 10)
-	{
-		printf("POINTER>>>>>>>>>>>>>>>>>>>>>>>> %s", multi_test_pointer[i]);	
-		printf(multi_test_pointer[i], &arg_int);
-		ft_printf(multi_test_pointer[i], &arg_int);
-		printf("\n");
-		i++;
-	}
-
-
-/*
-** ============================ MULTI FLAGS TEST UNIT - for char only
-*/
-	
-	char multi_test_char[10][50] =
-	{	"[%-c] \n",
-		"[%+c] \n",
-		"[%'c] \n",
-		"[%#c] \n",
-		"[%0c] \n",
-		"[%-10.5c] \n",
-		"[%+10.5c] \n",
-		"[%'10.5c] \n",
-		"[%#10.5c] \n",
-		"[%010.5c] \n",
-	};
-	i = 0;
-	while (i < 10)
-	{
-		printf("CHAR >>>>>>>>>>>>>>>>>>>>>>>> %s", multi_test_char[i]);	
-		printf(multi_test_char[i], arg_char);
-		ft_printf(multi_test_char[i], arg_char);
-		printf("\n");
-		i++;
-	}
-
-
-/*
-** ============================ MULTI FLAGS TEST UNIT - for str only
-*/
-	
-	char multi_test_string[10][50] =
-	{	"[%s] \n",
-		"[%-s] \n",
-		"[%'s] \n",
-		"[%#s] \n",
-		"[%0s] \n",
-		"[%10.5s] \n",
-		"[%-10.5s] \n",
-		"[%'10.5s] \n",
-		"[%#10.5s] \n",
-		"[%010.5s] \n",
-	};
-	i = 0;
-	while (i < 10)
-	{
-		printf("STRING >>>>>>>>>>>>>>>>>>>>>>>> %s", multi_test_string[i]);	
-		printf(multi_test_string[i], arg_string);
-		ft_printf(multi_test_string[i], arg_string);
-		printf("\n");
-		i++;
-	}
-
-	printf("\n=============  FIN  =================\n");
-
-}
 
 void basic_test_wildcard()
 {
@@ -496,14 +300,21 @@ int	main(void)
 	printf("\n================ [START] =================\n");
 	printf("\t%s", ctime(&t));
 	
-//	basic_test_01_string();
-//	basic_test_01_char();
+	basic_test_01_string();
+	basic_test_01_char();
 	basic_test_01_int();
+//	mixed_test_01_string();
 //	basic_test_02();
 //	basic_test_flags_03();
 //	basic_test_wildcard();
-
+char c=125;
+c+=10;
+printf("%d\n",c); //outputs  -121 which is understood.
+ft_printf(" FT %d\n",c); //outputs  -121 which is understood.
+printf("%u\n",c); // outputs 4294967175.
+ft_printf(" FT %u\n",c); // outputs 4294967175.
 //	system("leaks a.out");	
+    printf("test atoi = %i\n", ft_atoi("2147483648"));   // UB: out of range of int
 
 
 	return(0);	

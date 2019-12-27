@@ -6,17 +6,11 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 18:27:47 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/23 19:18:19 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/26 12:13:48 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-/*
-**	RETRY = clarification des condition dans la partie de la gestion des
-**	signes + - : y >= 2 et if (str[i++] == '-'), passage de y++; avant les
-**	deux if. Current version = vue par fred.
-*/
 
 static const char		*get_skipped_input(const char *str)
 {

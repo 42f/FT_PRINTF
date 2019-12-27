@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:48:03 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/25 23:46:21 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/27 10:25:03 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,7 +264,7 @@ t_format	*ft_format_parser(va_list ap, const char *arg)
 		return (NULL);
 	while (arg[y] != '\0' && format->conv == 0)
 	{
-		if (y <= 5 && ft_char_set(arg[y], "-+'#0 ") != 0 &&
+		if (ft_char_set(arg[y], "-+'#0 ") != 0 &&
 format->min_w == -1 && format->pre == -1)
 			ft_fill_flag(format, arg[y]);
 		else if (ft_char_set(arg[y], "0123456789*") != 0 &&
@@ -277,18 +277,15 @@ format->min_w == -1 && format->pre == -1)
 		}
 		else if (arg[y] == '.')
 		{
+			format->pre = ft_atoi(arg + y + 1);
 			if (arg[y + 1] == '*')
 				format->pre = va_arg(ap, int);
-			else if (ft_isdigit(arg[y + 1]) == 1)
-				format->pre = ft_atoi(arg + y + 1);
-			else if (ft_isalpha(arg[y + 1]) == 1)
-				format->pre = 0;
 		}
 		else if ((conv = ft_char_set(arg[y], "cspdiuxX%")) != 0)
 			format->conv = conv;
-		if (ft_isdigit(arg[y]) == 0 && ft_char_set(arg[y], "cspdiuxX%. +-0") == 0 )
+		if (ft_isdigit(arg[y]) == 0 && ft_char_set(arg[y], "cspdiuxX%. +-0#\'") == 0 )
 		{
-			printf("exit at |%c|\n", arg[y]);
+//			printf("exit at |%c|\n", arg[y]);
 			break;
 		}
 		y++;

@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 15:35:18 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/25 23:52:47 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/27 09:21:21 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,17 +112,33 @@ int		ft_printer_nbr(t_format *format, char *padded_buff, int nb)
 	return (ft_putnum(format, padded_buff, output_str));	
 }
 
+int		ft_conv(long int nb)
+{
+	int			i;
+	long int	ret;
+
+	i = 0;
+	ret = 2;
+	while (i < 32 - 1)
+	{
+		ret = ret * 2;
+		i++;
+	}
+	nb = ret + nb;
+	return (nb);
+}
+
 int		ft_num_conv(va_list ap, t_format *format)
 {
 	int			ret;
 	char		*buffer;
-	int			nb;
+	long int			nb;
 
 	ret = 0;
 	nb = va_arg(ap, int);
-//	if (ft_char_set(format->conv,"uxX") != 0 && nb < 0)
-//		nb = nb * -1;
-	buffer = ft_itoa(nb);
+	if (ft_char_set(format->conv,"uxX") != 0 && nb < 0)
+		nb = ft_conv(nb);
+	buffer = ft_itoa((int)nb);
 	if (buffer != NULL && nb == 0 && (format->pre == 0 || format->min_w == -1))
 	{
 		buffer[0] = '\0';

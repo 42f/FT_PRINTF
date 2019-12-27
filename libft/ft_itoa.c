@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 09:32:31 by Brian             #+#    #+#             */
-/*   Updated: 2019/11/19 07:44:36 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/26 11:43:11 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,31 +31,31 @@ static char	*ft_fill(char *r, unsigned int n_val, int negsign, int i)
 	return (r);
 }
 
-char		*ft_itoa(int n)
+char		*ft_itoa(int nb)
 {
-	char			*r;
+	char			*ret;
 	int				len;
 	int				negsign;
-	unsigned int	n_val;
+	unsigned int	nb_val;
 
 	len = 0;
 	negsign = 1;
-	if (n < 0)
+	if (nb < 0)
 		negsign = -1;
-	n_val = n * negsign;
-	while (n != 0)
+	nb_val = nb * negsign;
+	while (nb != 0)
 	{
-		n = n / 10;
+		nb = nb / 10;
 		len++;
 	}
-	if (negsign == -1 || n_val == 0)
+	if (negsign == -1 || nb_val == 0)
 		len++;
-	if (!(r = (char *)ft_calloc(sizeof(char), len + 1)))
+	if (!(ret = (char *)ft_calloc(sizeof(char), len + 1)))
 		return (NULL);
-	if (n_val == 0)
+	if (nb_val == 0)
 	{
-		r[0] = '0';
-		return (r);
+		ret[0] = '0';
+		return (ret);
 	}
-	return (ft_fill(r, n_val, negsign, len - 1));
+	return (ft_fill(ret, nb_val, negsign, len - 1));
 }
