@@ -6,13 +6,14 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 13:51:42 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/27 18:33:12 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/29 17:43:03 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<time.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <limits.h>
 /*
 void *xmalloc(size_t size)
  {
@@ -47,6 +48,7 @@ void delay(int number_of_seconds)
  
 #include"basic_mixed_int.c"
 #include"basic_test_01_char.c"
+#include"basic_test_01_string.c"
 #include"basic_test_01_hex.c"
 #include"basic_test_01_int.c"
 #include"basic_test_01_u.c"
@@ -94,6 +96,56 @@ void sandbox()
 	
 }
 
+void	basic_precentage()
+{
+	int ret = 0;
+	printf("\n================ [precentage] =================\n");
+	
+	ret = printf("{test 1 avec percent %%}\n");
+	printf("ret = |%d|\n", ret);
+	ret = ft_printf("[test 1 avec percent %%]\n");
+	printf("ret = |%d|\n", ret);
+	ret = printf("{test 2 avec percent %% chiffre %d}\n", 42);
+	printf("ret = |%d|\n", ret);
+	ret = ft_printf("[test 2 avec percent %% chiffre %d]\n", 42);
+	printf("ret = |%d|\n", ret);
+	printf("\n================ [fin] =================\n");
+}
+
+void	basic_n_conv()
+{	
+	printf("\n================ [n_conv] =================\n");
+	int ret1 = 0;
+	int ret2 = 0;
+
+	int p;
+	int *a = &p;
+	int *b = &p;
+	(void)b;
+	ret1 = printf("{test n %n- after}\n", a);
+	ret2 = ft_printf("[test n %n- after]\n", b);
+
+	printf("{%i}\n", *a);
+	printf("[%d]\n", *b);
+	printf("{%i}\n", ret1);
+	printf("[%d]\n", ret2);
+}
+
+void	special(void)
+{
+	int ret1 = 0;
+	int ret2 = 0;
+	printf("\n================ [Special] =================\n");
+	printf("ref = \n[%%====%%==tdti==]\n\n\n");
+
+
+//	ret1 = printf("{%====%==tdti==}\n", 42, 21);
+	ret2 = ft_printf("[%====%==tdti==]\n", 42, 21);
+	printf("\n\nc ={%i}\n", ret1);
+	printf("f =[%d]\n", ret2);
+
+}
+
 int	main(void)
 {
 	time_t t;
@@ -105,26 +157,20 @@ int	main(void)
 //	basic_test_01_char();
 //	basic_test_01_hex();
 //	basic_test_01_int();
-	basic_test_01_u();
+//	basic_test_01_u();
 //	basic_test_01_mixed_int();
 //	basic_test_01_pointer();
 //	basic_test_01_string();
-//	basic_test_wildcard();
+	basic_test_wildcard();
 //	basic_mixed_int();
 //	sandbox();
 //	basic_test_small_mix();
 //	system("leaks a.out");	
 
-/*
-	int test = -4422;
-	printf("f[%05f] \n", test);
-	printf("g[%05g] \n", test);
-	printf("e[%05e] \n", test);
-	printf("d[%0d] \n", test);
-	ft_printf("[%05d] \n", &test);
-	printf("i[%05p] \n", test);
-	ft_printf("[%05p] \n", &test);
-*/
+	basic_precentage();
+	basic_n_conv();
+	special();
+	
 	return(0);	
 
 }

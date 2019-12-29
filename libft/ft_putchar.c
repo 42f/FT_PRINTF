@@ -6,13 +6,14 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 15:13:15 by Brian             #+#    #+#             */
-/*   Updated: 2019/12/16 09:00:37 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/29 10:33:37 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar(char c)
+int	ft_putchar(char c)
 {
 	write(1, &c, 1);
+	return (1);
 }

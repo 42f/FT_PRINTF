@@ -34,8 +34,8 @@ void	basic_test_01_u(void)
 		"[%8.9u] \n",
 		"[%8.8u] \n",
 		"[%08u] \n",
-		"[%0-15d] \n",
-		"[%#0u] \n",
+		"[%05.1u] \n",
+		"[%.1u] \n",
 	};
 	int 	i = 0;
 	int		y = 0;
@@ -88,8 +88,26 @@ void	basic_test_01_u(void)
 			else
 			{
 			printf("\033[0;32m");
-			printf(" == [OK] == \n");
+			printf(" == [OK] == \n\n");
 			printf("\033[0m");
 			}
+
+//
+// SANDBOX
+//
+
+
+printf("%u\n", -1);
+ft_printf("%u\n--\n", -1);
+printf("%u\n", 0);
+ft_printf("%u\n--\n", 0);
+printf("%u\n", UINT_MAX);
+ft_printf("%u\n--\n", UINT_MAX);
+
+printf("%u\n", INT_MIN);
+ft_printf("%u\n--\n", INT_MIN);
+
+
+
 }
 

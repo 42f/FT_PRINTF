@@ -163,11 +163,7 @@ TEST : %u, 1234
 [OK]
 -------------------------------------
 TEST : %u, -1001234
-ft_printf  --> 1001234
-ret = 7
-printf     --> 4293966062
-ret = 10
-[KO]
+[OK]
 -------------------------------------
 TEST : %U, 231009999
 ft_printf  --> 231009999, (unsigned char)20
@@ -193,8 +189,8 @@ ret = 20
 [KO]
 -------------------------------------
 TEST : %zu, (size_t)-145612220
-ft_printf  --> 145612220
-ret = 9
+ft_printf  --> 4149355076
+ret = 10
 printf     --> 18446744073563939396
 ret = 20
 [KO]
@@ -212,11 +208,7 @@ TEST : %.0u, 76543
 [OK]
 -------------------------------------
 TEST : %.u, -7
-ft_printf  --> 7
-ret = 1
-printf     --> 4294967289
-ret = 10
-[KO]
+[OK]
 -------------------------------------
 TEST : %.u, 0
 [OK]
@@ -247,8 +239,8 @@ TEST : %-3u, 194
 [OK]
 -------------------------------------
 TEST : toto et %02u coco %-5lu mimi, 19, (unsigned long)-20
-ft_printf  --> toto et 19 coco 20    mimi
-ret = 26
+ft_printf  --> toto et 19 coco 4294967276 mimi
+ret = 31
 printf     --> toto et 19 coco 18446744073709551596 mimi
 ret = 41
 [KO]
@@ -263,35 +255,31 @@ ret = 47
 [KO]
 -------------------------------------
 TEST : ko%-4.2hhu et %05.2u!, (unsigned char)-456, 0
-ft_printf  --> ko56   et   000!
-ret = 16
-printf     --> ko56   et    00!
-ret = 16
-[KO]
+[OK]
 -------------------------------------
 TEST : %05.1u %3.4hu %-4.7U, 45, (unsigned short)-1789, 147
-ft_printf  -->    45 63747 147, 0
+ft_printf  --> 00045 63747 147, 0
 ret = 18
 printf     -->    45 63747 0000147
 ret = 19
 [KO]
 -------------------------------------
 TEST : %o, 0
-ft_printf  -->  0nsigned char)-12
-ret = 18
+ft_printf  --> 0nsigned char)-12
+ret = 17
 printf     --> 0
 ret = 1
 [KO]
 -------------------------------------
 TEST : %o, 1475
-ft_printf  -->  1475nsigned char)-12
-ret = 21
+ft_printf  --> 1475nsigned char)-12
+ret = 20
 printf     --> 2703
 ret = 4
 [KO]
 -------------------------------------
 TEST : %o, -123654789
-ft_printf  -->  123654789nsigned char)-12
+ft_printf  --> 4171312507nsigned char)-12
 ret = 26
 printf     --> 37050226573
 ret = 11
@@ -319,43 +307,43 @@ ret = 11
 [KO]
 -------------------------------------
 TEST : %#o, 0
-ft_printf  -->  0nsigned char)-12
-ret = 18
+ft_printf  --> 0nsigned char)-12
+ret = 17
 printf     --> 0
 ret = 1
 [KO]
 -------------------------------------
 TEST : %#o, 1000
-ft_printf  -->  1000nsigned char)-12
-ret = 21
+ft_printf  --> 1000nsigned char)-12
+ret = 20
 printf     --> 01750
 ret = 5
 [KO]
 -------------------------------------
 TEST : %#o, -896
-ft_printf  -->  896nsigned char)-12
-ret = 20
+ft_printf  --> 4294966400nsigned char)-12
+ret = 26
 printf     --> 037777776200
 ret = 12
 [KO]
 -------------------------------------
 TEST : %hho, (unsigned char)-12
-ft_printf  -->  244nsigned short)1475
-ret = 22
+ft_printf  --> 244nsigned short)1475
+ret = 21
 printf     --> 364
 ret = 3
 [KO]
 -------------------------------------
 TEST : %ho, (unsigned short)1475
-ft_printf  -->  1475nsigned long)258
-ret = 21
+ft_printf  --> 1475nsigned long)258
+ret = 20
 printf     --> 2703
 ret = 4
 [KO]
 -------------------------------------
 TEST : %lo, (unsigned long)258
-ft_printf  -->  258nsigned long long)-127
-ret = 26
+ft_printf  --> 258nsigned long long)-127
+ret = 25
 printf     --> 402
 ret = 3
 [KO]
@@ -368,7 +356,7 @@ ret = 22
 [KO]
 -------------------------------------
 TEST : %zo, 0xffff14785aa
-ft_printf  -->  246970966intmax_t)-14785000
+ft_printf  --> 4047996330intmax_t)-14785000
 ret = 28
 printf     --> 377776121702652
 ret = 15
@@ -962,7 +950,7 @@ ret = 25
 [KO]
 -------------------------------------
 TEST : %6C et coco %C titi %C tyty, 3250, 0xd800, 'u'
-ft_printf  -->      ²oco  55296ti yo%-12lc et  117ti  312123320', 254, 256, 'a'
+ft_printf  -->      ²oco  55296ti yo%-12lc et  117ti 4017569864', 254, 256, 'a'
 ret = 64
 printf     -->    à²²
 ret = -1
@@ -1173,44 +1161,44 @@ ret = 3
 [KO]
 -------------------------------------
 TEST : %p, &data
-ft_printf  --> 0x7ffeed656718
+ft_printf  --> 0x7ffeef774718
 ret = 0
-printf     --> 0x7ffeed656718
+printf     --> 0x7ffeef774718
 ret = 14
 [KO]
 -------------------------------------
 TEST : %p, &p_basic_02
-ft_printf  --> 0x1025ae0b0
+ft_printf  --> 0x10048fb00
 ret = 0
-printf     --> 0x1025ae0b0
+printf     --> 0x10048fb00
 ret = 11
 [KO]
 -------------------------------------
 TEST : %20p, &data
-ft_printf  --> 0x7ffeed656718
+ft_printf  --> 0x7ffeef774718
 ret = 0
-printf     -->       0x7ffeed656718
+printf     -->       0x7ffeef774718
 ret = 20
 [KO]
 -------------------------------------
 TEST : %-25p, &data
-ft_printf  --> 0x7ffeed656718
+ft_printf  --> 0x7ffeef774718
 ret = 0
-printf     --> 0x7ffeed656718           
+printf     --> 0x7ffeef774718           
 ret = 25
 [KO]
 -------------------------------------
 TEST : %2p, &data
-ft_printf  --> 0x7ffeed656718
+ft_printf  --> 0x7ffeef774718
 ret = 0
-printf     --> 0x7ffeed656718
+printf     --> 0x7ffeef774718
 ret = 14
 [KO]
 -------------------------------------
 TEST : %----24p et hello %2p %12p, &ret, &p_all_01, NULL
-ft_printf  --> 0x7ffeed656714 et hello 0x1025ae6f0 0x0
+ft_printf  --> 0x7ffeef774714 et hello 0x100490140 0x0
 ret = 11
-printf     --> 0x7ffeed656714           et hello 0x1025ae6f0          0x0
+printf     --> 0x7ffeef774714           et hello 0x100490140          0x0
 ret = 58
 [KO]
 -------------------------------------
@@ -1270,9 +1258,9 @@ TEST : test %-12i et %--2.4s %24s !\n, 0, NULL, "coco"
 [SEGV]
 -------------------------------------
 TEST : %--.4u et %#O%#012O%1lc\n, -12, 0, 0, 95
-ft_printf  --> 0012 et %#012O 
+ft_printf  --> 4294967284 et %#012O 
 
-ret = 16
+ret = 22
 printf     --> 4294967284 et 0000000000000_
 
 ret = 29
@@ -1286,9 +1274,9 @@ ret = -1
 [KO]
 -------------------------------------
 TEST : test%-8p %---32p %#5.3x%#024X, &ret, &tret, 0x25, 0
-ft_printf  --> test0x7ffeed656714 0x7ffeed656714 250
+ft_printf  --> test0x7ffeef774714 0x7ffeef774714 250
 ret = 6
-printf     --> test0x7ffeed656714 0x7ffeed656714                   0x025000000000000000000000000
+printf     --> test0x7ffeef774714 0x7ffeef774714                   0x025000000000000000000000000
 ret = 81
 [KO]
 -------------------------------------

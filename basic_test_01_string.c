@@ -1,22 +1,17 @@
 void	basic_test_01_string(void)
 {
-
-/*
-** ============================ MULTI FLAGS TEST UNIT - for str only
-*/
-	char	multi_arg[5][50] =
+	char	multi_arg[10][50] =
 	{	"coucou",
-		"abcdefghijklmnopqrstuvwxyz",
+		" ",
 		"a",
 		"",
-		" ",
+		"abcdefghijklmnopqrstuvwxyz"
 	};
-	char 	multi_test[23][100] =
+	char 	multi_test[24][100] =
 	{	"[%s] \n",
 		"[%5.30s] \n",
 		"[%-5.30s] \n",
 		"[%0-15s] \n",
-		"[%.0s] \n",
 		"[%15s] \n",
 		"[%15.0s] \n",
 		"[%15.1s] \n",
@@ -31,11 +26,14 @@ void	basic_test_01_string(void)
 		"[%+.0s] \n",
 		"[%-.0s] \n",
 		"[% .0s] \n",
+		"[%.0s] \n",
 		"[%+ .0s] \n",
 		"[%- .0s] \n",
-		"[% 15.0s] \n",
-		"[%+.s] \n",
+		"[% 15.s] \n",
+		"[%-0 +.s] \n",
+		"[%-0 +s] \n"
 	};
+
 	int 	i = 0;
 	int		y = 0;
 	int		ret_c = 0;
@@ -43,8 +41,8 @@ void	basic_test_01_string(void)
 	int		diff_ret = 0;
 	while (y < 5)
 	{
-		printf("\n\n----------basic string---------------------------->>[%s]\n", multi_arg[y]);	
-		while (i < 23)
+		printf("\n\n-----------basic string--------------------------->>[%s]\n", multi_arg[y]);	
+		while (i < 24) 
 		{
 		ret_c = 0;
 		ret_ft = 0;
@@ -59,7 +57,7 @@ void	basic_test_01_string(void)
 				printf("\033[0;31m");
 				printf(" [ko] return ! libc = %d, ft = %d\n\n\n", ret_c, ret_ft);
 				printf("\033[0m");
-				delay(400);
+					delay(400);
 			}
 			else
 			{
@@ -74,7 +72,6 @@ void	basic_test_01_string(void)
 	y++;
 	}
 	printf("\n\n=============  FIN MAIN  =================\n\n\n");
-
 
 }
 
