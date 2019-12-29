@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:48:03 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/29 17:40:10 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/29 18:41:47 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,61 +32,36 @@ int		ft_next_arg(va_list ap, t_format *format)
 	return(ret);
 }
 
-/*
-int			ft_next_parser(va_list ap, const char *arg, t_format *format)
+int			ft_conv_parser(char *arg, t_format *format)
 {
-	int			y;
+	int			ret;
 
-	y = 0;
-	while (arg[y] != '\0' && format->conv == '\0' && ft_char_set(arg[y], "+-0 .ncspduixX%") != 0)
+	ret = 0;
+	while (*arg != '\0' && format->conv == '\0')
 	{
-		if (arg[y] == '.')
-		{
-			format->pre = ft_atoi(arg + y + 1);
-			if (arg[y + 1] == '*')
-				format->pre = va_arg(ap, int);
-		}
-		else if (ft_char_set(arg[y], "lh") != 0)
-			ft_fill_spec(format, arg[y]);
-		else if (ft_char_set(arg[y], "ncspdiuxX%") != 0)
-			format->conv = arg[y];
-		y++;
+		if (ft_char_set(*arg, "ncspdiuxX%") != 0)
+			format->conv = *arg;
+		arg++;
 	}
+	if (ft_isdigit(*arg) == 0 && ft_char_set(*arg, ".*ncspdiuxX%") == 0)
+		ret = -1;
 	return (0);
 }
 
-t_format	*ft_format_parser(va_list ap, const char *arg, t_format *format)
+int			ft_flag_parser(char *arg, t_format *format)
 {
-	int			y;
-	int			output;
+	int			ret;
 
-	y = 0;
-	format = ft_format_init();
-	if (format == NULL)
-		return (NULL);
-	while (arg[y] != '\0' && format->conv == '\0' && ft_char_set(arg[y], "+-0 .ncspduixX%") != 0)
-//	while (arg[y] != '\0' && format->conv == '\0' )
+	ret = 0;
+	while (*arg != '\0' && ft_char_set(*arg,"0-+ ") != 0)
 	{
-		if (ft_char_set(arg[y], "-+'#0 ") != 0 &&
-format->min_w == -1 && format->pre == -1)
-			ft_fill_flag(format, arg[y]);
-		else if (ft_char_set(arg[y], "0123456789*") != 0 &&
- format->min_w == -1 && format->pre == -1)
-		{
-			format->min_w = ft_atoi(arg + y);
-			if (arg[y] == '*')
-				format->min_w = va_arg(ap, int);
-		}
-		else
-			output = ft_next_parser(ap, arg + y, format);
-		y++;
+		ft_fill_flag(format, *arg);
+		arg++;
 	}
-	if(format->conv == '\0')
-		return (NULL);	
-	return (format);
+	if (ft_isdigit(*arg) == 0 && ft_char_set(*arg, ".*ncspdiuxX%") == 0)
+		ret = -1;
+	return (ret);
 }
-*/
-
 
 t_format	*ft_format_parser(va_list ap, char *arg, t_format *format)
 {
@@ -98,26 +73,19 @@ t_format	*ft_format_parser(va_list ap, char *arg, t_format *format)
 		return (NULL);
 	
 	min_width = ft_str_set(arg, "123456789*");
-	if (min_width != NULL && *min_width != '*')
+	if (min_width != NULL && *min_width != '*' && min_width[-1] != '.')
 		format->min_w = ft_atoi(min_width);
-	if (min_width != NULL && *min_width == '*')
+	if (min_width != NULL && *min_width == '*' && min_width[-1] != '.')
 		format->min_w = va_arg(ap, int);
 	precision = ft_str_set(arg, ".");
 	if (precision != NULL && precision[1] != '*')
 		format->pre = ft_atoi(precision + 1);
 	if (precision != NULL && precision[1] == '*')
 		format->pre = va_arg(ap, int);
-	while (*arg != '\0' && ft_char_set(*arg,"0-+ ") != 0)
-	{
-		ft_fill_flag(format, *arg);
-		arg++;
-	}
-	while (*arg != '\0' && format->conv == '\0')
-	{
-		if (ft_char_set(*arg, "ncspdiuxX%") != 0)
-			format->conv = *arg;
-		arg++;
-	}
+	if (ft_flag_parser(arg, format) == -1)
+		return (NULL);
+	if (ft_conv_parser(arg, format) == -1)
+		return (NULL);
 //print_format(format);
 	return (format);	
 }
@@ -146,7 +114,7 @@ int		ft_arg_manager(va_list ap, const char *arg, t_format *format)
 			i++;
 			format = ft_format_parser(ap, (char *)arg + i, format);
 			if (format == NULL)
-				return (-1);
+				return (0);
 			if (format->conv != 'n')
 				ret += ft_next_arg(ap, format); 
 			else
