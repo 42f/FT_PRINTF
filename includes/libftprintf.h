@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:44:34 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/29 19:11:08 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/29 21:32:04 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 
 typedef	struct	s_format
 {
-	char	*flag;
+	char	flag[6];
 	int 	min_w;
 	int		pre;
-	char	*spec;
+	char	spec[3];
 	char	conv;
 }				t_format;
 

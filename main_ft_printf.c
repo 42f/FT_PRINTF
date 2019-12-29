@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 13:51:42 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/29 17:45:36 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/29 21:11:15 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,15 @@ void	basic_precentage()
 	ret = printf("{test 1 avec percent %%}\n");
 	printf("ret = |%d|\n", ret);
 	ret = ft_printf("[test 1 avec percent %%]\n");
+	printf("ret = |%d|\n", ret);
+	ret = printf("{test 2 avec percent %% chiffre %d}\n", 42);
+	printf("ret = |%d|\n", ret);
+	ret = ft_printf("[test 2 avec percent %% chiffre %d]\n", 42);
+	printf("ret = |%d|\n", ret);
+
+//	ret = printf("{test 2  avec percent %%}\n", 'A');
+//	printf("ret = |%d|\n", ret);
+	ret = ft_printf("{test 2  avec percent %%}\n", 'A');
 	printf("ret = |%d|\n", ret);
 	ret = printf("{test 2 avec percent %% chiffre %d}\n", 42);
 	printf("ret = |%d|\n", ret);
