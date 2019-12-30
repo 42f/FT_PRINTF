@@ -11,7 +11,7 @@ void	basic_test_01_char(void)
 	
 	char 	multi_test[30][100] =
 	{	
-		"[%c] \n",
+		"[%c .12]\n",
 		"[%0c] \n",
 		"[%+c] \n",
 		"[%-c] \n",
@@ -51,7 +51,7 @@ void	basic_test_01_char(void)
 		ret_c = 0;
 		ret_ft = 0;
 
-			printf("STRING >>>>>>>>>>>>>>>>>>>>{test %d}{%c}>>>> %s", i, multi_arg[y], multi_test[i]);
+			printf("STRING >>>>>>>>>>>>>>>>>>>>{test %d}{%c}>>>> %s\n", i, multi_arg[y], multi_test[i]);
 			ret_c = printf(multi_test[i], multi_arg[y]);
 			ret_ft = ft_printf(multi_test[i], multi_arg[y]);
 			printf("\n");
