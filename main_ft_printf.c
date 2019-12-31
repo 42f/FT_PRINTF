@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 13:51:42 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/29 21:11:15 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/31 10:49:05 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,14 +147,22 @@ void	special(void)
 	printf("\n================ [Special] =================\n");
 	printf("ref = \n[%%====%%==tdti==]\n\n\n");
 
-
-//	ret1 = printf("{%====%==tdti==}\n", 42, 21);
-	ret2 = ft_printf("[%====%==tdti==]\n", 42, 21);
+	
+	ret1 = printf(" titi % +---12.5% et%%%0004% et %+1%\n");
+	ret2 = ft_printf("[titi % +---12.5% et%%%0004% et %+1%]\n");
 	printf("\n\nc ={%i}\n", ret1);
 	printf("f =[%d]\n", ret2);
 
 }
+void	null(void)
+{
+	printf("\n================ [null] =================\n");
+	int ret1 = printf("{test %-12i et %--2.4s %24s !}\n", 0, NULL, "coco");
+	int ret2 = ft_printf("[test %-12i et %--2.4s %24s !]\n", 0, NULL, "coco");
 
+	printf("\n\nc ={%i}\n", ret1);
+	printf("f =[%d]\n", ret2);
+}
 int	main(void)
 {
 	time_t t;
@@ -179,6 +187,8 @@ int	main(void)
 	basic_precentage();
 	basic_n_conv();
 	special();
+	null();	
+
 	
 	return(0);	
 

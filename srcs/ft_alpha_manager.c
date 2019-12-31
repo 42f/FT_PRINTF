@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 13:45:58 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/29 20:51:06 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/31 10:46:11 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,12 +101,10 @@ int		ft_alpha_conv(va_list ap, t_format *format)
 		ret = ft_printer_char(format, va_arg(ap, int));
 	else if (format->conv == 's')
 	{
-		str_buffer = ft_strdup(va_arg(ap, char*));
-		if (str_buffer == NULL)
-		{
-			ft_putstr("(null)");
-			return (6);
-		}
+		if (ft_check_va(ap) == -1)
+			str_buffer = ft_strdup("(null)");
+		else
+			str_buffer = ft_strdup(va_arg(ap, char*));
 		ret = ft_printer_str(format, str_buffer);
 		free(str_buffer);
 	}

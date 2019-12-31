@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:44:34 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/29 21:32:04 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/31 10:38:41 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	print_format(t_format *format);
 //char		*ft_zero_padding(t_format *format, char *buffer, int nb, int pre);
 
 int			ft_n_conv(va_list ap, int ret);
+int			ft_check_va(va_list ap);
 
 
 int			ft_unsigned_conv(va_list ap, t_format *format);
@@ -44,6 +45,7 @@ int			ft_printf(const char *arg, ...);
 char		ft_char_set(char c, char *set);
 char		*ft_str_set(char* str, char *set);
 int			ft_alpha_conv(va_list ap, t_format *format);
+int			ft_percent_conv(t_format *format);
 int			ft_hex_conv(va_list ap, t_format *format);
 int			ft_next_arg(va_list ap, t_format *format, int main_ret);
 int			ft_num_conv(va_list ap, t_format *format);

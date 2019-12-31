@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:48:03 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/30 10:15:54 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/31 10:42:48 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ int		ft_next_arg(va_list ap, t_format *format, int main_ret)
 	int			ret;
 
 	ret = 0;
-	if (ft_char_set(format->conv, "sc%") != 0)
+	if (ft_char_set(format->conv, "%") != 0)
+		ret = ft_percent_conv(format);
+	else if (ft_char_set(format->conv, "sc") != 0)
 		ret = ft_alpha_conv(ap, format);
 	else if (ft_char_set(format->conv, "di") != 0)
 		ret = ft_num_conv(ap, format);
@@ -67,7 +69,7 @@ int			ft_arg_trim(char *arg)
 	int			i;
 
 	i = 0;
-	while (arg[i + 1] != '\0')
+	while (arg[i] != '\0')
 	{
 		if (ft_char_set(arg[i], "ncspdiuxX%") != 0)
 		{
@@ -127,6 +129,24 @@ int		ft_arg_manager(va_list ap, char *arg, t_format *format)
 			ret += ft_putchar(*arg);
 		arg++;
 	}
+	return (ret);
+}
+
+int				ft_check_va(va_list ap)
+{
+	va_list ap_tmp;
+	char	*str_tmp;
+	int		ret;
+
+	ret = 1;
+	va_copy(ap_tmp, ap);
+	str_tmp = va_arg(ap_tmp, char*);
+	if (str_tmp == NULL)
+	{
+		va_arg(ap, char*);
+		ret = -1;
+	}
+	va_end(ap_tmp);
 	return (ret);
 }
 

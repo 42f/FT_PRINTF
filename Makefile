@@ -7,6 +7,7 @@ SRCS += $(SRCS_FOLDER)/ft_printf_utils.c
 SRCS += $(SRCS_FOLDER)/ft_digit_manager_utils.c
 SRCS += $(SRCS_FOLDER)/ft_unsigned_manager.c
 SRCS += $(SRCS_FOLDER)/ft_alpha_manager.c
+SRCS += $(SRCS_FOLDER)/ft_percent_manager.c
 SRCS += $(SRCS_FOLDER)/ft_digit_manager.c
 SRCS += $(SRCS_FOLDER)/ft_hex_manager.c
 SRCS += $(LIBFT_FOLDER)/ft_atoi.c
