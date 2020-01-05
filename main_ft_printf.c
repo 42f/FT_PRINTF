@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 13:51:42 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/31 10:49:05 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/31 12:17:16 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,19 @@ void	basic_n_conv()
 	printf("[%d]\n", ret2);
 }
 
+void	special_char(void)
+{
+	int ret1 = 0;
+	int ret2 = 0;
+	printf("\n================ [Special _ char] =================\n");
+
+	
+	ret1 = printf("{%-c}\n", (char)564);
+	ret2 = ft_printf("[%-c]\n", (char)564);
+	printf("\n\nc ={%i}\n", ret1);
+	printf("f =[%d]\n", ret2);
+
+}
 void	special(void)
 {
 	int ret1 = 0;
@@ -152,6 +165,19 @@ void	special(void)
 	ret2 = ft_printf("[titi % +---12.5% et%%%0004% et %+1%]\n");
 	printf("\n\nc ={%i}\n", ret1);
 	printf("f =[%d]\n", ret2);
+	printf("\n================ [Special 2] =================\n");
+
+	
+	ret1 = ft_printf("hello ca%----4c %1c va %10c%-c ??", '\0', '\n', (char)564, 0);
+/*	printf("\n");
+	ret2 = ft_printf("\n\nft = hello ca%----4c %1c va %10c%-c ??", '\0', '\n', (char)564, 0);
+	printf("\n");
+	printf("\n\nc ={%i}\n", ret1);
+	printf("f =[%d]\n", ret2);
+*/
+
+
+
 
 }
 void	null(void)
@@ -178,18 +204,23 @@ int	main(void)
 //	basic_test_01_mixed_int();
 //	basic_test_01_pointer();
 //	basic_test_01_string();
-	basic_test_wildcard();
+//	basic_test_wildcard();
 //	basic_mixed_int();
 //	sandbox();
 //	basic_test_small_mix();
 //	system("leaks a.out");	
 
-	basic_precentage();
-	basic_n_conv();
+//	basic_precentage();
+//	basic_n_conv();
 	special();
-	null();	
+//	special_char();
+//	null();	
+	printf("\n================ [START] =================\n");
 
-	
+	wchar_t L〻= "coucou";
+
+	printf("test %-7C %007d%-10.2ls!!", 0xd777, 0x45, L〻);	
+	ft_printf("test %-7C %007d%-10.2ls!!", 0xd777, 0x45, L〻);	
 	return(0);	
 
 }

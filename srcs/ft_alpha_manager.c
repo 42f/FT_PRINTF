@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 13:45:58 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/31 10:46:11 by bvalette         ###   ########.fr       */
+/*   Updated: 2019/12/31 12:11:55 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,13 @@ int		ft_printer_char(t_format *format, unsigned char c)
 	int			len;
 	char		fill;
 
+	if (c == '\0')
+		ft_putchar(0);
 	fill = ' ';
 	if (ft_str_set(format->flag, "0") != 0 && ft_str_set(format->flag, "-") == 0)
 		fill = '0';
 	len = 1;
-	if (format->min_w != -1)
+	if (format->min_w > 1)
 		len = format->min_w;
 	output_str = (char *)ft_calloc(len + 1, sizeof(char));
 	output_str[0] = c;
