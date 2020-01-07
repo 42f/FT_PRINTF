@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:48:03 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/31 12:13:06 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/06 11:22:13 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,26 +67,36 @@ void		ft_flag_parser(char *arg, t_format *format)
 int			ft_arg_trim(char *arg)
 {
 	int			i;
+	int 		ret;
 
 	i = 0;
+	ret = -1;
 	while (arg[i] != '\0')
 	{
-		if (ft_char_set(arg[i], "ncspdiuxX%") != 0)
+		if ((ft_isalpha(arg[i]) == 1 || arg[i] == '%') 
+			&& ft_char_set(arg[i], "hl") == 0)
 		{
 			arg[i + 1] = '\0';
-			return (1);
+			ret = 1;
+			break;
 		}
 		i++;
 	}
-	return (0);
+	if (ft_char_set(arg[i], "ncspdiuxX%") == 0)
+	{
+		ret = -1;
+		free(arg);
+	}
+	return (ret);
 }
 
-void		ft_format_parser(va_list ap, char *arg, t_format *format)
+int		ft_format_parser(va_list ap, char *arg, t_format *format)
 {
 	char 		*precision;
 	char 		*min_width;
 
-	ft_arg_trim(arg);
+	if (ft_arg_trim(arg) == -1)
+		return (-1);	
 	min_width = ft_str_set(arg, "123456789*");
 	if (min_width != NULL && *min_width != '*' && min_width[-1] != '.')
 		format->min_w = ft_atoi(min_width);
@@ -102,6 +112,7 @@ void		ft_format_parser(va_list ap, char *arg, t_format *format)
 	ft_conv_parser(arg, format);
 //print_format(format);
 	free(arg);
+	return (0);
 }
 
 
@@ -118,9 +129,8 @@ int		ft_arg_manager(va_list ap, char *arg, t_format *format)
 			if (ft_char_set(*arg, "0123456789 -*+#'.ncspdiuxX%lh") == 0)
 				continue ;
 			format = ft_format_init();
-			if (format == NULL)
+			if (format == NULL || ft_format_parser(ap, ft_strdup(arg), format) == -1)
 				return (-1);
-			ft_format_parser(ap, ft_strdup(arg), format);
 			ret += ft_next_arg(ap, format, ret); 
 			while (*arg != '\0' && ft_char_set(*arg, "ncspdiuxX%") == 0)
 				arg++;

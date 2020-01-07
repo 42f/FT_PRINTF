@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 09:32:31 by Brian             #+#    #+#             */
-/*   Updated: 2019/12/27 17:36:04 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/07 09:11:22 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ static char	*ft_fill(unsigned long long int n_val, int sign, int i, char *base)
 	b_size = ft_base_size(base);
 	if (!(ret = (char *)ft_calloc(i + 1, sizeof(char))))
 		return (NULL);
+	i--;
 	while (n_val > 0 && i >= 0)
 	{
 		ret[i] = base[n_val % b_size];
@@ -88,7 +89,7 @@ char		*ft_itoa_base(long long int nb, char *base)
 	unsigned long long int	nb_val;
 
 	sign = 1;
-	if (ft_is_valid(base) == 0)
+	if (base == NULL || ft_is_valid(base) == 0)
 		return (NULL);
 	if (nb < 0)
 		sign = -1;
@@ -98,6 +99,6 @@ char		*ft_itoa_base(long long int nb, char *base)
 		len++;
 	if (nb_val == 0)
 		return (ft_strdup("0"));
-	return (ft_fill(nb_val, sign, len - 1, base));
+	return (ft_fill(nb_val, sign, len, base));
 }
 

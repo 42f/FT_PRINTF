@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 13:51:42 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/31 12:17:16 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/07 09:13:54 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,24 @@ void	basic_precentage()
 	printf("ret = |%d|\n", ret);
 	ret = ft_printf("[test 2 avec percent %% chiffre %d]\n", 42);
 	printf("ret = |%d|\n", ret);
+
+	printf("\n=== [with min_width and precision] =====\n");
+
+	ret = printf("{minwidth 45 %45%}\n");
+	printf("ret = |%d|\n", ret);
+	ret = ft_printf("[minwidth 45 %45%]\n");
+	printf("ret = |%d|\n", ret);
+
+	ret = printf("{precision .5 %.5%}\n");
+	printf("ret = |%d|\n", ret);
+	ret = ft_printf("[precision .5 %.5%]\n");
+	printf("ret = |%d|\n", ret);
+
+	ret = printf("{min_w 10 precision .5 %10.5%}\n");
+	printf("ret = |%d|\n", ret);
+	ret = ft_printf("[min_w 10 precision .5 %10.5%]\n");
+	printf("ret = |%d|\n", ret);
+
 	printf("\n================ [fin] =================\n");
 }
 
@@ -175,11 +193,21 @@ void	special(void)
 	printf("\n\nc ={%i}\n", ret1);
 	printf("f =[%d]\n", ret2);
 */
-
-
-
-
 }
+
+void	error_managment()
+{
+	printf("\n================ [error managment] =================\n");
+
+	int ret_1 = 0;
+	int ret_2 = 0;
+
+	ret_1 = printf("OK C %-7C %007d%-10.2s!!", 0xd777, 0x45, "coucou");	
+	ret_2 = ft_printf("OK ft %-7C %007d%-10.2s!!", 0xd777, 0x45, "coucou");	
+
+	printf("\n|c = %d / ft = %d|\n", ret_1, ret_2);
+}
+
 void	null(void)
 {
 	printf("\n================ [null] =================\n");
@@ -197,8 +225,8 @@ int	main(void)
 	printf("\n================ [START] =================\n");
 	printf("\t%s", ctime(&t));
 	
-	basic_test_01_char();
-//	basic_test_01_hex();
+//	basic_test_01_char();
+	basic_test_01_hex();
 //	basic_test_01_int();
 //	basic_test_01_u();
 //	basic_test_01_mixed_int();
@@ -210,17 +238,18 @@ int	main(void)
 //	basic_test_small_mix();
 //	system("leaks a.out");	
 
-//	basic_precentage();
-//	basic_n_conv();
+	basic_precentage();
+	basic_n_conv();
 	special();
-//	special_char();
-//	null();	
-	printf("\n================ [START] =================\n");
+	special_char();
+	null();
+	error_managment();
+		
+	printf("\n================ [xtra] =================\n");
+	
+	printf("|%s|\n", ft_itoa_base(-4562, "0123456789"));
+	
 
-	wchar_t L〻= "coucou";
-
-	printf("test %-7C %007d%-10.2ls!!", 0xd777, 0x45, L〻);	
-	ft_printf("test %-7C %007d%-10.2ls!!", 0xd777, 0x45, L〻);	
 	return(0);	
 
 }
