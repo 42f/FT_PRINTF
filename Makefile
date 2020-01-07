@@ -80,7 +80,7 @@ $(OBJS_BONUS): %.o: %.c $(HEAD)
 	$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 f:	$(NAME)
-	$(CC) -I$(INC) $(CFLAGS)  -g main_ft_printf.c $(NAME) 
+	$(CC) -I$(INC) $(CFLAGS) main_ft_printf.c $(NAME) 
 	./a.out
 
 fs:	$(NAME)

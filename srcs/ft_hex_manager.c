@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 13:46:56 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/07 16:43:09 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/07 18:52:02 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,16 @@ static char	*ft_padding(t_format *format, char *hex_str, int pre, int offset)
 	if (pre < 0)
 		pre = 0;
 	padded_len = hex_len + offset;
-	if (pre > (int)hex_len) 
+	if (format->pre > (int)hex_len) 
 		padded_len = pre + offset;
-	else if (ft_str_set(format->flag, "0") != 0 && format->pre != 0)
+	else if (ft_str_set(format->flag, "0") != 0 && format->pre != -1)
 		padded_len = format->min_w;
 	padded_ret = (char *)ft_calloc(padded_len + 1, sizeof(char));
 	if (padded_ret == NULL)
 		return (NULL);
-	ft_memset(padded_ret, '0', padded_len);
+	ft_memset(padded_ret, ' ', padded_len);
+	if (ft_str_set(format->flag, "0") != 0 || format->pre > (int)hex_len)
+		ft_memset(padded_ret, '0', padded_len);
 	if (offset == 2 && format->conv == 'X')
 		ft_memcpy(padded_ret, "0X", 2);
 	else if (offset == 2)

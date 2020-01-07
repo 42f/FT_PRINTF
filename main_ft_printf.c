@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 13:51:42 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/07 16:12:52 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/07 18:50:17 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,8 +249,16 @@ int	main(void)
 		
 	printf("\n================ [xtra] =================\n");
 
-	printf("{cc%#.4X et %#0012x %#04hX !!}\n", 0xaef, 0xe, (unsigned short)0);
-	ft_printf("[cc%#.4X et %#0012x %#04hX !!]\n", 0xaef, 0xe, (unsigned short)0);
+	printf("{cc%%#.4X et %%0006.10x %%#04hX !!}\n");
+	printf("{cc%#.4X et %0006.10x %#04hX !!}\n", 0xaef, 0x668, (unsigned short)0);
+	ft_printf("[cc%#.4X et %0006.10x %#04hX !!]\n", 0xaef, 0x668, (unsigned short)0);
+	printf("\n{cc%%#.4X et %%0006.2x %%#04hX !!}\n");
+	printf("{cc%#.4X et %0006.2x %#04hX !!}\n", 0xaef, 0x668, (unsigned short)0);
+	ft_printf("[cc%#.4X et %0006.2x %#04hX !!]\n", 0xaef, 0x668, (unsigned short)0);
+
+
+		printf("[%#015x] \n", 42);
+		ft_printf("[%#015x] \n", 42);
 
 
 
