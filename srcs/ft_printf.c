@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:48:03 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/06 11:22:13 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/07 16:10:01 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void		ft_spec_parser(char *arg, t_format *format)
 {
 	while (*arg != '\0' && format->conv == '\0')
 	{
-		if (ft_char_set(*arg, "lh") != 0)
+		if (ft_char_set(*arg, "lhzj") != 0)
 			ft_fill_spec(format, *arg);
 		arg++;
 	}
@@ -57,7 +57,7 @@ void		ft_conv_parser(char *arg, t_format *format)
 
 void		ft_flag_parser(char *arg, t_format *format)
 {
-	while (*arg != '\0' && ft_char_set(*arg,"0-+ ") != 0)
+	while (*arg != '\0' && ft_char_set(*arg,"0-+ #") != 0)
 	{
 		ft_fill_flag(format, *arg);
 		arg++;
@@ -74,7 +74,7 @@ int			ft_arg_trim(char *arg)
 	while (arg[i] != '\0')
 	{
 		if ((ft_isalpha(arg[i]) == 1 || arg[i] == '%') 
-			&& ft_char_set(arg[i], "hl") == 0)
+			&& ft_char_set(arg[i], "hlzj") == 0)
 		{
 			arg[i + 1] = '\0';
 			ret = 1;
@@ -110,7 +110,6 @@ int		ft_format_parser(va_list ap, char *arg, t_format *format)
 	ft_flag_parser(arg, format);
 	ft_spec_parser(arg, format);
 	ft_conv_parser(arg, format);
-//print_format(format);
 	free(arg);
 	return (0);
 }

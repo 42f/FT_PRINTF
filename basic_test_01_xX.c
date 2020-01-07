@@ -1,30 +1,39 @@
-void	basic_test_01_hex()
+#include <limits.h>
+
+void	basic_test_01_xX()
 {
 	
 
-char	*str = "hello";
-	void	*multi_arg[4] =
+unsigned long long multi_arg[5] =
 	{
-		str,
+		-42,
 		0,
-		(unsigned int *)-41313,
-		(void *)0xe,
+		LLONG_MIN,
+		LLONG_MAX,
+		0xe,
 	};
-	char 	multi_test[25][100] =
+	char 	multi_test[27][100] =
 	{
-		"[%p] \n",
-		"[%.1p] \n",
-		"[%15p] \n",
-		"[%-15p] \n",
-		"[%15.p] \n",
+		"[%x] \n",
+		"[%.lx] \n",
+		"[%.hx] \n",
+		"[%.lX] \n",
+		"[%.hX] \n",
+		"[%.llx] \n",
+		"[%.llX] \n",
+		"[%.hhx] \n",
+		"[%.hhX] \n",
+		"[%15x] \n",
+		"[%-15x] \n",
+		"[%15.x] \n",
 		"[%x] \n",
 		"[%5x] \n",
 		"[%.15x] \n",
 		"[%-15x] \n",
 		"[%15.1x] \n",
 		"[%015x] \n",
-		"[%#15.x] \n",
-		"[%X] \n",
+		"[%#15x] \n",
+		"[%#015x] \n",
 		"[%5X] \n",
 		"[%.15X] \n",
 		"[%-15X] \n",
@@ -38,15 +47,15 @@ char	*str = "hello";
 	int		ret_c = 0;
 	int		ret_ft = 0;
 	int		diff_ret = 0;
-	while (y < 4)
+	while (y < 5)
 	{
-		printf("\n\n--------------basic pointer conv = p ------------------------------------------------>>[%p]\n", multi_arg[y]);	
-		while (i < 20)
+		printf("\n\n--------------basic pointer conv = xX ------------------------------------------------>>[%llu]\n", multi_arg[y]);	
+		while (i < 27)
 		{
 		ret_c = 0;
 		ret_ft = 0;
 
-			printf("STRING >>>>>>>>>>>>>>>>>>>>{test %d}{%p}>>>> %s", i, multi_arg[y], multi_test[i]);
+			printf("STRING >>>>>>>>>>>>>>>>>>>>{test %d}{%llu}>>>> %s", i, multi_arg[y], multi_test[i]);
 			ret_c = printf(multi_test[i], multi_arg[y]);
 			ret_ft = ft_printf(multi_test[i], multi_arg[y]);
 			printf("\n");

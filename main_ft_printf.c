@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 13:51:42 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/07 09:13:54 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/07 16:12:52 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void delay(int number_of_seconds)
 #include"basic_test_01_char.c"
 #include"basic_test_01_string.c"
 #include"basic_test_01_hex.c"
+#include"basic_test_01_xX.c"
 #include"basic_test_01_int.c"
 #include"basic_test_01_u.c"
 #include"basic_test_01_mixed_int.c"
@@ -226,7 +227,8 @@ int	main(void)
 	printf("\t%s", ctime(&t));
 	
 //	basic_test_01_char();
-	basic_test_01_hex();
+//	basic_test_01_hex();
+	basic_test_01_xX();
 //	basic_test_01_int();
 //	basic_test_01_u();
 //	basic_test_01_mixed_int();
@@ -238,17 +240,19 @@ int	main(void)
 //	basic_test_small_mix();
 //	system("leaks a.out");	
 
-	basic_precentage();
-	basic_n_conv();
-	special();
-	special_char();
-	null();
-	error_managment();
+//	basic_precentage();
+//	basic_n_conv();
+//	special();
+//	special_char();
+//	null();
+//	error_managment();
 		
 	printf("\n================ [xtra] =================\n");
-	
-	printf("|%s|\n", ft_itoa_base(-4562, "0123456789"));
-	
+
+	printf("{cc%#.4X et %#0012x %#04hX !!}\n", 0xaef, 0xe, (unsigned short)0);
+	ft_printf("[cc%#.4X et %#0012x %#04hX !!]\n", 0xaef, 0xe, (unsigned short)0);
+
+
 
 	return(0);	
 
