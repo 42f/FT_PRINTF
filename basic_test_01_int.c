@@ -1,9 +1,12 @@
+
+#include <limits.h>
+
 void	basic_test_01_int(void)
 {
-	int		multi_arg[6] =
+	long long int		multi_arg[6] =
 	{
-		12312142,
-		-89898989,
+		2147483649,
+		0x44ff551100,
 		42,
 		9,
 		0,
@@ -11,8 +14,8 @@ void	basic_test_01_int(void)
 
 	};
 	char 	multi_test[25][100] =
-	{	"[%d] \n",
-		"[%.d] \n",
+	{	"[%lld] \n",
+		"[%ld] \n",
 		"[%5.30d] \n",
 		"[%-5.30d] \n",
 		"[%15d] \n",
@@ -44,13 +47,13 @@ void	basic_test_01_int(void)
 	int		diff_ret = 0;
 	while (y < 6)
 	{
-		printf("\n\n--------------basic int------------------------------------------------>>[%d]\n", multi_arg[y]);	
+		printf("\n\n--------------basic int------------------------------------------------>>[%lld]\n", multi_arg[y]);	
 		while (i < 25)
 		{
 		ret_c = 0;
 		ret_ft = 0;
 
-			printf("STRING >>>>>>>>>>>>>>>>>>>>{test %d}{%d}>>>> %s", i, multi_arg[y], multi_test[i]);
+			printf("STRING >>>>>>>>>>>>>>>>>>>>{test %d}{%lld}>>>> %s", i, multi_arg[y], multi_test[i]);
 			ret_c = printf(multi_test[i], multi_arg[y]);
 			ret_ft = ft_printf(multi_test[i], multi_arg[y]);
 			printf("\n");

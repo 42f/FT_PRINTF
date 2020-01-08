@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_itoa_ulong.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 09:32:31 by Brian             #+#    #+#             */
-/*   Updated: 2020/01/08 15:18:12 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/08 15:21:52 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static char	*ft_fill(char *r, unsigned long n_val, int negsign, int i)
 	return (r);
 }
 
-char		*ft_itoa(long long int nb)
+char		*ft_itoa_ulong(unsigned long long int nb)
 {
 	char			*ret;
 	int				len;

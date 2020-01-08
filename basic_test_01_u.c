@@ -1,19 +1,21 @@
+#include <limits.h>
+
 void	basic_test_01_u(void)
 {
-	int		multi_arg[6] =
+	unsigned long long 	multi_arg[6] =
 	{
-		12312142,
+		UINT_MAX,
 		-89898989,
-		42,
-		9,
+		ULLONG_MAX,
 		0,
 		-42,
+		42,
 
 	};
 	char 	multi_test[25][100] =
 	{	"[%u] \n",
-		"[%.u] \n",
-		"[%5.30u] \n",
+		"[%llu] \n",
+		"[%lu] \n",
 		"[%-5.30u] \n",
 		"[%15u] \n",
 		"[%.u] \n",
@@ -46,13 +48,13 @@ void	basic_test_01_u(void)
 	int		total_error = 0;
 	while (y < 6)
 	{
-		printf("\n\n--------------basic u ------------------------------------------------>>[%d]\n", multi_arg[y]);	
+		printf("\n\n--------------basic u ------------------------------------------------>>[%llu]\n", multi_arg[y]);	
 		while (i < 25)
 		{
 		ret_c = 0;
 		ret_ft = 0;
 
-			printf("STRING >>>>>>>>>>>>>>>>>>>>{test %d}{%d}>>>> %s", i, multi_arg[y], multi_test[i]);
+			printf("STRING >>>>>>>>>>>>>>>>>>>>{test %d}{%llu}>>>> %s", i, multi_arg[y], multi_test[i]);
 			ret_c = printf(multi_test[i], multi_arg[y]);
 			ret_ft = ft_printf(multi_test[i], multi_arg[y]);
 			printf("\n");

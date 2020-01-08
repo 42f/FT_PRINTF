@@ -6,44 +6,29 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 15:35:18 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/06 12:25:51 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/08 15:40:54 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 #include <stdlib.h>
 
-static char	*ft_zero_padding(t_format *format, char *buffer, int nb, int pre);
-
-static char	*ft_pre_padding(t_format *format, char *buffer, int nb)
-{
-	int			pre;
-
-	pre = 0;
-	if (ft_str_set(format->flag, "0") != 0 &&
-format->pre == -1 && ft_str_set(format->flag, "-") == 0)
-		pre = format->min_w - 1;
-	else if (format->pre != -1)
-		pre = format->pre;
-	return (ft_zero_padding(format, buffer, nb, pre));
-}
-
-static void	ft_padder(int pre, int len, int offset, char *padded_ret, char *buffer)
+static void	ft_padder(int pre, int len, int offset, char *padded_ret, char *buf)
 { 
 	if (pre > len)
 	{
 		ft_memset(padded_ret + offset, '0', pre - len + offset);
-		ft_strlcpy(padded_ret + (pre - len), buffer, len + 1);
+		ft_strlcpy(padded_ret + (pre - len), buf, len + 1);
 	}
 	else
-		ft_strlcpy(padded_ret + offset, buffer, len + 1);
+		ft_strlcpy(padded_ret + offset, buf, len + 1);
 }
 
 static char	*ft_zero_padding(t_format *format, char *buffer, int nb, int pre)
 {
-	char		*padded_ret;
-	int			len;
-	int			offset;
+	char			*padded_ret;
+	int				len;
+	int				offset;
 
 	len = ft_strlen(buffer);
 	offset = 0;
@@ -69,12 +54,25 @@ static char	*ft_zero_padding(t_format *format, char *buffer, int nb, int pre)
 	return (padded_ret);
 }
 
+static char	*ft_pre_padding(t_format *format, char *buffer, int nb)
+{
+	int				pre;
+
+	pre = 0;
+	if (ft_str_set(format->flag, "0") != 0 &&
+format->pre == -1 && ft_str_set(format->flag, "-") == 0)
+		pre = format->min_w - 1;
+	else if (format->pre != -1)
+		pre = format->pre;
+	return (ft_zero_padding(format, buffer, nb, pre));
+}
+
 static int		ft_putnum(t_format *format, char *padded_buff, char *output_str)
 {
-	size_t		output_len;
-	size_t		len;
-	int			nb;
-	int			offset;
+	size_t			output_len;
+	size_t			len;
+	int				nb;
+	int				offset;
 
 	nb = ft_atoi(padded_buff);
 	if (output_str == NULL)
@@ -92,9 +90,9 @@ static int		ft_putnum(t_format *format, char *padded_buff, char *output_str)
 
 static int		ft_printer_nbr(t_format *format, char *padded_buff, int nb)
 {
-	size_t		len;
-	size_t		output_len;
-	char		*output_str;
+	size_t			len;
+	size_t			output_len;
+	char			*output_str;
 
 	len = ft_strlen(padded_buff);
 	output_len = len;
@@ -116,12 +114,15 @@ static int		ft_printer_nbr(t_format *format, char *padded_buff, int nb)
 
 int		ft_num_conv(va_list ap, t_format *format)
 {
-	int			ret;
-	char		*buffer;
-	long int	nb;
+	int				ret;
+	char			*buffer;
+	long int		nb;
 
 	ret = 0;
-	nb = va_arg(ap, int);
+	if (ft_str_set(format->spec, "l") != 0 || format->conv == 'D')
+		nb = va_arg(ap, long int);
+	else
+		nb = va_arg(ap, int);
 	buffer = ft_itoa(nb);
 	if (buffer != NULL && nb == 0 && (format->pre == 0 || format->min_w == -1))
 	{

@@ -19,6 +19,7 @@ SRCS += $(LIBFT_FOLDER)/ft_isascii.c
 SRCS += $(LIBFT_FOLDER)/ft_isdigit.c
 SRCS += $(LIBFT_FOLDER)/ft_isprint.c
 SRCS += $(LIBFT_FOLDER)/ft_itoa.c
+SRCS += $(LIBFT_FOLDER)/ft_itoa_ulong.c
 SRCS += $(LIBFT_FOLDER)/ft_itoa_base.c
 SRCS += $(LIBFT_FOLDER)/ft_itoa_base_ptr.c
 SRCS += $(LIBFT_FOLDER)/ft_memccpy.c

@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:48:03 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/07 16:10:01 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/08 14:36:44 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ int		ft_next_arg(va_list ap, t_format *format, int main_ret)
 		ret = ft_percent_conv(format);
 	else if (ft_char_set(format->conv, "sc") != 0)
 		ret = ft_alpha_conv(ap, format);
-	else if (ft_char_set(format->conv, "di") != 0)
+	else if (ft_char_set(format->conv, "Ddi") != 0)
 		ret = ft_num_conv(ap, format);
-	else if (ft_char_set(format->conv, "u") != 0)
+	else if (ft_char_set(format->conv, "Uu") != 0)
+//		ret = ft_num_conv(ap, format);
 		ret = ft_unsigned_conv(ap, format);
 	else if (ft_char_set(format->conv, "pxX") != 0)
 		ret = ft_hex_conv(ap, format);
@@ -49,7 +50,7 @@ void		ft_conv_parser(char *arg, t_format *format)
 {
 	while (*arg != '\0' && format->conv == '\0')
 	{
-		if (ft_char_set(*arg, "ncspdiuxX%") != 0)
+		if (ft_char_set(*arg, "UDncspdiuxX%") != 0)
 			format->conv = *arg;
 		arg++;
 	}
@@ -82,7 +83,7 @@ int			ft_arg_trim(char *arg)
 		}
 		i++;
 	}
-	if (ft_char_set(arg[i], "ncspdiuxX%") == 0)
+	if (ft_char_set(arg[i], "UDncspdiuxX%") == 0)
 	{
 		ret = -1;
 		free(arg);
@@ -125,13 +126,13 @@ int		ft_arg_manager(va_list ap, char *arg, t_format *format)
 		if (*arg == '%')
 		{
 			arg++;
-			if (ft_char_set(*arg, "0123456789 -*+#'.ncspdiuxX%lh") == 0)
+			if (ft_char_set(*arg, "0123456789 -*+#'.UDncspdiuxX%lhzj") == 0)
 				continue ;
 			format = ft_format_init();
 			if (format == NULL || ft_format_parser(ap, ft_strdup(arg), format) == -1)
 				return (-1);
 			ret += ft_next_arg(ap, format, ret); 
-			while (*arg != '\0' && ft_char_set(*arg, "ncspdiuxX%") == 0)
+			while (*arg != '\0' && ft_char_set(*arg, "UDncspdiuxX%") == 0)
 				arg++;
 		}
 		else
@@ -179,48 +180,4 @@ int				ft_printf(const char *arg, ...)
 	va_end(ap);
 	return (ret);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-int		ft_arg_manager(va_list ap, const char *arg, t_format *format)
-{
-	int			ret;
-	int			i;
-
-	i = 0;
-	ret = 0;
-	while (arg[i] != '\0')
-	{
-		if (arg[i] == '%')
-		{
-			i++;
-			format = ft_format_parser(ap, (char *)arg + i, format);
-			if (format == NULL)
-				continue ;
-			if (format->conv != 'n')
-				ret += ft_next_arg(ap, format); 
-			else
-				ft_n_conv(ap, ret);
-		while (arg[i] != '\0' && ft_char_set(arg[i], "ncspdiuxX%") == 0)
-				i++;
-		}
-		else
-			ret += ft_putchar(arg[i]);
-		i++;
-	}
-	return (ret);
-}
-*/
-
-
 

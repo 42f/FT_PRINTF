@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:44:34 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/08 12:16:29 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/08 15:40:46 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,8 @@ char				*ft_substr(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s1, char const *set);
 char				**ft_split(char const *s, char c);
-char				*ft_itoa(int n);
+char				*ft_itoa(long long int n);
+char				*ft_itoa_ulong(unsigned long long int n);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 
 void				ft_putnbr(int n);

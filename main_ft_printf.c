@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 13:51:42 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/08 11:59:57 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/08 16:06:37 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,9 +228,9 @@ int	main(void)
 	
 //	basic_test_01_char();
 //	basic_test_01_hex();
-	basic_test_01_xX();
+//	basic_test_01_xX();
 //	basic_test_01_int();
-//	basic_test_01_u();
+	basic_test_01_u();
 //	basic_test_01_mixed_int();
 //	basic_test_01_pointer();
 //	basic_test_01_string();
@@ -261,8 +261,9 @@ printf("|%x|\n\n", 42);
 printf("|%#x|\n\n", 0);
 printf("|%x|\n\n", 0);
 printf("%0#10.0x %0#x\n\n", 12345, 0);
-*/ft_printf("%0#x", 0);
-
+*/
+printf("\n\n{%05.1u %3.4hu %-4u}\n", 45, (unsigned short)-1789, 147);
+ft_printf("\n\n[%05.1u %3.4hu %-4u]\n", 45, (unsigned short)-1789, 147);
 
 
 	return(0);	
