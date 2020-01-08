@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:44:34 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/07 15:02:37 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/08 12:16:29 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int			ft_check_va(va_list ap);
 
 int			ft_unsigned_conv(va_list ap, t_format *format);
 char		*ft_itoa_base(long long int n, char *base);
-char		*ft_itoa_base_pointer(uintptr_t n, char *base);
+char		*ft_itoa_base_ptr(uintptr_t n, char *base);
 int			ft_printf(const char *arg, ...);
 char		ft_char_set(char c, char *set);
 char		*ft_str_set(char* str, char *set);
