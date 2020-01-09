@@ -72,6 +72,7 @@ void	basic_test_01_string(void)
 	y++;
 	}
 	printf("\n\n=============  FIN MAIN  =================\n\n\n");
+	system("leaks a.out");	
 
 }
 

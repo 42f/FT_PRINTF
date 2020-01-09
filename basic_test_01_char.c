@@ -101,6 +101,7 @@ void	basic_test_01_char(void)
 		
 			
 	printf("\n\n=============  [fin extra]  =================\n\n\n");
+	system("leaks a.out");	
 
 }
 

@@ -80,5 +80,6 @@ unsigned long long multi_arg[5] =
 	y++;
 	}
 	printf("\n\n=============  FIN MAIN  =================\n\n\n");
+	system("leaks a.out");	
 }
 

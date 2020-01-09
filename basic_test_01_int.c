@@ -78,6 +78,7 @@ void	basic_test_01_int(void)
 	y++;
 	}
 	printf("\n\n=============  FIN MAIN  =================\n\n\n");
+	system("leaks a.out");	
 }
 
 

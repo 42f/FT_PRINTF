@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 13:51:42 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/08 16:06:37 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/09 09:57:08 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,47 +225,52 @@ int	main(void)
 	
 	printf("\n================ [START] =================\n");
 	printf("\t%s", ctime(&t));
-	
-//	basic_test_01_char();
-//	basic_test_01_hex();
-//	basic_test_01_xX();
-//	basic_test_01_int();
-	basic_test_01_u();
-//	basic_test_01_mixed_int();
-//	basic_test_01_pointer();
-//	basic_test_01_string();
-//	basic_test_wildcard();
-//	basic_mixed_int();
-//	sandbox();
-//	basic_test_small_mix();
-//	system("leaks a.out");	
 
-//	basic_precentage();
-//	basic_n_conv();
-//	special();
-//	special_char();
-//	null();
-//	error_managment();
-		
+	basic_test_01_int();
+
+/*
+	basic_test_01_char();
+	basic_test_01_hex();
+	basic_test_01_xX();
+	basic_test_01_u();
+	basic_test_01_mixed_int();
+	basic_test_01_pointer();
+	basic_test_01_string();
+	basic_test_wildcard();
+	basic_mixed_int();
+	sandbox();
+	basic_test_small_mix();
+	system("leaks a.out");	
+
+	basic_precentage();
+	basic_n_conv();
+	special();
+	special_char();
+	null();
+	error_managment();
+	system("leaks a.out");	
+*/		
 	printf("\n================ [xtra] =================\n");
 
-/*	printf("{cc%%#.4X et %%0006.10x %%#04hX !!}\n");
-	printf("{cc%#.4X et %0006.10x %#04hX !!}\n", 0xaef, 0x668, (unsigned short)0);
-	ft_printf("[cc%#.4X et %0006.10x %#04hX !!]\n", 0xaef, 0x668, (unsigned short)0);
-	printf("\n{cc%%#.4X et %%0006.2x %%#04hX !!}\n");
-	printf("{cc%#.4X et %0006.2x %#04hX !!}\n", 0xaef, 0x668, (unsigned short)0);
-	ft_printf("[cc%#.4X et %0006.2x %#04hX !!]\n", 0xaef, 0x668, (unsigned short)0);
-
-printf("|%#x|\n\n", 42);
-printf("|%x|\n\n", 42);
-printf("|%#x|\n\n", 0);
-printf("|%x|\n\n", 0);
-printf("%0#10.0x %0#x\n\n", 12345, 0);
+/*	printf("ret = %d\n", printf("%%p::[%010d]\n", -8473));
+    printf("ret = %d\n", printf("%%p::[%10d]\n", -8473));
+    printf("ret = %d\n", printf("%%p::[%.5d]\n", -8473));
+    printf("ret = %d\n", printf("%%p::[%01.1d]\n", -8473));
+*/  printf("ret = %d\n", printf("%%p::[%010.1d]\n", -8473));
+    ft_printf("ret = %d\n", ft_printf("%%pFT[%010.1d]\n", -8473));
+/*    printf("ret = %d\n", printf("%%p::[%01.50d]\n", -8473));
+    printf("ret = %d\n", printf("%%p::[%1.50d]\n", -8473));
+    printf("ret = %d\n", printf("%%p::[%0100.50d]\n", -8473));
+    ft_printf("ret = %d\n", ft_printf("%%pFT[%0100.50d]\n", -8473));
+    printf("ret = %d\n", printf("%%p::[%010d]\n", 8473));
+    printf("ret = %d\n", printf("%%p::[%10d]\n", 8473));
+    printf("ret = %d\n", printf("%%p::[%.5d]\n", 8473));
+    printf("ret = %d\n", printf("%%p::[%01.1d]\n", 8473));
+    printf("ret = %d\n", printf("%%p::[%010.1d]\n", 8473));
+    printf("ret = %d\n", printf("%%p::[%01.50d]\n", 8473));
+    printf("ret = %d\n", printf("%%p::[%1.50d]\n", 8473));
+    printf("ret = %d\n", printf("%%p::[%0100.50d]\n", 8473));
 */
-printf("\n\n{%05.1u %3.4hu %-4u}\n", 45, (unsigned short)-1789, 147);
-ft_printf("\n\n[%05.1u %3.4hu %-4u]\n", 45, (unsigned short)-1789, 147);
-
-
 	return(0);	
 
 }

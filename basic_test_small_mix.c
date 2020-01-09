@@ -73,6 +73,7 @@ void	basic_test_small_mix(void)
 	}
 	printf("\n\n=============  FIN MAIN  =================\n\n\n");
 	printf("\n\n=============  TOTAL = %d  =================\n\n\n", total_error);
+	system("leaks a.out");	
 }
 
 

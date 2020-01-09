@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 15:35:18 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/08 19:21:20 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/09 09:13:50 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ int		ft_unsigned_conv(va_list ap, t_format *format)
 		return (-1);
 	if (nb == 0 && format->min_w == -1)
 	{
-		looping:
 		buffer[0] = '0';
 		buffer = ft_zero_padding(format, buffer);
 		ret = ft_printer_str(format, buffer);
@@ -93,7 +92,6 @@ int		ft_unsigned_conv(va_list ap, t_format *format)
 	}
 	buffer = ft_zero_padding(format, buffer);
 	ret = ft_printer_nbr(format, buffer);
-//	system("leaks a.out");
 	return (ret);
 }
 

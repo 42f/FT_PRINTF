@@ -71,5 +71,6 @@ char	*str = "hello";
 	y++;
 	}
 	printf("\n\n=============  FIN MAIN  =================\n\n\n");
+	system("leaks a.out");	
 }
 

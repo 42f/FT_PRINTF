@@ -110,6 +110,7 @@ printf("%u\n", INT_MIN);
 ft_printf("%u\n--\n", INT_MIN);
 
 
+	system("leaks a.out");	
 
 }
 

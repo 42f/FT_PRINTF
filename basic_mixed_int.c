@@ -6,5 +6,6 @@ void	basic_mixed_int()
 
 	printf(multi_test, c,c,c,c,c,c,c,c,c);	
 	ft_printf(multi_test, c,c,c,c,c,c,c,c,c);	
+	system("leaks a.out");	
 	
 }

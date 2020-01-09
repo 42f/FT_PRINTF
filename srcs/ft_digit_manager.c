@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 15:35:18 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/08 15:40:54 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/09 09:56:33 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ static int		ft_printer_nbr(t_format *format, char *padded_buff, int nb)
 		output_len = format->min_w;
 	output_str = (char *)ft_calloc(output_len + 1, sizeof(char));
 	ft_memset(output_str, ' ', output_len);
-	if (ft_str_set(format->flag, "0") != 0 && nb < 0)
+	if (ft_str_set(format->flag, "0") != 0 && nb < 0 && format->pre > (int)len)
 		ft_memset(output_str , '0', output_len);
 	if (ft_str_set(format->flag, "-") != 0 && output_str != NULL)
 	{
@@ -124,17 +124,17 @@ int		ft_num_conv(va_list ap, t_format *format)
 	else
 		nb = va_arg(ap, int);
 	buffer = ft_itoa(nb);
-	if (buffer != NULL && nb == 0 && (format->pre == 0 || format->min_w == -1))
+	if (buffer == NULL)
+		return (-1);
+	if (nb == 0 && (format->pre == 0 || format->min_w == -1))
 	{
 		buffer[0] = '\0';
 		if (format->pre == -1 && format->min_w == -1)
 			buffer[0] = '0';
 		format->pre = 0;
 	}
-	if (buffer != NULL)
-		buffer = ft_pre_padding(format, buffer, nb);
-	if (buffer != NULL)
-		ret = ft_printer_nbr(format, buffer, nb);
+	buffer = ft_pre_padding(format, buffer, nb);
+	ret = ft_printer_nbr(format, buffer, nb);
 	return (ret);
 }
 

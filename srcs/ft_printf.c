@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:48:03 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/08 14:36:44 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/09 09:40:54 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int		ft_next_arg(va_list ap, t_format *format, int main_ret)
 	else if (ft_char_set(format->conv, "Ddi") != 0)
 		ret = ft_num_conv(ap, format);
 	else if (ft_char_set(format->conv, "Uu") != 0)
-//		ret = ft_num_conv(ap, format);
 		ret = ft_unsigned_conv(ap, format);
 	else if (ft_char_set(format->conv, "pxX") != 0)
 		ret = ft_hex_conv(ap, format);
