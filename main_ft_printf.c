@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 13:51:42 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/09 09:57:08 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/10 11:03:23 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,7 +225,6 @@ int	main(void)
 	
 	printf("\n================ [START] =================\n");
 	printf("\t%s", ctime(&t));
-
 	basic_test_01_int();
 
 /*
@@ -237,10 +236,10 @@ int	main(void)
 	basic_test_01_pointer();
 	basic_test_01_string();
 	basic_test_wildcard();
-	basic_mixed_int();
 	sandbox();
 	basic_test_small_mix();
 	system("leaks a.out");	
+	basic_mixed_int();
 
 	basic_precentage();
 	basic_n_conv();

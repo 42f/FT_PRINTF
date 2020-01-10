@@ -5,20 +5,20 @@ void	basic_test_01_int(void)
 {
 	long long int		multi_arg[6] =
 	{
+		-42,
+		9,
 		2147483649,
 		0x44ff551100,
-		42,
-		9,
 		0,
-		-42,
+		42,
 
 	};
 	char 	multi_test[25][100] =
-	{	"[%lld] \n",
-		"[%ld] \n",
+	{	
+		"[%10.1d] \n",
 		"[%5.30d] \n",
 		"[%-5.30d] \n",
-		"[%15d] \n",
+		"[%01.50d] \n",
 		"[%.d] \n",
 		"[%15d] \n",
 		"[%15.0d] \n",
@@ -31,14 +31,15 @@ void	basic_test_01_int(void)
 		"[%+-18.10d] \n",
 		"[% +18.10d] \n",
 		"[% -18.10d] \n",
-		"[%-.0d] \n",
+		"[%+.5d] \n",
 		"[%-0 .0d] \n",
 		"[%+- .0d] \n",
 		"[%8.8i] \n",
-		"[%08i] \n",
+		"[%8i] \n",
 		"[%0-15d] \n",
 		"[%08d] \n",
 		"[%0d] \n",
+		"[%010.1d] \n",
 	};
 	int 	i = 0;
 	int		y = 0;
@@ -78,7 +79,7 @@ void	basic_test_01_int(void)
 	y++;
 	}
 	printf("\n\n=============  FIN MAIN  =================\n\n\n");
-	system("leaks a.out");	
+	//system("leaks a.out");	
 }
 
 
