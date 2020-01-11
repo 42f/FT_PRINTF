@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 13:51:42 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/11 16:39:49 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/11 17:29:23 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,14 +225,14 @@ int	main(void)
 	
 	printf("\n================ [START] =================\n");
 	printf("\t%s", ctime(&t));
-	basic_test_01_int();
-	basic_test_wildcard();
-
-/*
-	basic_test_01_char();
+		basic_test_01_u();
 	basic_test_01_hex();
 	basic_test_01_xX();
-	basic_test_01_u();
+
+/*
+	basic_test_01_int();
+	basic_test_wildcard();
+basic_test_01_char();
 	basic_test_01_mixed_int();
 	basic_test_01_pointer();
 	basic_test_01_string();
