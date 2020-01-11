@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 13:46:56 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/08 12:41:55 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/11 17:40:54 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,12 +132,13 @@ int			ft_hex_conv(va_list ap, t_format *format)
 		nb_str = ft_itoa_base_ptr(va_arg(ap, uintptr_t), "0123456789abcdef");
 	else if (ft_str_set(format->spec, "h") != 0)
 	{
-		nb_str = ft_itoa_base_ptr(va_arg(ap, int), "0123456789abcdef");
-		if (ft_strncmp(format->spec, "hh", 3) == 0 && ft_strlen(nb_str) > 2)
-			ft_memcpy(nb_str, nb_str + ft_strlen(nb_str) - 2, 3);
-		else if (ft_strncmp(format->spec, "h", 2) == 0 && ft_strlen(nb_str) > 4)
-			ft_memcpy(nb_str, nb_str + ft_strlen(nb_str) - 4, 5);
+		if (ft_strncmp(format->spec, "hh", 3) == 0)
+			nb_str = ft_itoa_base_ptr((unsigned char)va_arg(ap, unsigned int), "0123456789abcdef");
+		else if (ft_strncmp(format->spec, "h", 2) == 0) 
+			nb_str = ft_itoa_base_ptr((unsigned short)va_arg(ap, unsigned int), "0123456789abcdef");
 	}
+	else if (ft_str_set(format->spec, "l") != 0)
+			nb_str = ft_itoa_base_ptr(va_arg(ap, unsigned long long int), "0123456789abcdef");
 	else
 		nb_str = ft_itoa_base(va_arg(ap, unsigned int), "0123456789abcdef");
 	if (format->conv == 'p')
