@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 15:35:18 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/11 16:11:12 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/11 17:15:42 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ int				ft_num_conv(va_list ap, t_format *format)
 	buffer = ft_zero_padding(format, buffer, nb);
 	ft_putstr(buffer);
 	ret = ft_strlen(buffer);
+	free(buffer);
 	return (ret);
 }
 

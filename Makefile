@@ -69,7 +69,7 @@ INC = ./includes/
 
 HEAD = $(INC)libftprintf.h
 
-all:	$(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJS)
 	ar rcs $@ $^

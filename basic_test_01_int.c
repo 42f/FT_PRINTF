@@ -89,7 +89,7 @@ ft_printf("[%010d]\n", 0);
 printf("[%010.1d]\n", 0);
 ft_printf("[%010.1d]\n", 0);
 	printf("\n\n=============  FIN MAIN  =================\n\n\n");
-	//system("leaks a.out");	
+	system("leaks a.out");	
 }
 
 
