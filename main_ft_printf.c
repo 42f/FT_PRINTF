@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 13:51:42 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/10 11:03:23 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/11 16:39:49 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,11 @@ void delay(int number_of_seconds)
 
 void basic_test_wildcard()
 {
-	printf("test libc = [%10.*s]\n", 15, "hello");
-	ft_printf("test      = [%10.*s]\n", 15, "hello");
-	printf("test libc = [%*.10s]\n", 20, "hello");
-	ft_printf("test      = [%*.10s]\n", 20, "hello");
-	printf("test libc = [%*.*s]\n", 15, 2, "hello");
+	printf(   "test libc = [%.*s]\n", -10, "hello");
+	ft_printf("test      = [%.*s]\n", -10, "hello");
+	printf(   "test libc = [%*s]\n", -10, "hello");
+	ft_printf("test      = [%*s]\n", -10, "hello");
+	printf(   "test libc = [%*.*s]\n", 15, 2, "hello");
 	ft_printf("test      = [%*.*s]\n", 15, 2, "hello");
 }
 
@@ -226,6 +226,7 @@ int	main(void)
 	printf("\n================ [START] =================\n");
 	printf("\t%s", ctime(&t));
 	basic_test_01_int();
+	basic_test_wildcard();
 
 /*
 	basic_test_01_char();
@@ -235,7 +236,6 @@ int	main(void)
 	basic_test_01_mixed_int();
 	basic_test_01_pointer();
 	basic_test_01_string();
-	basic_test_wildcard();
 	sandbox();
 	basic_test_small_mix();
 	system("leaks a.out");	

@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:48:03 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/09 09:40:54 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/11 16:58:25 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,23 +90,47 @@ int			ft_arg_trim(char *arg)
 	return (ret);
 }
 
+static void	ft_wildcard_arg(va_list ap, t_format *format, int type)
+{
+	int			wildcard_arg;
+
+	wildcard_arg = 0;
+	if (type == 1)
+	{
+		wildcard_arg = va_arg(ap, int);
+		if (wildcard_arg < 0)
+		{
+			wildcard_arg = -wildcard_arg;
+			ft_fill_flag(format, '-');
+		}
+		format->min_w = wildcard_arg;
+	}
+	else if (type == 2)
+	{
+		wildcard_arg = va_arg(ap, int);
+		if (wildcard_arg < 0)
+			wildcard_arg = -wildcard_arg;
+		format->pre = wildcard_arg;
+	}
+}
+
 int		ft_format_parser(va_list ap, char *arg, t_format *format)
 {
-	char 		*precision;
+	char 		*precision_ptr;
 	char 		*min_width;
 
 	if (ft_arg_trim(arg) == -1)
 		return (-1);	
-	min_width = ft_str_set(arg, "123456789*");
-	if (min_width != NULL && *min_width != '*' && min_width[-1] != '.')
+	min_width = ft_str_set(arg, "123456789*.");
+	if (min_width != NULL && *min_width != '*' && *min_width != '.')
 		format->min_w = ft_atoi(min_width);
-	if (min_width != NULL && *min_width == '*' && min_width[-1] != '.')
-		format->min_w = va_arg(ap, int);
-	precision = ft_str_set(arg, ".");
-	if (precision != NULL && precision[1] != '*')
-		format->pre = ft_atoi(precision + 1);
-	if (precision != NULL && precision[1] == '*')
-		format->pre = va_arg(ap, int);
+	else if (min_width != NULL && *min_width == '*' && *min_width != '.')
+		ft_wildcard_arg(ap, format, 1);
+	precision_ptr = ft_str_set(arg, ".");
+	if (precision_ptr != NULL && precision_ptr[1] != '*')
+		format->pre = ft_atoi(precision_ptr + 1);
+	else if(precision_ptr != NULL && precision_ptr[1] == '*')
+		ft_wildcard_arg(ap, format, 2);
 	ft_flag_parser(arg, format);
 	ft_spec_parser(arg, format);
 	ft_conv_parser(arg, format);

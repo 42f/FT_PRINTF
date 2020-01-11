@@ -6,14 +6,14 @@ void	basic_test_01_int(void)
 	long long int		multi_arg[6] =
 	{
 		-42,
-		9,
+		1212129,
 		2147483649,
-		0x44ff551100,
-		0,
+		LLONG_MIN,
 		42,
+		0,
 
 	};
-	char 	multi_test[25][100] =
+	char 	multi_test[30][100] =
 	{	
 		"[%10.1d] \n",
 		"[%5.30d] \n",
@@ -39,7 +39,12 @@ void	basic_test_01_int(void)
 		"[%0-15d] \n",
 		"[%08d] \n",
 		"[%0d] \n",
+		"[%010.0d] \n",
 		"[%010.1d] \n",
+		"[%010.2d] \n",
+		"[%ld] \n",
+		"[%hd] \n",
+		"[%lld] \n",
 	};
 	int 	i = 0;
 	int		y = 0;
@@ -49,7 +54,7 @@ void	basic_test_01_int(void)
 	while (y < 6)
 	{
 		printf("\n\n--------------basic int------------------------------------------------>>[%lld]\n", multi_arg[y]);	
-		while (i < 25)
+		while (i < 30)
 		{
 		ret_c = 0;
 		ret_ft = 0;
@@ -78,6 +83,11 @@ void	basic_test_01_int(void)
 	i = 0;
 	y++;
 	}
+
+printf("[%010d]\n", 0);
+ft_printf("[%010d]\n", 0);
+printf("[%010.1d]\n", 0);
+ft_printf("[%010.1d]\n", 0);
 	printf("\n\n=============  FIN MAIN  =================\n\n\n");
 	//system("leaks a.out");	
 }
