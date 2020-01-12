@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:48:03 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/11 17:14:39 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/12 11:25:57 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,8 @@ int		ft_arg_manager(va_list ap, char *arg, t_format *format)
 			if (ft_char_set(*arg, "0123456789 -*+#'.UDncspdiuxX%lhzj") == 0)
 				continue ;
 			format = ft_format_init();
-			if (format == NULL || ft_format_parser(ap, ft_strdup(arg), format) == -1)
+			if (format == NULL
+			|| ft_format_parser(ap, ft_strdup(arg), format) == -1)
 				return (-1);
 			ret += ft_next_arg(ap, format, ret); 
 			while (*arg != '\0' && ft_char_set(*arg, "UDncspdiuxX%") == 0)

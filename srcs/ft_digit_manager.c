@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 15:35:18 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/11 17:15:42 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/12 11:35:58 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,22 +77,22 @@ static char		*ft_pad_buffer(t_format *format, char *buffer, long long nb)
 static char		*ft_zero_padding(t_format *format, char *buffer, long long nb)
 {
 	char			*padded_ret;
-	size_t			buffer_len;
-	size_t			padded_len;
+	size_t			buff_len;
+	size_t			padd_len;
 
 	buffer = ft_pad_buffer(format, buffer, nb);
-	buffer_len = ft_strlen(buffer);
-	padded_len = buffer_len;
-	if (format->min_w > (int)buffer_len)
-		padded_len = format->min_w;
-	padded_ret = (char *)ft_calloc(padded_len + 1, sizeof(char));
+	buff_len = ft_strlen(buffer);
+	padd_len = buff_len;
+	if (format->min_w > (int)buff_len)
+		padd_len = format->min_w;
+	padded_ret = (char *)ft_calloc(padd_len + 1, sizeof(char));
 	if (padded_ret == NULL)
 		return (NULL);
-	ft_memset(padded_ret, ' ', padded_len);
+	ft_memset(padded_ret, ' ', padd_len);
 	if (ft_str_set(format->flag, "-") != 0)
-		ft_memcpy(padded_ret, buffer, buffer_len);
+		ft_memcpy(padded_ret, buffer, buff_len);
 	else
-		ft_memcpy(padded_ret + (padded_len - buffer_len), buffer, buffer_len + 1);
+		ft_memcpy(padded_ret + (padd_len - buff_len), buffer, buff_len + 1);
 	free(buffer);
 	return (padded_ret);
 }
