@@ -1,0 +1,19 @@
+total 24
+drwxr-xr-x@ 18 bv  staff   576B Jan 14 17:30 .
+drwxr-xr-x+ 37 bv  staff   1.2K Jan 14 17:41 ..
+-rw-r--r--@  1 bv  staff   6.0K Dec 23 13:26 .DS_Store
+drwxr-xr-x  27 bv  staff   864B Nov  6 16:44 00_archives piscines
+drwxr-xr-x  16 bv  staff   512B Jan 14 17:39 42cursus-printf-test-2019
+drwxr-xr-x   4 bv  staff   128B Nov 20 16:31 Arhived_Projects
+drwxr-xr-x  42 bv  staff   1.3K Jan  7 19:14 GNL
+drwxr-xr-x  32 bv  staff   1.0K Dec  5 16:29 GNL_fc
+drwxr-xr-x  43 bv  staff   1.3K Dec  5 11:35 GNL_mouli
+drwxr-xr-x  14 bv  staff   448B Jan 14 16:55 YAPT
+drwxr-xr-x  27 bv  staff   864B Jan 12 12:26 curqui_test
+drwxr-xr-x  30 bv  staff   960B Dec  5 16:36 filecheck
+drwxr-xr-x  27 bv  staff   864B Jan 14 17:41 ft_printf
+drwxr-xr-x  12 bv  staff   384B Dec  5 12:05 gnltests
+drwxr-xr-x   8 bv  staff   256B Dec  5 15:28 maxtest
+drwxr-xr-x  16 bv  staff   512B Dec  5 11:09 moulitest
+drwxr-xr-x  15 bv  staff   480B Dec 28 10:17 printf-unit-test
+-rw-r--r--@  1 bv  staff   144B Dec  1 09:37 working.code-workspace
