@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:44:34 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/14 11:51:39 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/14 16:53:04 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,11 @@ void	print_format(t_format *format);
 //char		*ft_pre_padding(t_format *format, char *str_buffer, int nb);
 //char		*ft_zero_padding(t_format *format, char *buffer, int nb, int pre);
 
-
+void		ft_n_int(va_list ap, int ret);
+void		ft_n_lint(va_list ap, int ret);
+void		ft_n_llint(va_list ap, int ret);
+void		ft_n_hint(va_list ap, int ret);
+void		ft_n_hhint(va_list ap, int ret);
 int			ft_check_va(va_list ap);
 void		ft_spec_parser(char *arg, t_format *format);
 void		ft_conv_parser(char *arg, t_format *format);
@@ -49,7 +53,7 @@ void		ft_str_toupper(char *str);
 char		ft_set_cfill(t_format *format);
 
 
-int			ft_n_conv(va_list ap, int ret);
+void		ft_n_conv(va_list ap, int ret, t_format *format);
 
 
 int			ft_unsigned_conv(va_list ap, t_format *format);

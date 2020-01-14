@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:48:03 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/14 11:40:26 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/14 16:27:27 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,15 +133,6 @@ char		ft_char_set(char c, char *set)
 			return (c);
 		i++;
 	}
-	return (0);
-}
-
-int		ft_n_conv(va_list ap, int ret)
-{
-	int		*int_arg;
-
-	int_arg = va_arg(ap, int *);
-	*int_arg = ret;
 	return (0);
 }
 

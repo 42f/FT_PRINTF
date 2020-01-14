@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:48:03 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/14 09:48:22 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/14 16:39:34 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		ft_next_arg(va_list ap, t_format *format, int main_ret)
 	else if (ft_char_set(format->conv, "pxX") != 0)
 		ret = ft_hex_conv(ap, format);
 	else if (format->conv == 'n')
-		ret = ft_n_conv(ap, main_ret);
+		ft_n_conv(ap, main_ret, format);
 	return(ret);
 }
 

@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 13:51:42 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/14 15:30:33 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/14 16:42:41 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,20 +147,19 @@ void	basic_precentage()
 void	basic_n_conv()
 {	
 	printf("\n================ [n_conv] =================\n");
-	int ret1 = 0;
-	int ret2 = 0;
+	long long int ret1 = 0;
+	long long int ret2 = 0;
 
-	int p;
-	int *a = &p;
-	int *b = &p;
-	(void)b;
-	ret1 = printf("{test n %n- after}\n", a);
-	ret2 = ft_printf("[test n %n- after]\n", b);
+	long long int p;
+	long long int *a = &p;
+	long long int *b = &p;
+	ret1 = printf("{test n %lln- after}\n", a);
+	ret2 = ft_printf("[test n %lln- after]\n", b);
 
-	printf("{%i}\n", *a);
-	printf("[%d]\n", *b);
-	printf("{%i}\n", ret1);
-	printf("[%d]\n", ret2);
+	printf("{%lli}\n", *a);
+	printf("[%lld]\n", *b);
+	printf("{%lli}\n", ret1);
+	printf("[%lld]\n", ret2);
 }
 
 void	special_char(void)
@@ -250,7 +249,6 @@ int	main(void)
 	system("leaks a.out");	
 	basic_mixed_int();
 
-	basic_n_conv();
 	special();
 	special_char();
 	null();
@@ -258,9 +256,12 @@ int	main(void)
 	basic_precentage();
 	system("leaks a.out");	
 */		
+	basic_n_conv();
 	printf("\n================ [xtra] =================\n");
-	printf("[%+-01zX] \n", (unsigned long)18446744073709551615);
-	ft_printf("[%+-01zX] \n", (unsigned long)18446744073709551615);
+	
+
+
+
 	printf("\n================ [end ] =================\n");
 
 	return(0);	
