@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 15:35:18 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/09 09:13:50 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/14 14:30:31 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,14 @@ static int		ft_printer_nbr(t_format *format, char *padded_buff)
 	if (output_str == NULL)
 		return (0);
 	c_fill = ' ';
-	if (ft_str_set(format->flag, "0") != 0) 
+	if (ft_str_set(format->flag, "0") != 0)
 		c_fill = '0';
 	if (format->pre != -1 && format->pre < format->min_w)
 		c_fill = ' ';
 	ft_memset(output_str, c_fill, output_len);
 	if (ft_str_set(format->flag, "-") != 0)
 		ft_memcpy(output_str, padded_buff, buff_len);
-	else 
+	else
 		ft_memcpy(output_str + (output_len - buff_len), padded_buff, buff_len);
 	ft_putstr(output_str);
 	free(padded_buff);
@@ -76,20 +76,19 @@ int		ft_unsigned_conv(va_list ap, t_format *format)
 
 	buffer = NULL;
 	ret = 0;
-	if (ft_str_set(format->spec, "lz") != 0)
+	if (ft_str_set(format->spec, "lzj") != 0)
 		nb = va_arg(ap, unsigned long long int);
+	else if (ft_strncmp(format->spec, "hh", 2) == 0)
+		nb = (unsigned char)va_arg(ap, int);
+	else if (ft_strncmp(format->spec, "h", 1) == 0)
+		nb = (unsigned short)va_arg(ap, int);
 	else
 		nb = va_arg(ap, unsigned int);
 	buffer = ft_itoa_ulong(nb);
 	if (buffer == NULL)
 		return (-1);
-	if (nb == 0 && format->min_w == -1)
-	{
-		buffer[0] = '0';
-		buffer = ft_zero_padding(format, buffer);
-		ret = ft_printer_str(format, buffer);
-		return (ret);
-	}
+	if (nb == 0 && format->pre == 0)
+		buffer[0] = '\0';
 	buffer = ft_zero_padding(format, buffer);
 	ret = ft_printer_nbr(format, buffer);
 	return (ret);

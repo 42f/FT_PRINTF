@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 13:13:26 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/08 15:15:30 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/13 13:17:41 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <unistd.h>
+# include <wchar.h>
 
 typedef struct		s_list
 {
@@ -79,7 +80,7 @@ char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 
 void				ft_putnbr(int n);
 void				ft_putstr(char *s);
-int					ft_putchar(char c);
+int					ft_putchar(wchar_t c);
 
 void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char *s, int fd);

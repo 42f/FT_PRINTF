@@ -3,13 +3,14 @@ SRCS_FOLDER = ./srcs
 LIBFT_FOLDER = ./libft
 
 SRCS += $(SRCS_FOLDER)/ft_printf.c
-SRCS += $(SRCS_FOLDER)/ft_printf_utils.c
-SRCS += $(SRCS_FOLDER)/ft_digit_manager_utils.c
+SRCS += $(SRCS_FOLDER)/ft_printf_utils_1.c
+SRCS += $(SRCS_FOLDER)/ft_printf_utils_2.c
 SRCS += $(SRCS_FOLDER)/ft_unsigned_manager.c
 SRCS += $(SRCS_FOLDER)/ft_alpha_manager.c
 SRCS += $(SRCS_FOLDER)/ft_percent_manager.c
 SRCS += $(SRCS_FOLDER)/ft_digit_manager.c
 SRCS += $(SRCS_FOLDER)/ft_hex_manager.c
+SRCS += $(SRCS_FOLDER)/ft_hex_manager_utils.c
 SRCS += $(LIBFT_FOLDER)/ft_atoi.c
 SRCS += $(LIBFT_FOLDER)/ft_bzero.c
 SRCS += $(LIBFT_FOLDER)/ft_calloc.c

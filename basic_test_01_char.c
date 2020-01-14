@@ -1,17 +1,19 @@
+#include <wchar.h>
+
 void	basic_test_01_char(void)
 {
-	int		multi_arg[5] =
+	wint_t		multi_arg[5] =
 	{
+		'\\x00',
 		'\0',
 		' ',
-		4562,
 		'a',
-		'x',
+		'9773',
 	};
 	
-	char 	multi_test[30][100] =
+	char 	multi_test[26][100] =
 	{	
-		"[%c .12]\n",
+		"[%10c]\n",
 		"[%0c] \n",
 		"[%+c] \n",
 		"[%-c] \n",
@@ -22,11 +24,11 @@ void	basic_test_01_char(void)
 		"[%.10c] \n",
 		"[%1.1c] \n",
 		"[%10.10c] \n",
-		"[%010hd] \n",
-		"[%-10hd] \n",
-		"[%+10ld] \n",
-		"[% 10lld] \n",
-		"[%010.10c] \n",
+		"[%010c] \n",
+		"[%-10c] \n",
+		"[%+10c] \n",
+		"[% 10c] \n",
+		"[%10c] \n",
 		"[%-10.10c] \n",
 		"[%+10.10c] \n",
 		"[% 10.10c] \n",
@@ -35,7 +37,7 @@ void	basic_test_01_char(void)
 		"[%....10c] \n",
 		"[%              10c] \n",
 		"[%10.5c] \n",
-		"[%rd] \n",
+		"[%rc] \n",
 		"[%|c] \n",
 	};
 	int 	i = 0;
@@ -43,15 +45,15 @@ void	basic_test_01_char(void)
 	int		ret_c = 0;
 	int		ret_ft = 0;
 	int		diff_ret = 0;
-	while (y < 4)
+	while (y < 5)
 	{
-		printf("\n\n-----------basic char--------------------------->>[%c]\n", multi_arg[y]);	
-		while (i < 30)
+		printf("\n\n-----------basic char--------------------------->>[%d]\n", multi_arg[y]);	
+		while (i < 26)
 		{
-		ret_c = 0;
-		ret_ft = 0;
+			ret_c = 0;
+			ret_ft = 0;
 
-			printf("STRING >>>>>>>>>>>>>>>>>>>>{test %d}{%c}>>>> %s\n", i, multi_arg[y], multi_test[i]);
+			printf("CHAR >>>>>>>>>>>>>>>>>>>>{test %d}{%d}>>>> %s\n", i, multi_arg[y], multi_test[i]);
 			ret_c = printf(multi_test[i], multi_arg[y]);
 			ret_ft = ft_printf(multi_test[i], multi_arg[y]);
 			printf("\n");
@@ -69,7 +71,6 @@ void	basic_test_01_char(void)
 				printf(" [OK] return ! libc = %d, ft = %d\n\n\n", ret_c, ret_ft);
 				printf("\033[0m");
 			}
-
 			i++;
 		}
 	i = 0;

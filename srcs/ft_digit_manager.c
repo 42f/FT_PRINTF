@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 15:35:18 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/12 11:35:58 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/13 15:16:42 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,12 +104,17 @@ int				ft_num_conv(va_list ap, t_format *format)
 	long long int	nb;
 
 	ret = 0;
-	if (ft_str_set(format->spec, "l") != 0 || format->conv == 'D')
+	if (ft_str_set(format->spec, "lzj") != 0 || format->conv == 'D')
 		nb = va_arg(ap, long long int);
 	else if (ft_str_set(format->spec, "h") != 0)
-		nb = (short int)va_arg(ap, int);
+	{
+		if (ft_strncmp(format->spec, "h", 3) == 0)
+			nb = (short int)va_arg(ap, int);
+		else
+			nb = (signed char)va_arg(ap, int);
+	}
 	else
-		nb = (int)va_arg(ap, long long int);
+		nb = va_arg(ap, int);
 	buffer = ft_itoa(nb);
 	if (buffer == NULL)
 		return (-1);

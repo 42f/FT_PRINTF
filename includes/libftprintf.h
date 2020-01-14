@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:44:34 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/08 15:40:46 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/14 11:51:39 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <stdarg.h> 
 #include <stdio.h> 
+#include <wchar.h>
 
 typedef	struct	s_format
 {
@@ -35,8 +36,20 @@ void	print_format(t_format *format);
 //char		*ft_pre_padding(t_format *format, char *str_buffer, int nb);
 //char		*ft_zero_padding(t_format *format, char *buffer, int nb, int pre);
 
-int			ft_n_conv(va_list ap, int ret);
+
 int			ft_check_va(va_list ap);
+void		ft_spec_parser(char *arg, t_format *format);
+void		ft_conv_parser(char *arg, t_format *format);
+void		ft_flag_parser(char *arg, t_format *format);
+void		ft_wildcard_arg(va_list ap, t_format *format, int type);
+
+char		*ft_x_pre_padding(t_format *format, char *hex_str);
+char		*ft_p_pre_padding(t_format *format, char *hex_str);
+void		ft_str_toupper(char *str);
+char		ft_set_cfill(t_format *format);
+
+
+int			ft_n_conv(va_list ap, int ret);
 
 
 int			ft_unsigned_conv(va_list ap, t_format *format);
@@ -50,8 +63,8 @@ int			ft_percent_conv(t_format *format);
 int			ft_hex_conv(va_list ap, t_format *format);
 int			ft_next_arg(va_list ap, t_format *format, int main_ret);
 int			ft_num_conv(va_list ap, t_format *format);
-int			ft_printer_char(t_format *format, unsigned char c);
-int			ft_printer_str(t_format *format, char *str_buffer);;
+int			ft_printer_char(t_format *format, wchar_t c);
+int			ft_printer_str(t_format *format, char *str_buffer);
 //int			ft_arg_manager(va_list ap, char *arg, t_format *format);
 t_format	*ft_format_init(void);
 //t_format	*ft_format_parser(va_list ap, char *arg, t_format *format);
@@ -112,7 +125,7 @@ char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 
 void				ft_putnbr(int n);
 void				ft_putstr(char *s);
-int					ft_putchar(char c);
+int					ft_putchar(wchar_t c);
 
 void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char *s, int fd);

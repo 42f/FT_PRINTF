@@ -6,14 +6,18 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 13:51:42 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/11 17:29:23 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/14 15:30:33 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<time.h>
+#include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <limits.h>
+#include <wchar.h>
+#include <locale.h>
+
 /*
 void *xmalloc(size_t size)
  {
@@ -225,14 +229,19 @@ int	main(void)
 	
 	printf("\n================ [START] =================\n");
 	printf("\t%s", ctime(&t));
-		basic_test_01_u();
-	basic_test_01_hex();
-	basic_test_01_xX();
+	
+//	basic_test_01_xX();
+
 
 /*
+	basic_test_01_u();
+	basic_test_01_hex();
+
 	basic_test_01_int();
+	
+	basic_test_01_char();
+
 	basic_test_wildcard();
-basic_test_01_char();
 	basic_test_01_mixed_int();
 	basic_test_01_pointer();
 	basic_test_01_string();
@@ -241,35 +250,19 @@ basic_test_01_char();
 	system("leaks a.out");	
 	basic_mixed_int();
 
-	basic_precentage();
 	basic_n_conv();
 	special();
 	special_char();
 	null();
 	error_managment();
+	basic_precentage();
 	system("leaks a.out");	
 */		
 	printf("\n================ [xtra] =================\n");
+	printf("[%+-01zX] \n", (unsigned long)18446744073709551615);
+	ft_printf("[%+-01zX] \n", (unsigned long)18446744073709551615);
+	printf("\n================ [end ] =================\n");
 
-/*	printf("ret = %d\n", printf("%%p::[%010d]\n", -8473));
-    printf("ret = %d\n", printf("%%p::[%10d]\n", -8473));
-    printf("ret = %d\n", printf("%%p::[%.5d]\n", -8473));
-    printf("ret = %d\n", printf("%%p::[%01.1d]\n", -8473));
-*/  printf("ret = %d\n", printf("%%p::[%010.1d]\n", -8473));
-    ft_printf("ret = %d\n", ft_printf("%%pFT[%010.1d]\n", -8473));
-/*    printf("ret = %d\n", printf("%%p::[%01.50d]\n", -8473));
-    printf("ret = %d\n", printf("%%p::[%1.50d]\n", -8473));
-    printf("ret = %d\n", printf("%%p::[%0100.50d]\n", -8473));
-    ft_printf("ret = %d\n", ft_printf("%%pFT[%0100.50d]\n", -8473));
-    printf("ret = %d\n", printf("%%p::[%010d]\n", 8473));
-    printf("ret = %d\n", printf("%%p::[%10d]\n", 8473));
-    printf("ret = %d\n", printf("%%p::[%.5d]\n", 8473));
-    printf("ret = %d\n", printf("%%p::[%01.1d]\n", 8473));
-    printf("ret = %d\n", printf("%%p::[%010.1d]\n", 8473));
-    printf("ret = %d\n", printf("%%p::[%01.50d]\n", 8473));
-    printf("ret = %d\n", printf("%%p::[%1.50d]\n", 8473));
-    printf("ret = %d\n", printf("%%p::[%0100.50d]\n", 8473));
-*/
 	return(0);	
 
 }

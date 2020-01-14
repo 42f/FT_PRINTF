@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_printf_utils_1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:48:03 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/29 21:43:35 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/14 11:40:26 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 #include <stdlib.h>
 #include <stdarg.h>
-
-int		ft_printer_str(t_format *format, char *str_buffer);
 
 //toremove
 //
@@ -28,7 +26,7 @@ void *xmalloc(size_t n, size_t size)
 	if (fail_after > 0 && r < 100)
  	{
  		printf("MALLOC FAIL @ the malloc number = [%d]{r = %d}\n", alloc_number, r);
-		r = rand() % 30; 
+		r = rand() % 30;
 		alloc_number++;
  		return NULL;
  	}

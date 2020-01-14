@@ -16,7 +16,7 @@ void	basic_test_01_int(void)
 	char 	multi_test[30][100] =
 	{	
 		"[%10.1d] \n",
-		"[%5.30d] \n",
+		"[%10.1d] \n",
 		"[%-5.30d] \n",
 		"[%01.50d] \n",
 		"[%.d] \n",

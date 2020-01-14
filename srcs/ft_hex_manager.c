@@ -6,75 +6,12 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 13:46:56 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/11 17:40:54 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/14 14:52:09 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 #include <stdlib.h>
-
-static char	*ft_padding(t_format *format, char *hex_str, int pre, int offset)
-{
-	char		*padded_ret;
-	size_t		padded_len;
-	size_t		hex_len;
-
-	hex_len = ft_strlen(hex_str);
-	if (pre < 0)
-		pre = 0;
-	padded_len = hex_len + offset;
-	if (format->pre > (int)hex_len) 
-		padded_len = pre + offset;
-	else if (ft_str_set(format->flag, "0") != 0 && format->pre == -1
-	&& format->min_w != -1)
-		padded_len = format->min_w;
-	padded_ret = (char *)ft_calloc(padded_len + 1, sizeof(char));
-	if (padded_ret == NULL)
-		return (NULL);
-	ft_memset(padded_ret, ' ', padded_len);
-	if (ft_str_set(format->flag, "0") != 0 || format->pre > (int)hex_len)
-		ft_memset(padded_ret, '0', padded_len);
-	if (offset == 2)
-		ft_memcpy(padded_ret, "0x", 2);
-	ft_memcpy(padded_ret + (padded_len - hex_len), hex_str, hex_len);
-	free(hex_str);
-	return (padded_ret);
-}
-
-static char	*ft_p_pre_padding(t_format *format, char *hex_str)
-{
-	int			offset;
-
-	offset = 2;
-	if (hex_str[0] == '0' && format->pre == 0)
-		ft_memset(hex_str, '\0', ft_strlen(hex_str));
-	return (ft_padding(format, hex_str, format->pre, offset));
-}
-
-static char	*ft_x_pre_padding(t_format *format, char *hex_str)
-{
-	int			offset;
-
-	offset = 0;
-	if (hex_str[0] == '0')
-	{
-		if (format->pre == 0)
-			ft_memset(hex_str, '\0', ft_strlen(hex_str));
-	}
-	else if (ft_str_set(format->flag, "#") != 0)
-		offset = 2;
-	return (ft_padding(format, hex_str, format->pre, offset));
-}
-
-static void	ft_str_toupper(char *str)
-{
-	while (*str != '\0')
-	{
-		if (*str >= 'a' && *str <= 'z')
-			*str -= 32;
-		str++;
-	}
-}
 
 static int	ft_put_hex(t_format *format, char *hex_str, char c_fill)
 {
@@ -103,51 +40,55 @@ static int	ft_put_hex(t_format *format, char *hex_str, char c_fill)
 	return (out_len);
 }
 
-static char	ft_set_cfill(t_format *format)
-{
-	char	c_fill;
-	
-	c_fill = ' ';
-	if (format->conv == 'p')
-		return (c_fill);
-	if (ft_str_set(format->flag, "0") != 0)
-		c_fill = '0';
-	if (ft_str_set(format->flag, "#") != 0)
-		c_fill = ' ';
-	if (format->pre != -1 && format->pre < format->min_w)
-		c_fill = ' ';
-	if (ft_str_set(format->flag, "-") != 0)
-		c_fill = ' ';
-	return (c_fill);
-}
-
-int			ft_hex_conv(va_list ap, t_format *format)
+static int	ft_p_conv(va_list ap, t_format *format, char *h_base)
 {
 	int			ret;
 	char		*nb_str;
 	char		c_fill;
 
 	ret = 0;
-	if (format->conv == 'p' || ft_str_set(format->spec, "lzj") != 0)
-		nb_str = ft_itoa_base_ptr(va_arg(ap, uintptr_t), "0123456789abcdef");
-	else if (ft_str_set(format->spec, "h") != 0)
-	{
-		if (ft_strncmp(format->spec, "hh", 3) == 0)
-			nb_str = ft_itoa_base_ptr((unsigned char)va_arg(ap, unsigned int), "0123456789abcdef");
-		else if (ft_strncmp(format->spec, "h", 2) == 0) 
-			nb_str = ft_itoa_base_ptr((unsigned short)va_arg(ap, unsigned int), "0123456789abcdef");
-	}
-	else if (ft_str_set(format->spec, "l") != 0)
-			nb_str = ft_itoa_base_ptr(va_arg(ap, unsigned long long int), "0123456789abcdef");
-	else
-		nb_str = ft_itoa_base(va_arg(ap, unsigned int), "0123456789abcdef");
-	if (format->conv == 'p')
-		nb_str = ft_p_pre_padding(format, nb_str);
-	else
-		nb_str = ft_x_pre_padding(format, nb_str);
+	nb_str = ft_itoa_base_ptr(va_arg(ap, uintptr_t), h_base);
+	nb_str = ft_p_pre_padding(format, nb_str);
 	c_fill = ft_set_cfill(format);
 	ret = ft_put_hex(format, nb_str, c_fill);
 	free(nb_str);
+	return (ret);
+}
+
+static int	ft_x_conv(va_list ap, t_format *format, char *h_b)
+{
+	int			ret;
+	char		*nb_s;
+	char		c_fill;
+
+	ret = 0;
+	if (ft_str_set(format->spec, "ljz") != 0)
+		nb_s = ft_itoa_base_ptr(va_arg(ap, uintptr_t), h_b);
+	else if (ft_strncmp(format->spec, "hh", 2) == 0)
+		nb_s = ft_itoa_base_ptr((unsigned char)va_arg(ap, unsigned int), h_b);
+	else if (ft_strncmp(format->spec, "h", 1) == 0)
+		nb_s = ft_itoa_base_ptr((unsigned short)va_arg(ap, unsigned int), h_b);
+	else
+		nb_s = ft_itoa_base(va_arg(ap, unsigned int), h_b);
+	nb_s = ft_x_pre_padding(format, nb_s);
+	c_fill = ft_set_cfill(format);
+	ret = ft_put_hex(format, nb_s, c_fill);
+	free(nb_s);
+	return (ret);
+}
+
+int			ft_hex_conv(va_list ap, t_format *format)
+{
+	int			ret;
+	char		*h_base;
+
+	h_base = ft_strdup("0123456789abcdef");
+	ret = 0;
+	if (format->conv == 'p' != 0)
+		ret = ft_p_conv(ap, format, h_base);
+	else if (format->conv == 'x' != 0 || format->conv == 'X' != 0)
+		ret = ft_x_conv(ap, format, h_base);
+	free(h_base);
 	return (ret);
 }
 
