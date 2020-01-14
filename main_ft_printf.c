@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 13:51:42 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/14 16:42:41 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/14 17:24:05 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,6 +248,7 @@ int	main(void)
 	basic_test_small_mix();
 	system("leaks a.out");	
 	basic_mixed_int();
+	basic_n_conv();
 
 	special();
 	special_char();
@@ -256,10 +257,10 @@ int	main(void)
 	basic_precentage();
 	system("leaks a.out");	
 */		
-	basic_n_conv();
 	printf("\n================ [xtra] =================\n");
 	
-
+printf("%d\n", printf("%n\n", NULL));
+printf("%d\n", ft_printf("%n\n", NULL));
 
 
 	printf("\n================ [end ] =================\n");
