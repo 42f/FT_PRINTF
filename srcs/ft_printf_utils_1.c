@@ -6,53 +6,14 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:48:03 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/14 16:27:27 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/15 08:46:02 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+#include "libft.h"
 #include <stdlib.h>
 #include <stdarg.h>
-
-//toremove
-//
-/*
-void *xmalloc(size_t n, size_t size)
- {
-	int r = rand() % 200;      // Returns a pseudo-random integer between 0 and RAND_MAX.
-	int alloc_number = 0;
-	int fail_after = r;
-
-	if (fail_after > 0 && r < 100)
- 	{
- 		printf("MALLOC FAIL @ the malloc number = [%d]{r = %d}\n", alloc_number, r);
-		r = rand() % 30;
-		alloc_number++;
- 		return NULL;
- 	}
- 	alloc_number++;
-
- 	return ft_calloc(n, size);
- }
- #define ft_calloc(x, y) xmalloc(x, y)
-*/
-void	print_format(t_format *format)
-{
-	if (format == NULL)
-		return ;
-	printf("\n\n========= FORMAT =========\n");
-	printf("flag  = |%s|\n", format->flag);
-	printf("min_w = |%d|\n", format->min_w);
-	printf("pre   = |%d|\n", format->pre);
-	printf("spec  = |%s|\n", format->spec);
-	printf("conv  = |%c|\n", format->conv);
-	//	system ("leaks a.out");
-	printf("\n===== [END FORMAT] ======\n");
-
-}
-//
-// REMOVE ABOVE
-
 
 t_format	*ft_format_init(void)
 {

@@ -6,11 +6,12 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 13:45:58 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/13 18:49:04 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/15 08:45:19 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+#include "libft.h"
 #include <stdlib.h>
 
 int		ft_percent_conv(t_format *format)

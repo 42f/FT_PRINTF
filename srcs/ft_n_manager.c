@@ -6,12 +6,12 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 16:26:14 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/14 16:50:11 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/15 08:43:53 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include <stdlib.h>
+#include "libft.h"
 #include <stdarg.h>
 
 void	ft_n_conv(va_list ap, int ret, t_format *format)

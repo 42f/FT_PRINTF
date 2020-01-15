@@ -6,11 +6,12 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 10:48:30 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/14 15:10:59 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/15 08:42:45 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+#include "libft.h"
 #include <stdlib.h>
 
 void	ft_str_toupper(char *str)

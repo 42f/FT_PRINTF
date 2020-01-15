@@ -6,12 +6,11 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 16:26:14 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/14 16:49:35 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/15 08:43:37 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include <stdlib.h>
 #include <stdarg.h>
 
 void	ft_n_int(va_list ap, int ret)

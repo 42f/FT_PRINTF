@@ -6,11 +6,12 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:48:03 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/14 16:39:34 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/15 08:45:51 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+#include "libft.h"
 #include <stdlib.h>
 #include <stdarg.h>
 
@@ -31,6 +32,8 @@ int		ft_next_arg(va_list ap, t_format *format, int main_ret)
 		ret = ft_hex_conv(ap, format);
 	else if (format->conv == 'n')
 		ft_n_conv(ap, main_ret, format);
+	else
+		va_arg(ap, int);
 	return(ret);
 }
 
@@ -40,14 +43,13 @@ int			ft_arg_trim(char *arg)
 	int 		ret;
 
 	i = 0;
-	ret = -1;
+	ret = 1;
 	while (arg[i] != '\0')
 	{
 		if ((ft_isalpha(arg[i]) == 1 || arg[i] == '%')
 			&& ft_char_set(arg[i], "hlzj") == 0)
 		{
 			arg[i + 1] = '\0';
-			ret = 1;
 			break;
 		}
 		i++;
@@ -88,8 +90,7 @@ int		ft_format_parser(va_list ap, char *arg, t_format *format)
 int		ft_arg_manager(va_list ap, const char *arg, t_format *format)
 {
 	int			ret;
-	int			ret_parser;
-	
+
 	ret = 0;
 	while (*arg != '\0')
 	{
@@ -101,7 +102,7 @@ int		ft_arg_manager(va_list ap, const char *arg, t_format *format)
 			format = ft_format_init();
 			if (format == NULL)
 				return (-1);
-			ret_parser = ft_format_parser(ap, ft_strdup(arg), format);
+			ft_format_parser(ap, ft_strdup(arg), format);
 			ret += ft_next_arg(ap, format, ret);
 			while (*arg != '\0' && ft_char_set(*arg, "UDncspdiuxX%") == 0)
 					arg++;

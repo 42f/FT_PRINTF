@@ -74,6 +74,8 @@ HEAD = $(INC)libftprintf.h
 
 all: $(NAME)
 
+bonus :	all
+
 $(NAME): $(OBJS)
 	ar rcs $@ $^
 
@@ -84,11 +86,11 @@ $(OBJS_BONUS): %.o: %.c $(HEAD)
 	$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 f:	$(NAME)
-	$(CC) -I$(INC) $(CFLAGS) main_ft_printf.c $(NAME) 
+	$(CC) -I$(INC) $(CFLAGS) assets/main_ft_printf.c $(NAME) 
 	./a.out
 
 fs:	$(NAME)
-	$(CC) -I$(INC) -fsanitize=address main_ft_printf.c $(NAME)
+	$(CC) -I$(INC) -fsanitize=address assets/main_ft_printf.c $(NAME)
 	./a.out
 
 norme:
@@ -108,4 +110,4 @@ execlean:
 		
 re:	execlean fclean all
 
-.PHONY:	execlean clean all fclean re bonus
+.PHONY:	execlean clean all fclean re bonus f fs norme

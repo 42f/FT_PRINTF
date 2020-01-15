@@ -37,8 +37,8 @@ void	basic_test_01_char(void)
 		"[%....10c] \n",
 		"[%              10c] \n",
 		"[%10.5c] \n",
-		"[%rc] \n",
-		"[%|c] \n",
+		"[%1c] \n",
+		"[%.1c] \n",
 	};
 	int 	i = 0;
 	int		y = 0;

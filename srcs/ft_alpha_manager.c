@@ -6,11 +6,12 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 13:45:58 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/14 11:51:49 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/15 08:41:31 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+#include "libft.h"
 #include <stdlib.h>
 
 int		ft_printer_str(t_format *format, char *str_buffer)
@@ -59,7 +60,8 @@ int		ft_printer_char(t_format *format, wchar_t c)
 	char		fill;
 	
 	fill = ' ';
-	if (ft_str_set(format->flag, "0") != 0 && ft_str_set(format->flag, "-") == 0)
+	if (ft_str_set(format->flag, "0") != 0
+		&& ft_str_set(format->flag, "-") == 0)
 		fill = '0';
 	len = 1;
 	if (format->min_w > 1)

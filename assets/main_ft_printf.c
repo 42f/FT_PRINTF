@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 13:51:42 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/14 17:24:05 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/15 09:02:50 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,30 @@
 #include <limits.h>
 #include <wchar.h>
 #include <locale.h>
+
+//toremove
+//
+/*
+void	print_format(t_format *format)
+{
+	if (format == NULL)
+		return ;
+	printf("\n\n========= FORMAT =========\n");
+	printf("flag  = |%s|\n", format->flag);
+	printf("min_w = |%d|\n", format->min_w);
+	printf("pre   = |%d|\n", format->pre);
+	printf("spec  = |%s|\n", format->spec);
+	printf("conv  = |%c|\n", format->conv);
+	//	system ("leaks a.out");
+	printf("\n===== [END FORMAT] ======\n");
+
+}
+//
+// REMOVE ABOVE
+
+
+*/
+
 
 /*
 void *xmalloc(size_t size)
@@ -40,7 +64,7 @@ void *xmalloc(size_t size)
 
 void delay(int number_of_seconds) 
 { 
-    // Converting time into milli_seconds 
+/*    // Converting time into milli_seconds 
     int milli_seconds = 1000 * number_of_seconds; 
   
     // Storing start time 
@@ -48,8 +72,10 @@ void delay(int number_of_seconds)
   
     // looping till required time is not achieved 
     while (clock() < start_time + milli_seconds); 
+*/
+(void)number_of_seconds;
 }
- 
+
 #include"basic_mixed_int.c"
 #include"basic_test_01_char.c"
 #include"basic_test_01_string.c"
@@ -103,43 +129,44 @@ void sandbox()
 
 void	basic_precentage()
 {
-	int ret = 0;
+	int returning = 0;
+	int returning_libc = 0;
 	printf("\n================ [precentage] =================\n");
 	
-	ret = printf("{test 1 avec percent %%}\n");
-	printf("ret = |%d|\n", ret);
-	ret = ft_printf("[test 1 avec percent %%]\n");
-	printf("ret = |%d|\n", ret);
-	ret = printf("{test 2 avec percent %% chiffre %d}\n", 42);
-	printf("ret = |%d|\n", ret);
-	ret = ft_printf("[test 2 avec percent %% chiffre %d]\n", 42);
-	printf("ret = |%d|\n", ret);
+	returning_libc = printf("{test 1 avec percent %%}\n");
+	printf("returning = |%d|\n", returning_libc);
+	returning = ft_printf("[test 1 avec percent %%]\n");
+	printf("returning = |%d|\n", returning);
+	returning_libc = printf("{test 2 avec percent %% chiffre %d}\n", 42);
+	printf("returning = |%d|\n", returning_libc);
+	returning = ft_printf("[test 2 avec percent %% chiffre %d]\n", 42);
+	printf("returning = |%d|\n", returning);
 
-//	ret = printf("{test 2  avec percent %%}\n", 'A');
-//	printf("ret = |%d|\n", ret);
-	ret = ft_printf("{test 2  avec percent %%}\n", 'A');
-	printf("ret = |%d|\n", ret);
-	ret = printf("{test 2 avec percent %% chiffre %d}\n", 42);
-	printf("ret = |%d|\n", ret);
-	ret = ft_printf("[test 2 avec percent %% chiffre %d]\n", 42);
-	printf("ret = |%d|\n", ret);
+	returning_libc = printf("{test 2  avec percent %%}\n");
+	printf("returning = |%d|\n", returning_libc);
+	returning = ft_printf("{test 2  avec percent %%}\n");
+	printf("returning = |%d|\n", returning);
+	returning_libc = printf("{test 2 avec percent %% chiffre %d}\n", 42);
+	printf("returning = |%d|\n", returning_libc);
+	returning = ft_printf("[test 2 avec percent %% chiffre %d]\n", 42);
+	printf("returning = |%d|\n", returning);
 
 	printf("\n=== [with min_width and precision] =====\n");
 
-	ret = printf("{minwidth 45 %45%}\n");
-	printf("ret = |%d|\n", ret);
-	ret = ft_printf("[minwidth 45 %45%]\n");
-	printf("ret = |%d|\n", ret);
+	returning_libc = printf("{minwidth 45 %45%}\n");
+	printf("returning = |%d|\n", returning_libc);
+	returning = ft_printf("[minwidth 45 %45%]\n");
+	printf("returning = |%d|\n", returning);
 
-	ret = printf("{precision .5 %.5%}\n");
-	printf("ret = |%d|\n", ret);
-	ret = ft_printf("[precision .5 %.5%]\n");
-	printf("ret = |%d|\n", ret);
+	returning_libc = printf("{precision .5 %.5%}\n");
+	printf("returning = |%d|\n", returning_libc);
+	returning = ft_printf("[precision .5 %.5%]\n");
+	printf("returning = |%d|\n", returning);
 
-	ret = printf("{min_w 10 precision .5 %10.5%}\n");
-	printf("ret = |%d|\n", ret);
-	ret = ft_printf("[min_w 10 precision .5 %10.5%]\n");
-	printf("ret = |%d|\n", ret);
+	returning_libc = printf("{min_w 10 precision .5 %10.5%}\n");
+	printf("returning = |%d|\n", returning_libc);
+	returning = ft_printf("[min_w 10 precision .5 %10.5%]\n");
+	printf("returning = |%d|\n", returning);
 
 	printf("\n================ [fin] =================\n");
 }
@@ -183,7 +210,7 @@ void	special(void)
 	printf("ref = \n[%%====%%==tdti==]\n\n\n");
 
 	
-	ret1 = printf(" titi % +---12.5% et%%%0004% et %+1%\n");
+	   ret1 = printf(" titi % +---12.5% et%%%0004% et %+1% \n");
 	ret2 = ft_printf("[titi % +---12.5% et%%%0004% et %+1%]\n");
 	printf("\n\nc ={%i}\n", ret1);
 	printf("f =[%d]\n", ret2);
@@ -191,25 +218,25 @@ void	special(void)
 
 	
 	ret1 = ft_printf("hello ca%----4c %1c va %10c%-c ??", '\0', '\n', (char)564, 0);
-/*	printf("\n");
-	ret2 = ft_printf("\n\nft = hello ca%----4c %1c va %10c%-c ??", '\0', '\n', (char)564, 0);
+	printf("\n");
+	ret2 = ft_printf("hello ca%----4c %1c va %10c%-c ??", '\0', '\n', (char)564, 0);
 	printf("\n");
 	printf("\n\nc ={%i}\n", ret1);
 	printf("f =[%d]\n", ret2);
-*/
 }
 
 void	error_managment()
 {
 	printf("\n================ [error managment] =================\n");
 
-	int ret_1 = 0;
+	int ret_123 = 0;
 	int ret_2 = 0;
 
-	ret_1 = printf("OK C %-7C %007d%-10.2s!!", 0xd777, 0x45, "coucou");	
-	ret_2 = ft_printf("OK ft %-7C %007d%-10.2s!!", 0xd777, 0x45, "coucou");	
+	   ret_123 = printf("{OK C %C %7s %s!!}\n", 0xd777, "str1", "coucou");	
+	ret_2 = ft_printf("[OKft %C %7s %s!!]\n", 0xd777, "str1", "coucou");	
 
-	printf("\n|c = %d / ft = %d|\n", ret_1, ret_2);
+	printf("\n|c = %d / ft = %d|\n", ret_123, ret_2);
+	printf("\n================ [end] =================\n");
 }
 
 void	null(void)
@@ -220,49 +247,50 @@ void	null(void)
 
 	printf("\n\nc ={%i}\n", ret1);
 	printf("f =[%d]\n", ret2);
+
 }
 int	main(void)
 {
-	time_t t;
-    time(&t);
+//	time_t t;
+  //  time(&t);
 	
 	printf("\n================ [START] =================\n");
-	printf("\t%s", ctime(&t));
-	
-//	basic_test_01_xX();
+//	printf("\t%s", ctime(&t));
 
 
-/*
+	basic_test_01_xX();
+
+
 	basic_test_01_u();
 	basic_test_01_hex();
 
 	basic_test_01_int();
 	
-	basic_test_01_char();
 
 	basic_test_wildcard();
 	basic_test_01_mixed_int();
 	basic_test_01_pointer();
-	basic_test_01_string();
 	sandbox();
 	basic_test_small_mix();
 	system("leaks a.out");	
 	basic_mixed_int();
 	basic_n_conv();
 
+	basic_test_01_char();
+	basic_test_01_string();
+	basic_precentage();
 	special();
 	special_char();
 	null();
-	error_managment();
-	basic_precentage();
+//	error_managment();
 	system("leaks a.out");	
-*/		
+
 	printf("\n================ [xtra] =================\n");
 	
-printf("%d\n", printf("%n\n", NULL));
-printf("%d\n", ft_printf("%n\n", NULL));
-
-
+int beta = 0;
+beta = printf("hello");	
+printf("\n%d", beta);	
+	
 	printf("\n================ [end ] =================\n");
 
 	return(0);	

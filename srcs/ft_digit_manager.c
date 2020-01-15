@@ -6,11 +6,12 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 15:35:18 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/13 15:16:42 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/15 08:41:45 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+#include "libft.h"
 #include <stdlib.h>
 
 //remove
@@ -103,7 +104,6 @@ int				ft_num_conv(va_list ap, t_format *format)
 	char			*buffer;
 	long long int	nb;
 
-	ret = 0;
 	if (ft_str_set(format->spec, "lzj") != 0 || format->conv == 'D')
 		nb = va_arg(ap, long long int);
 	else if (ft_str_set(format->spec, "h") != 0)
