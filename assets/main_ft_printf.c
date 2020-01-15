@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 13:51:42 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/15 09:53:09 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/15 10:38:11 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,7 +260,7 @@ int	main(void)
 //	printf("\t%s", ctime(&t));
 
 
-/*	basic_test_01_xX();
+	basic_test_01_xX();
 
 
 	basic_test_01_u();
@@ -285,46 +285,66 @@ int	main(void)
 	null();
 //	error_managment();
 	system("leaks a.out");	
-*/
+
 	basic_test_wildcard();
 	printf("\n================ [xtra] =================\n");
 	
 	printf("test libc = [%05.*d]\n", -15, 11111111);
 ft_printf("test ft   = [%05.*d]\n", -15, 11111111);
+	printf("\n");
 	printf("test libc = [%05.*d]\n", -15, 42);
 ft_printf("test ft   = [%05.*d]\n", -15, 42);
+	printf("\n");
 	printf("test libc = [%010.*d]\n", -15, 42);
 ft_printf("test ft   = [%010.*d]\n", -15, 42);
+	printf("\n");
 	printf("test libc = [%10.*d]\n", -15, 11111111);
 ft_printf("test ft   = [%10.*d]\n", -15, 11111111);
+	printf("\n");
 	printf("test libc = [%10.*d]\n", -15, 42);
 ft_printf("test ft   = [%10.*d]\n", -15, 42);
+	printf("\n");
 	printf("test libc = [%010d]\n", 11111111);
 ft_printf("test ft   = [%010d]\n", 11111111);
+	printf("\n");
 	printf("test libc = [%010d]\n", 42);
 ft_printf("test ft   = [%010d]\n", 42);
+	printf("\n");
 	printf("test libc = [%10d]\n", 11111111);
 ft_printf("test ft   = [%10d]\n", 11111111);
+	printf("\n");
 	printf("test libc = [%10d]\n", 42);
 ft_printf("test ft   = [%10d]\n", 42);
+	printf("\n");
 	printf("test libc = [%05.*d]\n", -15, 11111111);
 ft_printf("test ft   = [%05.*d]\n", -15, 11111111);
+	printf("\n");
 	printf("test libc = [%05.*d]\n", -15, 42);
 ft_printf("test ft   = [%05.*d]\n", -15, 42);
-	printf("test libc = [%05.3d]\n", 42);
-ft_printf("test ft   = [%05.3d]\n", 42);
-
 	printf("\n");
-	printf("test libc = [%05.15d]\n", 111111);
-ft_printf("test ft   = [%05.15d]\n", 111111);
-	printf("test libc = [%010.15d]\n", 111111);
-ft_printf("test ft   = [%010.15d]\n", 111111);
-	printf("test libc = [%010d]\n", 111111);
-ft_printf("test ft   = [%010d]\n", 111111);
-	printf("test libc = [%-10d]\n", 111111);
-ft_printf("test ft   = [%-10d]\n", 111111);
+	printf("test libc = [%#.*x]\n", -15, 42);
+ft_printf("test ft   = [%#.*x]\n", -15, 42);
+
+	printf("\n================ [end ] =================\n");
+	printf("\n");
 
 
+
+	printf("test libc = [%*.10d]\n", -15, 42);
+ft_printf("test ft   = [%*.10d]\n", -15, 42);
+	printf("\n");
+	printf("test libc = [%*.0d]\n", -15, 42);
+ft_printf("test ft   = [%*.0d]\n", -15, 42);
+	printf("\n");
+	printf("test libc = [%0*.10d]\n", -15, 42);
+ft_printf("test ft   = [%0*.10d]\n", -15, 42);
+	printf("\n");
+	printf("test libc = [%0*.0d]\n", -15, 42);
+ft_printf("test ft   = [%0*.0d]\n", -15, 42);
+	printf("\n");
+	printf("test libc = [%#0*.0x]\n", -15, 42);
+ft_printf("test ft   = [%#0*.0x]\n", -15, 42);
+	printf("\n");
 
 	
 	

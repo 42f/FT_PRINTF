@@ -1,0 +1,67 @@
+[x] -- c_cases_full
+[.] -- c_cases_regular
+case of unicode (bonus)
+
+[x] -- d_cases_full
+[x] -- d_cases_regular
+
+[x] -- i_cases_full
+[x] -- i_cases_regular
+
+[.] -- p_cases_regular
+[x] -- p_cases_full
+undefined cases of flags 0 +...
+
+[x] -- percent_cases_full
+[x] -- percent_cases_regular
+
+[.] -- s_cases_full
+[.] -- s_cases_regular
+l spec KO & flags KO (bonus)
+
+[x] -- u_cases_full
+[.] -- u_cases_regular
+case of flag 0 + - mais undefined donc ok
+
+[x] -- ux_cases_full
+[x] -- ux_cases_regular
+
+[.] -- x_cases_full
+[.] -- x_cases_regular
+ajout d'une condition pour que le flag 0 prenne en compte le flag #.
+reste 1 case undefined %+-0#2x
+
+[ ] -- regular_cases
+[x] -- dummy_cases
+[.] -- misc_regular
+-> en cas de conversion erronée ft_printf stop, mais undefined anyway.
+
+[x] -- wildcard_bonus_tests
+
+
+
+
+
+[ ] -- uc_cases_full
+[ ] -- uc_cases_regular
+
+[-] -- o_cases_full
+[-] -- o_cases_regular
+[-] -- fF_mouli_tests
+[ ] -- ud_cases_full
+[ ] -- ud_cases_regular
+
+[ ] -- uo_cases_full
+[ ] -- uo_cases_regular
+
+[ ] -- us_cases_full
+[ ] -- us_cases_regular
+
+[ ] -- uu_cases_full
+[ ] -- uu_cases_regular
+
+
+
+
+
+[ ] -- full_cases
