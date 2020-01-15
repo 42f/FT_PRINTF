@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:48:03 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/15 08:45:51 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/15 18:36:48 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
-int		ft_next_arg(va_list ap, t_format *format, int main_ret)
+static int		ft_next_arg(va_list ap, t_format *format, int main_ret)
 {
 	int			ret;
 
@@ -32,12 +32,10 @@ int		ft_next_arg(va_list ap, t_format *format, int main_ret)
 		ret = ft_hex_conv(ap, format);
 	else if (format->conv == 'n')
 		ft_n_conv(ap, main_ret, format);
-	else
-		va_arg(ap, int);
 	return(ret);
 }
 
-int			ft_arg_trim(char *arg)
+static int		ft_arg_trim(char *arg)
 {
 	int			i;
 	int 		ret;
@@ -59,7 +57,7 @@ int			ft_arg_trim(char *arg)
 	return (ret);
 }
 
-int		ft_format_parser(va_list ap, char *arg, t_format *format)
+static void		ft_format_parser(va_list ap, char *arg, t_format *format)
 {
 	char 		*precision_ptr;
 	char 		*min_width;
@@ -83,11 +81,9 @@ int		ft_format_parser(va_list ap, char *arg, t_format *format)
 		ft_conv_parser(arg, format);
 	}
 	free(arg);
-	return (ret);
 }
 
-
-int		ft_arg_manager(va_list ap, const char *arg, t_format *format)
+int				ft_arg_manager(va_list ap, const char *arg, t_format *format)
 {
 	int			ret;
 
@@ -103,6 +99,8 @@ int		ft_arg_manager(va_list ap, const char *arg, t_format *format)
 			if (format == NULL)
 				return (-1);
 			ft_format_parser(ap, ft_strdup(arg), format);
+			if (format->conv == '\0')
+				return (-1);
 			ret += ft_next_arg(ap, format, ret);
 			while (*arg != '\0' && ft_char_set(*arg, "UDncspdiuxX%") == 0)
 					arg++;

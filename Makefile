@@ -59,7 +59,7 @@ OBJS	 =	$(SRCS:.c=.o)
 
 CC		 =	clang
 
-CFLAGS 	+= -Wall
+CFLAGS	+= -Wall
 CFLAGS	+= -Wextra
 CFLAGS	+= -Werror
 CFLAGS	+= -g
@@ -68,13 +68,13 @@ NAME	=	libftprintf.a
 
 LIBFT 	=	libft
 
-INC = ./includes/
+INC =	./includes/
 
-HEAD = $(INC)libftprintf.h
+HEAD =	$(INC)libftprintf.h
 
-all: $(NAME)
+all:	$(NAME)
 
-bonus :	all
+bonus:	all
 
 $(NAME): $(OBJS)
 	ar rcs $@ $^
@@ -94,20 +94,22 @@ fs:	$(NAME)
 	./a.out
 
 norme:
-	norminette libft/*.c
+	norminette $(LIBFT_FOLDER)/*.c
 	norminette $(SRCS_FOLDER)/*.c
+	norminette $(INC)/*.h
+	norminette Makefile 
 
 clean:
 	$(RM) $(OBJS)
 	make clean -C $(LIBFT) 
 
-fclean:	clean	
+fclean:	clean
 	$(RM) $(NAME)
 	make fclean -C $(LIBFT) 
 
 execlean:
 	$(RM) a.out
-		
+
 re:	execlean fclean all
 
 .PHONY:	execlean clean all fclean re bonus f fs norme
