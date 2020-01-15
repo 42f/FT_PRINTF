@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:48:03 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/15 08:46:12 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/15 09:55:55 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,10 @@ void	ft_wildcard_arg(va_list ap, t_format *format, int type)
 	else if (type == 2)
 	{
 		wildcard_arg = va_arg(ap, int);
-		if (wildcard_arg < 0)
-			wildcard_arg = -wildcard_arg;
+		if (wildcard_arg < 0 && ft_str_set(format->flag, "0") != 0)
+			wildcard_arg = format->min_w;
+		else if (wildcard_arg < 0)
+			wildcard_arg = -1;
 		format->pre = wildcard_arg;
 	}
 }
