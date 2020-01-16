@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 13:46:56 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/15 08:41:52 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/16 07:59:02 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ static int	ft_p_conv(va_list ap, t_format *format, char *h_base)
 	ret = 0;
 	nb_str = ft_itoa_base_ptr(va_arg(ap, uintptr_t), h_base);
 	nb_str = ft_p_pre_padding(format, nb_str);
+	if (nb_str == NULL)
+		return (-1);
 	c_fill = ft_set_cfill(format);
 	ret = ft_put_hex(format, nb_str, c_fill);
 	free(nb_str);
@@ -72,6 +74,8 @@ static int	ft_x_conv(va_list ap, t_format *format, char *h_b)
 	else
 		nb_s = ft_itoa_base(va_arg(ap, unsigned int), h_b);
 	nb_s = ft_x_pre_padding(format, nb_s);
+	if (nb_s == NULL)
+		return (-1);
 	c_fill = ft_set_cfill(format);
 	ret = ft_put_hex(format, nb_s, c_fill);
 	free(nb_s);

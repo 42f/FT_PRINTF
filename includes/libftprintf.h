@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:44:34 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/15 18:32:24 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/16 07:44:46 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <wchar.h>
 
+int				g_error;
 typedef	struct	s_format
 {
 	char	flag[6];

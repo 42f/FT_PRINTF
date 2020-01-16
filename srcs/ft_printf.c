@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:48:03 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/15 18:36:48 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/16 08:24:36 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static int		ft_next_arg(va_list ap, t_format *format, int main_ret)
 		ret = ft_hex_conv(ap, format);
 	else if (format->conv == 'n')
 		ft_n_conv(ap, main_ret, format);
+	if (ret == -1)
+		g_error = 1;
 	return(ret);
 }
 
@@ -117,6 +119,7 @@ int				ft_printf(const char *arg, ...)
 	va_list 	ap;
 	t_format	*format;
 
+	g_error = 0;
 	ret = 0;
 	format = NULL;
 	if (arg == NULL)
@@ -129,6 +132,8 @@ int				ft_printf(const char *arg, ...)
 	va_start(ap, arg);
 	ret = ft_arg_manager(ap, arg, format);
 	va_end(ap);
+	if (g_error == 1)
+		ret = -1;
 	return (ret);
 }
 

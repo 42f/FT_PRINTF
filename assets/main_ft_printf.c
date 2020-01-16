@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 13:51:42 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/15 18:10:48 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/16 08:04:20 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -317,7 +317,7 @@ int	main(void)
 	printf("\n================ [START] =================\n");
 //	printf("\t%s", ctime(&t));
 
-/*
+
 	basic_test_01_xX();
 
 
@@ -345,7 +345,7 @@ int	main(void)
 	system("leaks a.out");	
 
 	basic_test_wildcard();
-*/	printf("\n================ [xtra] =================\n");
+	printf("\n================ [xtra] =================\n");
 
 
 //	printf("%hhf", 42.5); 

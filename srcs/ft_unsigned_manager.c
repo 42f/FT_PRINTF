@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 15:35:18 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/15 08:46:20 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/16 08:01:52 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int		ft_printer_nbr(t_format *format, char *padded_buff)
 		output_len = format->min_w;
 	output_str = (char *)ft_calloc(output_len + 1, sizeof(char));
 	if (output_str == NULL)
-		return (0);
+		return (-1);
 	c_fill = ' ';
 	if (ft_str_set(format->flag, "0") != 0)
 		c_fill = '0';
@@ -64,7 +64,6 @@ static int		ft_printer_nbr(t_format *format, char *padded_buff)
 	else
 		ft_memcpy(output_str + (output_len - buff_len), padded_buff, buff_len);
 	ft_putstr(output_str);
-	free(padded_buff);
 	free(output_str);
 	return (output_len);
 }
@@ -91,7 +90,10 @@ int		ft_unsigned_conv(va_list ap, t_format *format)
 	if (nb == 0 && format->pre == 0)
 		buffer[0] = '\0';
 	buffer = ft_zero_padding(format, buffer);
+	if (buffer == NULL)
+		return (-1);
 	ret = ft_printer_nbr(format, buffer);
+	free(buffer);
 	return (ret);
 }
 

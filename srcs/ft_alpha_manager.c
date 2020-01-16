@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 13:45:58 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/15 08:41:31 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/16 08:16:29 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int		ft_printer_str(t_format *format, char *str_buffer)
 	if (format->min_w > output_len)
 		output_len = format->min_w;
 	output_str = (char *)ft_calloc(output_len + 1, sizeof(char));
+	if (output_str == NULL)
+		return (-1);
 	ft_memset(output_str, ' ', output_len);
 	if (ft_str_set(format->flag, "-") != NULL)
 		ft_memcpy(output_str, str_buffer, len);

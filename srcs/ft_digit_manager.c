@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 15:35:18 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/15 08:41:45 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/16 08:10:49 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,10 @@ static char		*ft_pad_buffer(t_format *format, char *buffer, long long nb)
 	ret_len = ft_ret_len(format, buffer_len);
 	ret = (char *)ft_calloc(ret_len + 1, sizeof(char));
 	if (ret == NULL)
+	{
+		free(buffer);
 		return (NULL);
+	}
 	ft_memset(ret, '0', ret_len);
 	ft_prefix(format, ret, buffer, nb);
 	free(buffer);
@@ -82,12 +85,14 @@ static char		*ft_zero_padding(t_format *format, char *buffer, long long nb)
 	size_t			padd_len;
 
 	buffer = ft_pad_buffer(format, buffer, nb);
+	if (buffer == NULL)
+		return (NULL);
 	buff_len = ft_strlen(buffer);
 	padd_len = buff_len;
 	if (format->min_w > (int)buff_len)
 		padd_len = format->min_w;
 	padded_ret = (char *)ft_calloc(padd_len + 1, sizeof(char));
-	if (padded_ret == NULL)
+	if (padded_ret == NULL || buffer == NULL)
 		return (NULL);
 	ft_memset(padded_ret, ' ', padd_len);
 	if (ft_str_set(format->flag, "-") != 0)
@@ -100,19 +105,15 @@ static char		*ft_zero_padding(t_format *format, char *buffer, long long nb)
 
 int				ft_num_conv(va_list ap, t_format *format)
 {
-	int				ret;
 	char			*buffer;
 	long long int	nb;
 
 	if (ft_str_set(format->spec, "lzj") != 0 || format->conv == 'D')
 		nb = va_arg(ap, long long int);
-	else if (ft_str_set(format->spec, "h") != 0)
-	{
-		if (ft_strncmp(format->spec, "h", 3) == 0)
-			nb = (short int)va_arg(ap, int);
-		else
+	else if (ft_strncmp(format->spec, "hh", 2) == 0)
 			nb = (signed char)va_arg(ap, int);
-	}
+	else if (ft_strncmp(format->spec, "h", 1) == 0)
+			nb = (short int)va_arg(ap, int);
 	else
 		nb = va_arg(ap, int);
 	buffer = ft_itoa(nb);
@@ -121,9 +122,10 @@ int				ft_num_conv(va_list ap, t_format *format)
 	if (nb == 0 && format->pre == 0)
 		buffer[0] = '\0';
 	buffer = ft_zero_padding(format, buffer, nb);
+	if (buffer == NULL)
+		return (-1);
 	ft_putstr(buffer);
-	ret = ft_strlen(buffer);
 	free(buffer);
-	return (ret);
+	return (ft_strlen(buffer));
 }
 
