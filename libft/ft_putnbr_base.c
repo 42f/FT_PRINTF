@@ -6,13 +6,13 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 09:27:27 by bvalette          #+#    #+#             */
-/*   Updated: 2019/12/27 16:57:47 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/16 14:48:10 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-static int		ft_is_valid(char *base)
+static int	ft_is_valid(char *base)
 {
 	int	i;
 	int	j;
@@ -41,10 +41,10 @@ static void	ft_putnum(unsigned long long int n, char *base)
 	write(1, &n, 1);
 }
 
-void	ft_putnbr_base(long long int nbr, char *base)
+void		ft_putnbr_base(long long int nbr, char *base)
 {
-	unsigned long long int nosign;
-	unsigned int b_size;
+	unsigned long long	nosign;
+	unsigned int		b_size;
 
 	nosign = 0;
 	b_size = 0;
@@ -61,7 +61,7 @@ void	ft_putnbr_base(long long int nbr, char *base)
 		}
 		else
 			nosign = nbr;
-	if (nosign >= b_size)
+		if (nosign >= b_size)
 			ft_putnbr_base(nosign / b_size, base);
 	}
 	ft_putnum(nosign % b_size, base);

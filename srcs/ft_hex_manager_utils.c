@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 10:48:30 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/15 08:42:45 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/16 13:57:04 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-void	ft_str_toupper(char *str)
+void		ft_str_toupper(char *str)
 {
 	while (*str != '\0')
 	{
@@ -24,7 +24,7 @@ void	ft_str_toupper(char *str)
 	}
 }
 
-char	ft_set_cfill(t_format *format)
+char		ft_set_cfill(t_format *format)
 {
 	char	c_fill;
 
@@ -70,7 +70,7 @@ static char	*ft_padding(t_format *format, char *hex_str, int pre, int offset)
 	return (padded_ret);
 }
 
-char	*ft_p_pre_padding(t_format *format, char *hex_str)
+char		*ft_p_pre_padding(t_format *format, char *hex_str)
 {
 	int			offset;
 	char		*ret_str;
@@ -82,7 +82,7 @@ char	*ft_p_pre_padding(t_format *format, char *hex_str)
 	return (ret_str);
 }
 
-char	*ft_x_pre_padding(t_format *format, char *hex_str)
+char		*ft_x_pre_padding(t_format *format, char *hex_str)
 {
 	int			offset;
 	char		*ret_str;
@@ -98,5 +98,3 @@ char	*ft_x_pre_padding(t_format *format, char *hex_str)
 	ret_str = ft_padding(format, hex_str, format->pre, offset);
 	return (ret_str);
 }
-
-

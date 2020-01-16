@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:48:03 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/15 09:55:55 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/16 14:01:33 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ft_conv_parser(char *arg, t_format *format)
 
 void	ft_flag_parser(char *arg, t_format *format)
 {
-	while (*arg != '\0' && ft_char_set(*arg,"0-+ #") != 0)
+	while (*arg != '\0' && ft_char_set(*arg, "0-+ #") != 0)
 	{
 		ft_fill_flag(format, *arg);
 		arg++;
@@ -86,4 +86,3 @@ void	ft_wildcard_arg(va_list ap, t_format *format, int type)
 		format->pre = wildcard_arg;
 	}
 }
-

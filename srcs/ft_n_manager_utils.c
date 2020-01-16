@@ -6,26 +6,25 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 16:26:14 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/15 08:43:37 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/16 13:52:28 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 #include <stdarg.h>
 
-void	ft_n_int(va_list ap, int ret)
+void				ft_n_int(va_list ap, int ret)
 {
 	int				*ptr_int;
-	
+
 	ptr_int = va_arg(ap, int *);
 	if (ptr_int == NULL)
 		return ;
 	*ptr_int = ret;
 }
 
-void	ft_n_lint(va_list ap, int ret)
+void				ft_n_lint(va_list ap, int ret)
 {
-
 	long int		*ptr_lint;
 
 	ptr_lint = va_arg(ap, long int*);
@@ -34,9 +33,8 @@ void	ft_n_lint(va_list ap, int ret)
 	*ptr_lint = (long int)ret;
 }
 
-void	ft_n_llint(va_list ap, int ret)
+void				ft_n_llint(va_list ap, int ret)
 {
-
 	long long int	*ptr_llint;
 
 	ptr_llint = va_arg(ap, long long int*);
@@ -45,9 +43,8 @@ void	ft_n_llint(va_list ap, int ret)
 	*ptr_llint = (long long int)ret;
 }
 
-void	ft_n_hint(va_list ap, int ret)
+void				ft_n_hint(va_list ap, int ret)
 {
-
 	short int		*ptr_h;
 
 	ptr_h = va_arg(ap, short int*);
@@ -56,9 +53,8 @@ void	ft_n_hint(va_list ap, int ret)
 	*ptr_h = (short int)ret;
 }
 
-void	ft_n_hhint(va_list ap, int ret)
+void				ft_n_hhint(va_list ap, int ret)
 {
-
 	signed char		*ptr_hh;
 
 	ptr_hh = va_arg(ap, signed char*);
@@ -66,4 +62,3 @@ void	ft_n_hhint(va_list ap, int ret)
 		return ;
 	*ptr_hh = (signed char)ret;
 }
-

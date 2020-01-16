@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 15:35:18 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/16 08:01:52 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/16 14:05:05 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-
-static char	*ft_zero_padding(t_format *format, char *buffer)
+static char		*ft_zero_padding(t_format *format, char *buffer)
 {
 	char		*padded_ret;
 	size_t		buffer_len;
@@ -68,11 +67,11 @@ static int		ft_printer_nbr(t_format *format, char *padded_buff)
 	return (output_len);
 }
 
-int		ft_unsigned_conv(va_list ap, t_format *format)
+int				ft_unsigned_conv(va_list ap, t_format *format)
 {
-	int				ret;
-	char			*buffer;
-	unsigned long long int	nb;
+	int					ret;
+	char				*buffer;
+	unsigned long long	nb;
 
 	buffer = NULL;
 	ret = 0;
@@ -96,4 +95,3 @@ int		ft_unsigned_conv(va_list ap, t_format *format)
 	free(buffer);
 	return (ret);
 }
-

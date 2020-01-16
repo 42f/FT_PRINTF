@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 13:46:56 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/16 07:59:02 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/16 13:44:45 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	ft_put_hex(t_format *format, char *hex_str, char c_fill)
 	else
 		ft_memcpy(output_str + (out_len - in_len), hex_str, in_len + 1);
 	if (format->conv == 'X')
-		ft_str_toupper(output_str);	
+		ft_str_toupper(output_str);
 	ft_putstr(output_str);
 	free(output_str);
 	return (out_len);
@@ -96,4 +96,3 @@ int			ft_hex_conv(va_list ap, t_format *format)
 	free(h_base);
 	return (ret);
 }
-

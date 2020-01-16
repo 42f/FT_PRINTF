@@ -6,13 +6,11 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 09:32:31 by Brian             #+#    #+#             */
-/*   Updated: 2020/01/07 09:11:22 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/16 14:44:42 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-#include<stdio.h>
 
 static int		ft_is_valid(char *base)
 {
@@ -37,7 +35,7 @@ static int		ft_is_valid(char *base)
 	return (1);
 }
 
-static size_t		ft_base_size(char *base)
+static size_t	ft_base_size(char *base)
 {
 	size_t					b_size;
 
@@ -49,7 +47,7 @@ static size_t		ft_base_size(char *base)
 	return (b_size);
 }
 
-static size_t		ft_nb_size(long long int nb_val, size_t b_size)
+static size_t	ft_nb_size(long long int nb_val, size_t b_size)
 {
 	size_t					len;
 
@@ -62,7 +60,7 @@ static size_t		ft_nb_size(long long int nb_val, size_t b_size)
 	return (len);
 }
 
-static char	*ft_fill(unsigned long long int n_val, int sign, int i, char *base)
+static char		*ft_fill(unsigned long long n_val, int sign, int i, char *base)
 {
 	size_t					b_size;
 	char					*ret;
@@ -82,10 +80,10 @@ static char	*ft_fill(unsigned long long int n_val, int sign, int i, char *base)
 	return (ret);
 }
 
-char		*ft_itoa_base(long long int nb, char *base)
+char			*ft_itoa_base(long long int nb, char *base)
 {
 	int						len;
-	int				 		sign;
+	int						sign;
 	unsigned long long int	nb_val;
 
 	sign = 1;
@@ -101,4 +99,3 @@ char		*ft_itoa_base(long long int nb, char *base)
 		return (ft_strdup("0"));
 	return (ft_fill(nb_val, sign, len, base));
 }
-

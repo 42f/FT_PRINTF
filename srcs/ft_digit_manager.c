@@ -6,18 +6,13 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 15:35:18 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/16 08:10:49 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/16 14:01:05 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 #include "libft.h"
 #include <stdlib.h>
-
-//remove
-#include <fcntl.h>
-#include <unistd.h>
-//remove
 
 static void		ft_prefix(t_format *format, char *ret, char *buff, long long nb)
 {
@@ -38,20 +33,21 @@ static void		ft_prefix(t_format *format, char *ret, char *buff, long long nb)
 static size_t	ft_ret_len(t_format *format, int buffer_len)
 {
 	size_t		ret_len;
+
 	ret_len = buffer_len;
 	if (format->pre > buffer_len)
 		ret_len = format->pre;
 	else if (format->pre != -1 && format->pre <= buffer_len)
 		ret_len = buffer_len;
 	else if (ft_str_set(format->flag, "0") != 0
-&& format->min_w > buffer_len && ft_str_set(format->flag, "-") == 0 )
+	&& format->min_w > buffer_len && ft_str_set(format->flag, "-") == 0)
 		ret_len = format->min_w;
-return (ret_len);
+	return (ret_len);
 }
 
 static char		*ft_pad_buffer(t_format *format, char *buffer, long long nb)
 {
-	char 		*ret;
+	char		*ret;
 	size_t		ret_len;
 	int			buffer_len;
 
@@ -111,9 +107,9 @@ int				ft_num_conv(va_list ap, t_format *format)
 	if (ft_str_set(format->spec, "lzj") != 0 || format->conv == 'D')
 		nb = va_arg(ap, long long int);
 	else if (ft_strncmp(format->spec, "hh", 2) == 0)
-			nb = (signed char)va_arg(ap, int);
+		nb = (signed char)va_arg(ap, int);
 	else if (ft_strncmp(format->spec, "h", 1) == 0)
-			nb = (short int)va_arg(ap, int);
+		nb = (short int)va_arg(ap, int);
 	else
 		nb = va_arg(ap, int);
 	buffer = ft_itoa(nb);
@@ -128,4 +124,3 @@ int				ft_num_conv(va_list ap, t_format *format)
 	free(buffer);
 	return (ft_strlen(buffer));
 }
-

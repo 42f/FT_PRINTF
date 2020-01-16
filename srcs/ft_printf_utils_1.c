@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 09:48:03 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/15 08:46:02 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/16 13:59:12 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_format	*ft_format_init(void)
 	t_format	*new_format;
 
 	new_format = (t_format*)malloc(sizeof(t_format) * 1);
-	if (new_format== NULL)
+	if (new_format == NULL)
 		return (NULL);
 	ft_memset(new_format->flag, '\0', 6);
 	new_format->min_w = -1;
@@ -49,6 +49,7 @@ void		ft_fill_spec(t_format *format, char c)
 void		ft_fill_flag(t_format *format, char c)
 {
 	int			i;
+
 	i = 0;
 	while (i <= 4)
 	{
@@ -61,14 +62,13 @@ void		ft_fill_flag(t_format *format, char c)
 	}
 }
 
-char		*ft_str_set(char* str, char *set)
+char		*ft_str_set(char *str, char *set)
 {
 	int			i;
 	int			y;
 
 	i = 0;
 	y = 0;
-
 	while (str[y] != '\0')
 	{
 		while (set[i] != '\0')
@@ -96,4 +96,3 @@ char		ft_char_set(char c, char *set)
 	}
 	return (0);
 }
-

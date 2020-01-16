@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 13:45:58 by bvalette          #+#    #+#             */
-/*   Updated: 2020/01/16 08:16:29 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/01/16 13:43:42 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-int		ft_printer_str(t_format *format, char *str_buffer)
+int				ft_printer_str(t_format *format, char *str_buffer)
 {
 	int			len;
 	int			output_len;
@@ -43,7 +43,7 @@ int		ft_printer_str(t_format *format, char *str_buffer)
 	return (output_len);
 }
 
-static	void ft_put_c(char *output_str, int len)
+static	void	ft_put_c(char *output_str, int len)
 {
 	int			i;
 
@@ -55,12 +55,12 @@ static	void ft_put_c(char *output_str, int len)
 	}
 }
 
-int		ft_printer_char(t_format *format, wchar_t c)
+int				ft_printer_char(t_format *format, wchar_t c)
 {
 	char		*output_str;
 	int			len;
 	char		fill;
-	
+
 	fill = ' ';
 	if (ft_str_set(format->flag, "0") != 0
 		&& ft_str_set(format->flag, "-") == 0)
@@ -81,7 +81,7 @@ int		ft_printer_char(t_format *format, wchar_t c)
 	return (len);
 }
 
-int		ft_alpha_conv(va_list ap, t_format *format)
+int				ft_alpha_conv(va_list ap, t_format *format)
 {
 	int			ret;
 	char		*str_buffer;
@@ -102,4 +102,3 @@ int		ft_alpha_conv(va_list ap, t_format *format)
 	}
 	return (ret);
 }
-
